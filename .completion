@@ -14,6 +14,6 @@ fi
 
 # add rustup completions
 if command -v rustup > /dev/null; then
-    eval "$(rustup completions bash rustup)"
-    eval "$(rustup completions bash cargo)"
+    source <(rustup completions bash rustup)
+    source <(rustup completions bash cargo)
 fi
