@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# add local
+export PATH="$HOME/.local/bin:$PATH"
+
+# add rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# add deno
+export PATH="$HOME/.deno/bin:$PATH"
