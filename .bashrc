@@ -3,10 +3,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-for file in ~/.{aliases,completion,exports,path}; do
+for file in ~/.{path,exports,aliases,prompt,completion}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
-
-# Use starship prompt
-eval "$(starship init bash)"
