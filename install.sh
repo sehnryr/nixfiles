@@ -6,7 +6,7 @@ excluded_directories=(
     ".git"
 )
 excluded_files=(
-    "init.sh"
+    "install.sh"
     "README.md"
 )
 
