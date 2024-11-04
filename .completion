@@ -17,3 +17,8 @@ if command -v rustup > /dev/null; then
     source <(rustup completions bash rustup)
     source <(rustup completions bash cargo)
 fi
+
+# add deno completions
+if command -v deno > /dev/null; then
+    source <(deno completions bash)
+fi
