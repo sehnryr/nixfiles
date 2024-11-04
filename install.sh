@@ -7,6 +7,7 @@ excluded_directories=(
 )
 excluded_files=(
     "init.sh"
+    "README.md"
 )
 
 exclude_directories=""
