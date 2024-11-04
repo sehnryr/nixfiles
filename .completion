@@ -11,3 +11,8 @@ fi
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
 fi
+
+# add rustup completions
+if command -v rustup > /dev/null; then
+    eval "$(rustup completions bash)"
+fi
