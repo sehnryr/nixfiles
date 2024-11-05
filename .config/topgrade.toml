@@ -8,7 +8,7 @@ disable = [
 ]
 
 [post_commands]
-"AMD firmware workaround" = "sudo sh -c '[[ -d /root/linux-firmware ]] && sudo cp -rf /root/linux-firmware/amd{,gpu,-ucode} /lib/firmware/'"
+"AMD firmware workaround" = "sudo sh -c '[[ -d /root/linux-firmware ]] && sudo cp -rf /root/linux-firmware/amd{,gpu,-ucode} /lib/firmware/' && echo 'Done' || echo 'No workaround needed'"
 
 [git]
 repos = ["~/dotfiles"]
