@@ -6,3 +6,6 @@ alias vim="nvim"
 
 # lsd
 alias ls="lsd"
+
+# zed
+alias zed="zeditor"
