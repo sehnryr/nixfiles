@@ -30,6 +30,17 @@
         },
         "YAML": {
             "tab_size": 2
+        },
+        "Python": {
+            "language_servers": ["ruff"],
+            "format_on_save": "on",
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "ruff"
+                    }
+                }
+            ]
         }
     }
 }
