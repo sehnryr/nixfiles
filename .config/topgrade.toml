@@ -10,5 +10,8 @@ disable = [
 [post_commands]
 "AMD firmware workaround" = "sudo sh -c '[[ -d /root/linux-firmware ]] && sudo cp -rf /root/linux-firmware/amd{,gpu,-ucode} /lib/firmware/'"
 
+[git]
+repos = ["~/dotfiles"]
+
 [deno]
 version = "canary"
