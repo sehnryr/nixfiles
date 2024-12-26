@@ -5,6 +5,7 @@ disable = [
     "containers",
     "gnome_shell_extensions",
     "github_cli_extensions",
+    "uv",
 ]
 
 [post_commands]
