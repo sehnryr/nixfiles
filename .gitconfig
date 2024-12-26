@@ -6,3 +6,5 @@
     gpgsign = true
 [gpg]
     format = ssh
+[tag]
+	gpgSign = true
