@@ -1,0 +1,12 @@
+[Unit]
+Description=Proton Drive Mount
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rclone mount proton: %h/ProtonDrive --vfs-cache-mode writes
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
