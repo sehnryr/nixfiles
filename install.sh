@@ -4,6 +4,7 @@ CONFIG_DIRECTORY=$(realpath "$(dirname "$0")")
 
 excluded_directories=(
     ".git"
+    ".githooks"
 )
 excluded_files=(
     "install.sh"
