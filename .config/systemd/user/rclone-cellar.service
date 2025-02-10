@@ -1,0 +1,12 @@
+[Unit]
+Description=Clever Cloud Cellar Mount
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rclone mount cellar:cloud-storage %h/Cellar --vfs-cache-mode writes
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
