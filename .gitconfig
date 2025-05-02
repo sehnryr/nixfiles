@@ -8,3 +8,5 @@
     format = ssh
 [tag]
 	gpgSign = true
+[init]
+	defaultBranch = main
