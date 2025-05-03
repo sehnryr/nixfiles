@@ -15,6 +15,8 @@ $env.config.rm = {
 
 $env.SSH_AUTH_SOCK = $env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"
 
+$env.PROMPT_COMMAND_RIGHT = ""
+
 use std/util 'path add'
 path add ($env.HOME | path join ".local/bin")
 path add ($env.HOME | path join ".cargo/bin")
