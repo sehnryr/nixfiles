@@ -1,5 +1,6 @@
 *
 !.gitignore
+!LICENSE
 
 !.cargo
 !.cargo/config.toml
