@@ -32,4 +32,7 @@
 !.config/zed
 !.config/zed/settings.json
 
-!.steam/steam/steam_dev.cfg
+!.local
+!.local/share
+!.local/share/Steam
+!.local/share/Steam/steam_dev.cfg
