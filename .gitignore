@@ -31,3 +31,5 @@
 
 !.config/zed
 !.config/zed/settings.json
+
+!.steam/steam/steam_dev.cfg
