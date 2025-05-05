@@ -16,6 +16,9 @@
 !.config/lsd
 !.config/lsd/config.yml
 
+!.config/nix
+!.config/nix/nix.conf
+
 !.config/nushell
 !.config/nushell/config.nu
 !.config/nushell/completions
