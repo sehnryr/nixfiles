@@ -8,8 +8,6 @@
 
 !.config
 
-!.config/topgrade.toml
-
 !.config/home-manager
 !.config/home-manager/home.nix
 

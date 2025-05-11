@@ -63,6 +63,30 @@
     vimAlias = true;
   };
 
+  programs.topgrade = {
+    enable = true;
+    settings = {
+      misc = {
+        assume_yes = true;
+        disable = [
+          "firmware"
+          "toolbx"
+          "containers"
+          "gnome_shell_extensions"
+          "github_cli_extensions"
+          "bun_packages"
+          "jetbrains_toolbox"
+        ];
+        set_title = false;
+        cleanup = true;
+      };
+      post_commands = {
+        "AMD firmware workaround" =
+          "sudo sh -c '[[ -d /root/linux-firmware ]] && sudo cp -rf /root/linux-firmware/amd{,gpu,-ucode} /lib/firmware/' && echo 'Done' || echo 'No workaround needed'";
+      };
+    };
+  };
+
   programs.git = {
     enable = true;
     userName = "Youn Mélois";
