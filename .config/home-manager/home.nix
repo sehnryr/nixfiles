@@ -66,7 +66,10 @@
         rustc-wrapper = "/usr/bin/sccache"
       '';
     };
-    ".config/wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf" =
+  };
+
+  xdg.configFile = {
+    "wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf" =
       {
         enable = true;
         text = ''
