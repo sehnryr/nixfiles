@@ -11,9 +11,6 @@
 !.config/starship.toml
 !.config/topgrade.toml
 
-!.config/lsd
-!.config/lsd/config.yml
-
 !.config/home-manager
 !.config/home-manager/home.nix
 
