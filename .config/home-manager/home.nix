@@ -23,6 +23,12 @@
     pkgs.rustup
     pkgs.wget
     pkgs.fastfetch
+    pkgs.rclone
+    pkgs.tealdeer
+    pkgs.fd
+    pkgs.dust
+    pkgs.hyperfine
+    pkgs.cargo-binstall
 
     pkgs.python313Packages.pip
     pkgs.uv
@@ -201,6 +207,4 @@
       };
     };
   };
-
-  programs.rclone.enable = true;
 }
