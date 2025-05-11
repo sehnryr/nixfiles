@@ -8,7 +8,6 @@
 
 !.config
 
-!.config/starship.toml
 !.config/topgrade.toml
 
 !.config/home-manager

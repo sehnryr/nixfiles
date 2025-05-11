@@ -20,12 +20,11 @@
     pkgs.cmake
     pkgs.bun
     pkgs.deno
-    pkgs.starship
     pkgs.rustup
     pkgs.wget
+    pkgs.fastfetch
 
     pkgs.python313Packages.pip
-    pkgs.pipx
     pkgs.uv
 
     pkgs.sccache
@@ -33,6 +32,8 @@
     pkgs.bruno
 
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
+
+    pkgs.maple-mono.NF
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -47,6 +48,11 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts.monospace = [ "Maple Mono NF" ];
+  };
 
   programs.home-manager.enable = true;
 
@@ -88,13 +94,8 @@
 
       $env.PROMPT_COMMAND_RIGHT = ""
 
-      mkdir ($nu.data-dir | path join "vendor/autoload")
-      starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
-
       use std/util 'path add'
-      path add ($env.HOME | path join ".local/bin")
       path add ($env.HOME | path join ".cargo/bin")
-      path add ($env.HOME | path join ".deno/bin")
 
       use completions/cargo-completions.nu *
       use completions/curl-completions.nu *
@@ -110,6 +111,12 @@
       use completions/tldr-completions.nu *
       use completions/uv-completions.nu *
     '';
+  };
+
+  programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
+    settings = { scala.detect_folders = [ ]; };
   };
 
   programs.zed-editor = {
@@ -164,4 +171,6 @@
       };
     };
   };
+
+  programs.rclone.enable = true;
 }
