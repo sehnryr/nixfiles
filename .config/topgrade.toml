@@ -5,12 +5,8 @@ disable = [
     "containers",
     "gnome_shell_extensions",
     "github_cli_extensions",
-    "uv",
-    "deno",
-    "bun",
     "bun_packages",
     "jetbrains_toolbox",
-    "pipx",
 ]
 
 [post_commands]

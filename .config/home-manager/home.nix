@@ -1,10 +1,20 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+  nixGL = {
+    packages = import <nixgl> { inherit pkgs; };
+    defaultWrapper = "mesa";
+    installScripts = [ "mesa" ];
+    vulkan.enable = true;
+  };
+
   home.username = "youn";
   home.homeDirectory = "/home/youn";
 
   home.stateVersion = "24.11";
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [ "discord" ];
 
   home.packages = [
     pkgs.cmake
@@ -16,10 +26,13 @@
 
     pkgs.python313Packages.pip
     pkgs.pipx
+    pkgs.uv
 
     pkgs.sccache
 
     pkgs.bruno
+
+    (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -50,9 +63,105 @@
     userEmail = "youn@melois.dev";
     signing = {
       format = "ssh";
-      key = "/home/youn/.ssh/id_ed25519.pub";
+      key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       signByDefault = true;
     };
     extraConfig = { init.defaultBranch = "main"; };
+  };
+
+  programs.nushell = {
+    enable = true;
+    settings = {
+      show_banner = false;
+      history = {
+        file_format = "sqlite";
+        max_size = 1000000;
+        sync_on_enter = true;
+        isolation = true;
+      };
+      ls.clickable_links = false;
+      rm.always_trash = true;
+    };
+    shellAliases = { zed = "zeditor"; };
+    configFile.text = ''
+      $env.SSH_AUTH_SOCK = $env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"
+
+      $env.PROMPT_COMMAND_RIGHT = ""
+
+      mkdir ($nu.data-dir | path join "vendor/autoload")
+      starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+      use std/util 'path add'
+      path add ($env.HOME | path join ".local/bin")
+      path add ($env.HOME | path join ".cargo/bin")
+      path add ($env.HOME | path join ".deno/bin")
+
+      use completions/cargo-completions.nu *
+      use completions/curl-completions.nu *
+      use completions/docker-completions.nu *
+      use completions/git-completions.nu *
+      use completions/less-completions.nu *
+      use completions/make-completions.nu *
+      use completions/man-completions.nu *
+      use completions/nix-completions.nu *
+      use completions/rustup-completions.nu *
+      use completions/ssh-completions.nu *
+      use completions/tar-completions.nu *
+      use completions/tldr-completions.nu *
+      use completions/uv-completions.nu *
+    '';
+  };
+
+  programs.zed-editor = {
+    enable = true;
+    package = config.lib.nixGL.wrap pkgs.zed-editor;
+    installRemoteServer = true;
+    extensions = [
+      "html"
+      "toml"
+      "dockerfile"
+      "git-firefly"
+      "sql"
+      "ruby"
+      "make"
+      "xml"
+      "nix"
+      "ruff"
+      "deno"
+      "proto"
+      "scala"
+      "nu"
+      "wit"
+    ];
+    extraPackages = [ pkgs.nil pkgs.nixd pkgs.ruff ];
+    userSettings = {
+      show_edit_predictions = true;
+      tab_size = 4;
+      preferred_line_length = 100;
+      soft_wrap = "editor_width";
+      wrap_guides = [ 80 100 ];
+      ui_font_size = 14;
+      buffer_font_size = 14;
+      buffer_font_family = "Maple Mono NF";
+      format_on_save = "on";
+      theme = {
+        mode = "system";
+        light = "One Light";
+        dark = "Ayu Dark";
+      };
+      terminal.font_family = "Maple Mono NF";
+      languages = {
+        "YAML".tab_size = 2;
+        "Ruby".tab_size = 2;
+        "Python" = {
+          language_servers = [ "ruff" ];
+          formatter = [{ language_server.name = "ruff"; }];
+        };
+        "Nix" = {
+          tab_size = 2;
+          formatter = [{ external.command = "nixfmt"; }];
+        };
+      };
+    };
   };
 }

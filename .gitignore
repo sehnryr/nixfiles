@@ -1,6 +1,6 @@
 *
-!.gitconfig
 !.gitignore
+!.nix-channels
 !LICENSE
 
 !.cargo
@@ -11,18 +11,16 @@
 !.config/starship.toml
 !.config/topgrade.toml
 
-!.config/discord
-!.config/discord/settings.json
-!.config/discordcanary
-
 !.config/lsd
 !.config/lsd/config.yml
+
+!.config/home-manager
+!.config/home-manager/home.nix
 
 !.config/nix
 !.config/nix/nix.conf
 
 !.config/nushell
-!.config/nushell/config.nu
 !.config/nushell/completions
 !.config/nushell/completions/*.nu
 
@@ -33,9 +31,6 @@
 !.config/wireplumber
 !.config/wireplumber/wireplumber.conf.d
 !.config/wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf
-
-!.config/zed
-!.config/zed/settings.json
 
 !.local
 !.local/share
