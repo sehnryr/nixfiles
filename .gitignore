@@ -15,10 +15,6 @@
 !.config/nushell/completions
 !.config/nushell/completions/*.nu
 
-!.config/wireplumber
-!.config/wireplumber/wireplumber.conf.d
-!.config/wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf
-
 !.local
 !.local/share
 !.local/share/Steam
