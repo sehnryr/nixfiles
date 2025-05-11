@@ -119,6 +119,12 @@
     settings = { scala.detect_folders = [ ]; };
   };
 
+  programs.direnv = {
+    enable = true;
+    enableNushellIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.zed-editor = {
     enable = true;
     package = config.lib.nixGL.wrap pkgs.zed-editor;
