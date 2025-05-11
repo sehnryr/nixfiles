@@ -55,6 +55,9 @@
     # '')
   ];
 
+  home.shellAliases = { zed = "zeditor"; };
+  home.shell.enableNushellIntegration = true;
+
   fonts.fontconfig = {
     enable = true;
     defaultFonts.monospace = [ "Maple Mono NF" ];
@@ -118,7 +121,6 @@
       ls.clickable_links = false;
       rm.always_trash = true;
     };
-    shellAliases = { zed = "zeditor"; };
     configFile.text = ''
       $env.SSH_AUTH_SOCK = $env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"
 
