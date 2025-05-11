@@ -18,10 +18,6 @@
 !.config/nushell/completions
 !.config/nushell/completions/*.nu
 
-!.config/systemd
-!.config/systemd/user
-!.config/systemd/user/*.service
-
 !.config/wireplumber
 !.config/wireplumber/wireplumber.conf.d
 !.config/wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf
