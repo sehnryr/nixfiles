@@ -3,9 +3,6 @@
 !.nix-channels
 !LICENSE
 
-!.cargo
-!.cargo/config.toml
-
 !.config
 
 !.config/home-manager

@@ -58,6 +58,16 @@
   home.shellAliases = { zed = "zeditor"; };
   home.shell.enableNushellIntegration = true;
 
+  home.file = {
+    ".cargo/config.toml" = {
+      enable = true;
+      text = ''
+        [build]
+        rustc-wrapper = "/usr/bin/sccache"
+      '';
+    };
+  };
+
   fonts.fontconfig = {
     enable = true;
     defaultFonts.monospace = [ "Maple Mono NF" ];
