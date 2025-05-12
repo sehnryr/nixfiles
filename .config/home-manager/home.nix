@@ -50,6 +50,8 @@ rec {
     pkgs.uv
     pkgs.sccache
     pkgs.bruno
+    pkgs.libreoffice-fresh
+    pkgs.thunderbird
 
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
 
