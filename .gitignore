@@ -6,7 +6,3 @@
 
 !.config/home-manager
 !.config/home-manager/home.nix
-
-!.config/nushell
-!.config/nushell/completions
-!.config/nushell/completions/*.nu
