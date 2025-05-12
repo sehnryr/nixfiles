@@ -47,12 +47,8 @@ rec {
     pkgs.dust
     pkgs.hyperfine
     pkgs.cargo-binstall
-
-    pkgs.python313Packages.pip
     pkgs.uv
-
     pkgs.sccache
-
     pkgs.bruno
 
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
