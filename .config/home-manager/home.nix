@@ -32,7 +32,12 @@ rec {
     };
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "discord" ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "discord"
+      "slack"
+    ];
 
   home.packages = [
     pkgs.cmake
@@ -52,6 +57,8 @@ rec {
     pkgs.bruno
     pkgs.libreoffice-fresh
     pkgs.thunderbird
+    pkgs.slack
+    pkgs.signal-desktop
 
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
 
