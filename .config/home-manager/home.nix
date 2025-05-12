@@ -104,6 +104,7 @@
       misc = {
         assume_yes = true;
         disable = [
+          "bun"
           "bun_packages"
           "containers"
           "deno"
@@ -113,6 +114,7 @@
           "gnome_shell_extensions"
           "jet_brains_toolbox"
           "lensfun"
+          "uv"
         ];
         set_title = false;
         cleanup = true;
