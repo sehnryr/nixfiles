@@ -197,11 +197,10 @@ rec {
       ls.clickable_links = false;
       rm.always_trash = true;
     };
-    configFile.text = ''
-      $env.SSH_AUTH_SOCK = $env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"
-
-      $env.PROMPT_COMMAND_RIGHT = ""
-    '';
+    environmentVariables = {
+      SSH_AUTH_SOCK = lib.hm.nushell.mkNushellInline ''$env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"'';
+      PROMPT_COMMAND_RIGHT = "";
+    };
   };
 
   programs.carapace = {
