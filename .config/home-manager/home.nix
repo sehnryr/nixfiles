@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   nixGL = {
@@ -20,8 +25,7 @@
     };
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "discord" ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "discord" ];
 
   home.packages = [
     pkgs.cmake
@@ -62,7 +66,9 @@
     # '')
   ];
 
-  home.shellAliases = { zed = "zeditor"; };
+  home.shellAliases = {
+    zed = "zeditor";
+  };
   home.shell.enableNushellIntegration = true;
 
   home.file = {
@@ -76,19 +82,18 @@
   };
 
   xdg.configFile = {
-    "wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf" =
-      {
-        enable = true;
-        text = ''
-          wireplumber.settings = {
-            bluetooth.autoswitch-to-headset-profile = false
-          }
+    "wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf" = {
+      enable = true;
+      text = ''
+        wireplumber.settings = {
+          bluetooth.autoswitch-to-headset-profile = false
+        }
 
-          monitor.bluez.properties = {
-            bluez5.roles = [ a2dp_sink a2dp_source ]
-          }
-        '';
-      };
+        monitor.bluez.properties = {
+          bluez5.roles = [ a2dp_sink a2dp_source ]
+        }
+      '';
+    };
   };
 
   fonts.fontconfig = {
@@ -142,7 +147,9 @@
       key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       signByDefault = true;
     };
-    extraConfig = { init.defaultBranch = "main"; };
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.nushell = {
@@ -185,7 +192,9 @@
   programs.starship = {
     enable = true;
     enableNushellIntegration = true;
-    settings = { scala.detect_folders = [ ]; };
+    settings = {
+      scala.detect_folders = [ ];
+    };
   };
 
   programs.direnv = {
@@ -215,13 +224,21 @@
       "nu"
       "wit"
     ];
-    extraPackages = [ pkgs.nil pkgs.nixd pkgs.nixfmt-rfc-style pkgs.ruff ];
+    extraPackages = [
+      pkgs.nil
+      pkgs.nixd
+      pkgs.nixfmt-rfc-style
+      pkgs.ruff
+    ];
     userSettings = {
       show_edit_predictions = true;
       tab_size = 4;
       preferred_line_length = 100;
       soft_wrap = "editor_width";
-      wrap_guides = [ 80 100 ];
+      wrap_guides = [
+        80
+        100
+      ];
       ui_font_size = 14;
       buffer_font_size = 14;
       buffer_font_family = "Maple Mono NF";
@@ -237,11 +254,11 @@
         "Ruby".tab_size = 2;
         "Python" = {
           language_servers = [ "ruff" ];
-          formatter = [{ language_server.name = "ruff"; }];
+          formatter = [ { language_server.name = "ruff"; } ];
         };
         "Nix" = {
           tab_size = 2;
-          formatter = [{ external.command = "nixfmt"; }];
+          formatter = [ { external.command = "nixfmt"; } ];
         };
       };
     };
