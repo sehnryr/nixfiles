@@ -239,6 +239,7 @@ rec {
       "nu"
       "wit"
       "scss"
+      "angular"
     ];
     extraPackages = [
       pkgs.nil
