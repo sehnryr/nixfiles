@@ -96,6 +96,15 @@
     };
   };
 
+  xdg.dataFile = {
+    "Steam/steam_dev.cfg" = {
+      enable = true;
+      text = ''
+        @nClientDownloadEnableHTTP2PlatformLinux 0
+      '';
+    };
+  };
+
   fonts.fontconfig = {
     enable = true;
     defaultFonts.monospace = [ "Maple Mono NF" ];

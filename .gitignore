@@ -10,8 +10,3 @@
 !.config/nushell
 !.config/nushell/completions
 !.config/nushell/completions/*.nu
-
-!.local
-!.local/share
-!.local/share/Steam
-!.local/share/Steam/steam_dev.cfg
