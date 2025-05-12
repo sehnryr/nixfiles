@@ -104,13 +104,15 @@
       misc = {
         assume_yes = true;
         disable = [
-          "firmware"
-          "toolbx"
-          "containers"
-          "gnome_shell_extensions"
-          "github_cli_extensions"
           "bun_packages"
-          "jetbrains_toolbox"
+          "containers"
+          "deno"
+          "firmware"
+          "git_repos"
+          "github_cli_extensions"
+          "gnome_shell_extensions"
+          "jet_brains_toolbox"
+          "lensfun"
         ];
         set_title = false;
         cleanup = true;
