@@ -238,6 +238,7 @@ rec {
       "scala"
       "nu"
       "wit"
+      "scss"
     ];
     extraPackages = [
       pkgs.nil
