@@ -13,6 +13,13 @@
 
   home.stateVersion = "24.11";
 
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      experimental-features = "nix-command flakes";
+    };
+  };
+
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [ "discord" ];
 
@@ -208,7 +215,7 @@
       "nu"
       "wit"
     ];
-    extraPackages = [ pkgs.nil pkgs.nixd pkgs.ruff ];
+    extraPackages = [ pkgs.nil pkgs.nixd pkgs.nixfmt-rfc-style pkgs.ruff ];
     userSettings = {
       show_edit_predictions = true;
       tab_size = 4;

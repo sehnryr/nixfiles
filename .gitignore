@@ -8,9 +8,6 @@
 !.config/home-manager
 !.config/home-manager/home.nix
 
-!.config/nix
-!.config/nix/nix.conf
-
 !.config/nushell
 !.config/nushell/completions
 !.config/nushell/completions/*.nu
