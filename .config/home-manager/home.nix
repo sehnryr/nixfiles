@@ -5,6 +5,13 @@
   ...
 }:
 
+let
+  sshDirectory = "${config.home.homeDirectory}/.ssh";
+  publicKeys = builtins.filter (name: builtins.match ".*\\.pub$" name != null) (
+    builtins.attrNames (builtins.readDir sshDirectory)
+  );
+  privateKeys = builtins.map (lib.strings.removeSuffix ".pub") publicKeys;
+in
 {
   nixGL = {
     packages = import <nixgl> { inherit pkgs; };
@@ -111,6 +118,21 @@
   };
 
   programs.home-manager.enable = true;
+
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
+    matchBlocks = {
+      "*" = {
+        identityFile = builtins.map (name: "${sshDirectory}/${name}") privateKeys;
+      };
+      "melois.dev" = {
+        hostname = "melois.dev";
+        user = "root";
+        port = 8422;
+      };
+    };
+  };
 
   programs.neovim = {
     enable = true;
