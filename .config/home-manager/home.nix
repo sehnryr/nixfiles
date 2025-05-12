@@ -12,7 +12,7 @@ let
   );
   privateKeys = builtins.map (lib.strings.removeSuffix ".pub") publicKeys;
 in
-{
+rec {
   nixGL = {
     packages = import <nixgl> { inherit pkgs; };
     defaultWrapper = "mesa";
@@ -73,6 +73,7 @@ in
     # '')
   ];
 
+  home.sessionPath = [ "${home.homeDirectory}/.cargo/bin" ];
   home.shellAliases = {
     zed = "zeditor";
   };
@@ -175,7 +176,7 @@ in
     userEmail = "youn@melois.dev";
     signing = {
       format = "ssh";
-      key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+      key = "${home.homeDirectory}/.ssh/id_ed25519.pub";
       signByDefault = true;
     };
     extraConfig = {
@@ -200,9 +201,6 @@ in
       $env.SSH_AUTH_SOCK = $env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"
 
       $env.PROMPT_COMMAND_RIGHT = ""
-
-      use std/util 'path add'
-      path add ($env.HOME | path join ".cargo/bin")
     '';
   };
 
