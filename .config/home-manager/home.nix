@@ -347,6 +347,26 @@ rec {
     };
   };
 
+  services.syncthing = {
+    enable = true;
+    settings = {
+      folders = {
+        "${home.homeDirectory}/Desktop" = {
+          enable = true;
+          id = "desktop-sehn";
+        };
+        "${home.homeDirectory}/Pictures" = {
+          enable = true;
+          id = "pictures-sehn";
+        };
+        "${home.homeDirectory}/Videos" = {
+          enable = true;
+          id = "video-sehn";
+        };
+      };
+    };
+  };
+
   systemd.user = {
     services = {
       "ssh-agent" = {
