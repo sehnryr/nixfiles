@@ -274,7 +274,7 @@ rec {
     settings = {
       font-family = "Maple Mono NF";
       font-size = 10;
-      theme = "light:OneHalfLight,dark:ayu";
+      theme = "light:Monokai Pro Light,dark:Monokai Pro";
       command = "${pkgs.nushell}/bin/nu";
       resize-overlay = "never";
     };
