@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  nixgl,
   ...
 }:
 
@@ -36,7 +37,7 @@ let
 in
 rec {
   nixGL = {
-    packages = pkgs.nixgl;
+    packages = nixgl.packages;
     defaultWrapper = "mesa";
     installScripts = [ "mesa" ];
     vulkan.enable = true;
