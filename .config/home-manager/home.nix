@@ -62,6 +62,7 @@ rec {
     ];
 
   home.packages = [
+    pkgs.less
     pkgs.cmake
     pkgs.bun
     pkgs.deno
