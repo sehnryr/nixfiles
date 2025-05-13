@@ -36,7 +36,7 @@ let
 in
 rec {
   nixGL = {
-    packages = import <nixgl> { inherit pkgs; };
+    packages = pkgs.nixgl;
     defaultWrapper = "mesa";
     installScripts = [ "mesa" ];
     vulkan.enable = true;
@@ -46,13 +46,6 @@ rec {
   home.homeDirectory = "/home/youn";
 
   home.stateVersion = "24.11";
-
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      experimental-features = "nix-command flakes";
-    };
-  };
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:

@@ -5,4 +5,9 @@
 !.config
 
 !.config/home-manager
+!.config/home-manager/flake.lock
+!.config/home-manager/flake.nix
 !.config/home-manager/home.nix
+
+!.config/nix
+!.config/nix/nix.conf
