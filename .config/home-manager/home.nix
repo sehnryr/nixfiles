@@ -327,7 +327,10 @@ rec {
         light = "One Light";
         dark = "Ayu Dark";
       };
-      terminal.font_family = "Maple Mono NF";
+      terminal = {
+        font_family = "Maple Mono NF";
+        shell.program = "${pkgs.nushell}/bin/nu";
+      };
       languages = {
         "YAML".tab_size = 2;
         "Ruby".tab_size = 2;
