@@ -351,18 +351,27 @@ rec {
   services.syncthing = {
     enable = true;
     settings = {
+      devices = {
+        "node-0" = {
+          id = "2MFI55P-LSIS5AN-SKKZXOF-NJOELGG-U6UVN34-7O6HYIG-ZSDQJH5-QBURSAJ";
+          introducer = true;
+        };
+      };
       folders = {
         "${home.homeDirectory}/Desktop" = {
           enable = true;
           id = "desktop-sehn";
+          devices = [ "node-0" ];
         };
         "${home.homeDirectory}/Pictures" = {
           enable = true;
           id = "pictures-sehn";
+          devices = [ "node-0" ];
         };
         "${home.homeDirectory}/Videos" = {
           enable = true;
           id = "video-sehn";
+          devices = [ "node-0" ];
         };
       };
     };
