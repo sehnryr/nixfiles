@@ -244,6 +244,7 @@ rec {
     };
     environmentVariables = {
       SSH_AUTH_SOCK = lib.hm.nushell.mkNushellInline ''$env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"'';
+      BINSTALL_NO_CONFIRM = "";
     };
   };
 
