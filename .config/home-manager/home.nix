@@ -63,6 +63,7 @@ rec {
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
 
     pkgs.maple-mono.NF
+    pkgs.noto-fonts-color-emoji
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -121,6 +122,7 @@ rec {
   fonts.fontconfig = {
     enable = true;
     defaultFonts.monospace = [ "Maple Mono NF" ];
+    defaultFonts.emoji = [ "Noto Color Emoji" ];
   };
 
   programs.home-manager.enable = true;
