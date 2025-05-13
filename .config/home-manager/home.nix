@@ -127,6 +127,13 @@ rec {
 
   programs.home-manager.enable = true;
 
+  programs.gnome-shell = {
+    enable = true;
+    extensions = [
+      { package = pkgs.gnomeExtensions.appindicator; }
+    ];
+  };
+
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
@@ -302,6 +309,31 @@ rec {
         };
         Install.WantedBy = [ "default.target" ];
       };
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "zen.desktop"
+        "dev.zed.Zed.desktop"
+        "com.gexperts.Tilix.desktop"
+        "org.gnome.Nautilus.desktop"
+        "discord.desktop"
+      ];
+    };
+    "org/gnome/desktop/interface" = {
+      accent-color = "orange";
+      clock-format = "24h";
+      clock-show-seconds = true;
+      clock-show-weekend = true;
+      show-battery-percentage = true;
+      font-name = "Cantarell 11";
+      document-font-name = "Cantarell 11";
+      monospace-font-name = "Maple Mono NF 10";
+    };
+    "org/gnome/mutter" = {
+      experimental-features = [ "scale-monitor-framebuffer" ];
     };
   };
 }
