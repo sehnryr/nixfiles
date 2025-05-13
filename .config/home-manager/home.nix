@@ -81,6 +81,7 @@ rec {
     pkgs.thunderbird
     pkgs.slack
     pkgs.signal-desktop
+    pkgs.prismlauncher
 
     krisp-patcher
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
