@@ -121,7 +121,7 @@ rec {
       enable = true;
       text = ''
         [build]
-        rustc-wrapper = "/usr/bin/sccache"
+        rustc-wrapper = "${pkgs.sccache}/bin/sccache"
       '';
     };
   };
