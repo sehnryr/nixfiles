@@ -359,19 +359,22 @@ rec {
         };
       };
       folders = {
-        "${home.homeDirectory}/Desktop" = {
+        "Desktop" = {
           enable = true;
           id = "desktop-sehn";
+          path = "${home.homeDirectory}/Desktop";
           devices = [ "node-0" ];
         };
-        "${home.homeDirectory}/Pictures" = {
+        "Pictures" = {
           enable = true;
           id = "pictures-sehn";
+          path = "${home.homeDirectory}/Pictures";
           devices = [ "node-0" ];
         };
-        "${home.homeDirectory}/Videos" = {
+        "Videos" = {
           enable = true;
           id = "video-sehn";
+          path = "${home.homeDirectory}/Videos";
           devices = [ "node-0" ];
         };
       };
