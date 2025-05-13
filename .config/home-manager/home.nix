@@ -82,6 +82,7 @@ rec {
     pkgs.slack
     pkgs.signal-desktop
     pkgs.prismlauncher
+    pkgs.protonvpn-gui
 
     krisp-patcher
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
