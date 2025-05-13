@@ -268,6 +268,17 @@ rec {
     nix-direnv.enable = true;
   };
 
+  programs.ghostty = {
+    enable = true;
+    package = config.lib.nixGL.wrap pkgs.ghostty;
+    settings = {
+      font-family = "Maple Mono NF";
+      font-size = 11;
+      theme = "light:OneHalfLight,dark:ayu";
+      command = "${pkgs.nushell}/bin/nu";
+    };
+  };
+
   programs.zed-editor = {
     enable = true;
     package = config.lib.nixGL.wrap pkgs.zed-editor;
@@ -350,8 +361,7 @@ rec {
       favorite-apps = [
         "zen.desktop"
         "dev.zed.Zed.desktop"
-        "com.gexperts.Tilix.desktop"
-        "org.gnome.Nautilus.desktop"
+        "com.mitchellh.ghostty.desktop"
         "discord.desktop"
       ];
     };
