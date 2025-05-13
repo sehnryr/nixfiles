@@ -11,6 +11,28 @@ let
     builtins.attrNames (builtins.readDir sshDirectory)
   );
   privateKeys = builtins.map (lib.strings.removeSuffix ".pub") publicKeys;
+
+  krisp-patcher =
+    pkgs.writers.writePython3Bin "krisp-patcher"
+      {
+        libraries = [
+          pkgs.python3Packages.capstone
+          pkgs.python3Packages.pyelftools
+        ];
+        flakeIgnore = [
+          "E501" # line too long (82 > 79 characters)
+          "F403" # 'from module import *' used; unable to detect undefined names
+          "F405" # name may be undefined, or defined from star imports: module
+        ];
+      }
+      (
+        builtins.readFile (
+          pkgs.fetchurl {
+            url = "https://pastebin.com/raw/8tQDsMVd";
+            sha256 = "sha256-IdXv0MfRG1/1pAAwHLS2+1NESFEz2uXrbSdvU9OvdJ8=";
+          }
+        )
+      );
 in
 rec {
   nixGL = {
@@ -60,6 +82,7 @@ rec {
     pkgs.slack
     pkgs.signal-desktop
 
+    krisp-patcher
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
 
     pkgs.maple-mono.NF
@@ -78,6 +101,16 @@ rec {
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  home.activation = {
+    patchKrisp = lib.hm.dag.entryAfter [ "installPackages" ] ''
+      run /usr/bin/pkill -f discord || true
+
+      for node in "${config.xdg.configHome}/discord/"*"/modules/discord_krisp/discord_krisp.node"; do
+        run ${krisp-patcher}/bin/krisp-patcher "$node"
+      done
+    '';
+  };
 
   home.sessionPath = [ "${home.homeDirectory}/.cargo/bin" ];
   home.shellAliases = {
