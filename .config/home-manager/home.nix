@@ -273,9 +273,10 @@ rec {
     package = config.lib.nixGL.wrap pkgs.ghostty;
     settings = {
       font-family = "Maple Mono NF";
-      font-size = 11;
+      font-size = 10;
       theme = "light:OneHalfLight,dark:ayu";
       command = "${pkgs.nushell}/bin/nu";
+      resize-overlay = "never";
     };
   };
 
