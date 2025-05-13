@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl = {
-      url = "github:nix-community/nixGL";
+      url = "github:nix-community/nixGL/3865170cbc23b32ec7cc8df1ec811fd44b6c2a58";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
