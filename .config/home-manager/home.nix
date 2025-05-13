@@ -110,7 +110,6 @@ rec {
     '';
   };
 
-  home.sessionPath = [ "${home.homeDirectory}/.cargo/bin" ];
   home.shellAliases = {
     zed = "zeditor";
   };
@@ -246,6 +245,10 @@ rec {
       SSH_AUTH_SOCK = lib.hm.nushell.mkNushellInline ''$env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"'';
       BINSTALL_NO_CONFIRM = "";
     };
+    configFile.text = ''
+      use std/util "path add"
+      path add "${home.homeDirectory}/.cargo/bin"
+    '';
   };
 
   programs.carapace = {
