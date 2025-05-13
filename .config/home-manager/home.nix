@@ -78,6 +78,7 @@ rec {
     pkgs.signal-desktop
     pkgs.prismlauncher
     pkgs.protonvpn-gui
+    (config.lib.nixGL.wrap pkgs.r2modman)
 
     krisp-patcher
     (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
