@@ -413,6 +413,12 @@ rec {
       document-font-name = "Cantarell 11";
       monospace-font-name = "Maple Mono NF 10";
     };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-to-workspace-up = [ ];
+      switch-to-workspace-down = [ ];
+      switch-to-workspace-left = [ ];
+      switch-to-workspace-right = [ ];
+    };
     "org/gnome/mutter" = {
       experimental-features = [ "scale-monitor-framebuffer" ];
     };
