@@ -91,6 +91,27 @@
             formatter = [ { external.command = "nixfmt"; } ];
           };
         };
+        assistant = {
+          enabled = true;
+          version = "2";
+          default_model = {
+            provider = "openai";
+            model = "openrouter/auto";
+          };
+        };
+        language_models = {
+          openai = {
+            version = "1";
+            api_url = "https://openrouter.ai/api/v1";
+            available_models = [
+              {
+                display_name = "OpenRouter: Auto";
+                name = "openrouter/auto";
+                max_tokens = 1000000;
+              }
+            ];
+          };
+        };
       };
     };
 
