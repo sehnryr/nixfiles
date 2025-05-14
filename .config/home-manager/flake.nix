@@ -34,6 +34,7 @@
 
         modules = [
           ./home.nix
+          ./modules
         ];
 
         extraSpecialArgs = {
