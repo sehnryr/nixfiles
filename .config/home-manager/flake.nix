@@ -34,6 +34,7 @@
 
         modules = [
           ./home.nix
+          ./fonts
           ./modules
           ./programs
         ];

@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  fonts = config.modules.fonts;
+in
 {
   options.modules.editors = {
     enable = lib.mkEnableOption "Editor configuration";
@@ -57,60 +60,66 @@
         pkgs.nixfmt-rfc-style
         pkgs.ruff
       ];
-      userSettings = {
-        show_edit_predictions = true;
-        tab_size = 4;
-        preferred_line_length = 100;
-        soft_wrap = "editor_width";
-        wrap_guides = [
-          80
-          100
-        ];
-        ui_font_size = 14;
-        buffer_font_size = 14;
-        buffer_font_family = "Maple Mono NF";
-        format_on_save = "on";
-        theme = {
-          mode = "system";
-          light = "One Light";
-          dark = "Ayu Dark";
-        };
-        terminal = {
-          font_family = "Maple Mono NF";
-          shell.program = "${pkgs.nushell}/bin/nu";
-        };
-        languages = {
-          "YAML".tab_size = 2;
-          "Ruby".tab_size = 2;
-          "Python" = {
-            language_servers = [ "ruff" ];
-            formatter = [ { language_server.name = "ruff"; } ];
+      userSettings = lib.mkMerge [
+        {
+          show_edit_predictions = true;
+          tab_size = 4;
+          preferred_line_length = 100;
+          soft_wrap = "editor_width";
+          wrap_guides = [
+            80
+            100
+          ];
+          ui_font_size = 14;
+          buffer_font_size = 14;
+          format_on_save = "on";
+          theme = {
+            mode = "system";
+            light = "One Light";
+            dark = "Ayu Dark";
           };
-          "Nix" = {
-            tab_size = 2;
-            formatter = [ { external.command = "nixfmt"; } ];
+          terminal = {
+            shell.program = "${pkgs.nushell}/bin/nu";
           };
-        };
-        assistant = {
-          enabled = true;
-          version = "2";
-          default_model = {
-            provider = "google";
-            model = "gemini-2.5-pro-preview-05-06";
+          languages = {
+            "YAML".tab_size = 2;
+            "Ruby".tab_size = 2;
+            "Python" = {
+              language_servers = [ "ruff" ];
+              formatter = [ { language_server.name = "ruff"; } ];
+            };
+            "Nix" = {
+              tab_size = 2;
+              formatter = [ { external.command = "nixfmt"; } ];
+            };
           };
-        };
-        language_models = {
-          google = {
-            available_models = [
-              {
-                display_name = "Gemini 2.5 Pro Preview";
-                name = "gemini-2.5-pro-preview-05-06";
-                max_tokens = 1000000;
-              }
-            ];
+          assistant = {
+            enabled = true;
+            version = "2";
+            default_model = {
+              provider = "google";
+              model = "gemini-2.5-pro-preview-05-06";
+            };
           };
-        };
-      };
+          language_models = {
+            google = {
+              available_models = [
+                {
+                  display_name = "Gemini 2.5 Pro Preview";
+                  name = "gemini-2.5-pro-preview-05-06";
+                  max_tokens = 1000000;
+                }
+              ];
+            };
+          };
+        }
+        (lib.mkIf fonts.enable {
+          buffer_font_family = fonts.monospace.family;
+          terminal = {
+            font_family = fonts.monospace.family;
+          };
+        })
+      ];
     };
 
     home.shellAliases = lib.mkIf config.modules.editors.enableZed {
