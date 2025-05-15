@@ -37,7 +37,6 @@
     pkgs.fd
     pkgs.dust
     pkgs.hyperfine
-    pkgs.cargo-binstall
     pkgs.uv
     pkgs.bruno
     pkgs.libreoffice-fresh
@@ -76,6 +75,10 @@
   programs.home-manager.enable = true;
 
   modules = {
+    cargo-binstall = {
+      enable = true;
+      enableNushellIntegration = config.modules.nushell.enable;
+    };
     discord = {
       enable = true;
       package = config.lib.nixGL.wrap pkgs.discord;

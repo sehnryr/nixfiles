@@ -28,7 +28,6 @@ in
         ls.clickable_links = false;
         rm.always_trash = true;
       };
-      environmentVariables.BINSTALL_NO_CONFIRM = "";
     };
   };
 }
