@@ -5,11 +5,12 @@
 }:
 
 let
+  cfg = config.modules.gnome-shell;
   fonts = config.modules.fonts;
 in
 {
   options.modules.gnome-shell = {
-    enable = lib.mkEnableOption "Enable Gnome Shell";
+    enable = lib.mkEnableOption "";
     extensions = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = [ ];
@@ -49,45 +50,43 @@ in
     };
   };
 
-  config =
-    with config.modules.gnome-shell;
-    lib.mkIf config.modules.gnome-shell.enable {
-      programs.gnome-shell = {
-        enable = true;
-        extensions = builtins.map (extension: {
-          package = extension;
-        }) extensions;
-      };
+  config = lib.mkIf cfg.enable {
+    programs.gnome-shell = {
+      enable = true;
+      extensions = builtins.map (extension: {
+        package = extension;
+      }) cfg.extensions;
+    };
 
-      dconf.settings = {
-        "org/gnome/shell" = {
-          favorite-apps = favoriteApps;
-        };
-        "org/gnome/desktop/interface" = lib.mkMerge [
-          {
-            accent-color = accentColor;
-            clock-format = clock.format;
-            clock-show-seconds = clock.showSeconds;
-            clock-show-weekend = clock.showWeekend;
-            show-battery-percentage = showBatteryPercentage;
-          }
-          (lib.mkIf fonts.enable {
-            font-name = "${fonts.default.family} ${builtins.toString fonts.default.size}";
-            document-font-name = "${fonts.default.family} ${builtins.toString fonts.default.size}";
-            monospace-font-name = "${fonts.monospace.family} ${builtins.toString fonts.monospace.size}";
-          })
-        ];
-        "org/gnome/desktop/wm/keybindings" = {
-          # disable those keybindings since ghostty uses them
-          # TODO: conditionally disable keybindings when ghostty is enabled
-          switch-to-workspace-up = [ ];
-          switch-to-workspace-down = [ ];
-          switch-to-workspace-left = [ ];
-          switch-to-workspace-right = [ ];
-        };
-        "org/gnome/mutter" = {
-          experimental-features = experimentalFeatures;
-        };
+    dconf.settings = {
+      "org/gnome/shell" = {
+        favorite-apps = cfg.favoriteApps;
+      };
+      "org/gnome/desktop/interface" = lib.mkMerge [
+        {
+          accent-color = cfg.accentColor;
+          clock-format = cfg.clock.format;
+          clock-show-seconds = cfg.clock.showSeconds;
+          clock-show-weekend = cfg.clock.showWeekend;
+          show-battery-percentage = cfg.showBatteryPercentage;
+        }
+        (lib.mkIf fonts.enable {
+          font-name = "${fonts.default.family} ${builtins.toString fonts.default.size}";
+          document-font-name = "${fonts.default.family} ${builtins.toString fonts.default.size}";
+          monospace-font-name = "${fonts.monospace.family} ${builtins.toString fonts.monospace.size}";
+        })
+      ];
+      "org/gnome/desktop/wm/keybindings" = {
+        # disable those keybindings since ghostty uses them
+        # TODO: conditionally disable keybindings when ghostty is enabled
+        switch-to-workspace-up = [ ];
+        switch-to-workspace-down = [ ];
+        switch-to-workspace-left = [ ];
+        switch-to-workspace-right = [ ];
+      };
+      "org/gnome/mutter" = {
+        experimental-features = cfg.experimentalFeatures;
       };
     };
+  };
 }
