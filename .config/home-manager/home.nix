@@ -170,6 +170,13 @@ in
       # TODO: conditionally enable when on laptop
       showBatteryPercentage = true;
     };
+    ghostty = {
+      enable = true;
+      theme = {
+        light = "Monokai Pro Light";
+        dark = "Monokai Pro";
+      };
+    };
   };
 
   programs.topgrade = {
@@ -199,22 +206,4 @@ in
       };
     };
   };
-
-  programs.ghostty = lib.mkMerge [
-    {
-      enable = true;
-      package = config.lib.nixGL.wrap pkgs.ghostty;
-      settings = {
-        theme = "light:Monokai Pro Light,dark:Monokai Pro";
-        command = "${pkgs.nushell}/bin/nu";
-        resize-overlay = "never";
-      };
-    }
-    (lib.mkIf fonts.enable {
-      settings = {
-        font-family = fonts.monospace.family;
-        font-size = fonts.monospace.size;
-      };
-    })
-  ];
 }
