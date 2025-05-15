@@ -7,8 +7,6 @@
 }:
 
 let
-  fonts = config.modules.fonts;
-
   krisp-patcher =
     pkgs.writers.writePython3Bin "krisp-patcher"
       {
