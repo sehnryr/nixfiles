@@ -6,6 +6,8 @@
 
 let
   cfg = config.modules.ssh;
+
+  enableNushellIntegration = config.modules.nushell.enable or false;
 in
 {
   options.modules.ssh = {
@@ -40,10 +42,6 @@ in
       );
       default = { };
     };
-    enableNushellIntegration = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -67,7 +65,7 @@ in
       };
     };
 
-    programs.nushell = lib.mkIf cfg.enableNushellIntegration {
+    programs.nushell = lib.mkIf enableNushellIntegration {
       environmentVariables.SSH_AUTH_SOCK = lib.hm.nushell.mkNushellInline ''$env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"'';
     };
   };

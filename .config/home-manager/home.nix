@@ -75,10 +75,7 @@
   programs.home-manager.enable = true;
 
   modules = {
-    cargo-binstall = {
-      enable = true;
-      enableNushellIntegration = config.modules.nushell.enable;
-    };
+    cargo-binstall.enable = true;
     discord = {
       enable = true;
       package = config.lib.nixGL.wrap pkgs.discord;
@@ -97,24 +94,11 @@
       };
     };
     sccache.enable = true;
-    rustup = {
-      enable = true;
-      enableSccacheIntegration = config.modules.sccache.enable;
-      enableNushellIntegration = config.modules.nushell.enable;
-    };
+    rustup.enable = true;
     nushell.enable = true;
-    carapace = {
-      enable = true;
-      enableNushellIntegration = config.modules.nushell.enable;
-    };
-    starship = {
-      enable = true;
-      enableNushellIntegration = config.modules.nushell.enable;
-    };
-    direnv = {
-      enable = true;
-      enableNushellIntegration = config.modules.nushell.enable;
-    };
+    carapace.enable = true;
+    starship.enable = true;
+    direnv.enable = true;
     neovim = {
       enable = true;
       viAlias = true;
@@ -125,7 +109,6 @@
       package = config.lib.nixGL.wrap pkgs.zed-editor;
       zedAlias = true;
       fonts.monospace.family = config.modules.fonts.monospace.family;
-      enableNushellIntegration = config.modules.nushell.enable;
     };
     syncthing = {
       enable = true;
@@ -159,7 +142,6 @@
           port = 8422;
         };
       };
-      enableNushellIntegration = config.modules.nushell.enable;
     };
     fonts.enable = true;
     gnome-shell = {
@@ -206,7 +188,6 @@
         family = config.modules.fonts.monospace.family;
         size = config.modules.fonts.monospace.size;
       };
-      enableNushellIntegration = config.modules.nushell.enable;
     };
   };
 

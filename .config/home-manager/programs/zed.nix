@@ -7,6 +7,8 @@
 
 let
   cfg = config.modules.zed-editor;
+
+  enableNushellIntegration = config.modules.nushell.enable or false;
 in
 {
   options.modules.zed-editor = {
@@ -16,10 +18,6 @@ in
       default = pkgs.zed-zed-editor;
     };
     zedAlias = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-    enableNushellIntegration = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
@@ -121,7 +119,7 @@ in
           buffer_font_family = cfg.fonts.monospace.family;
           terminal.font_family = cfg.fonts.monospace.family;
         })
-        (lib.mkIf cfg.enableNushellIntegration {
+        (lib.mkIf enableNushellIntegration {
           terminal.shell.program = "nu";
         })
       ];

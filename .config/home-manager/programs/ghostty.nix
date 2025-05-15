@@ -7,6 +7,8 @@
 
 let
   cfg = config.modules.ghostty;
+
+  enableNushellIntegration = config.modules.nushell.enable or false;
 in
 {
   options.modules.ghostty = {
@@ -37,10 +39,6 @@ in
         };
       };
     };
-    enableNushellIntegration = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -63,7 +61,7 @@ in
           font-size = cfg.fonts.monospace.size;
         };
       })
-      (lib.mkIf cfg.enableNushellIntegration {
+      (lib.mkIf enableNushellIntegration {
         settings = {
           command = "nu";
         };
