@@ -11,7 +11,7 @@ let
     {
       package,
       family,
-      size ? 11,
+      size,
     }:
     {
       package = lib.mkOption {
