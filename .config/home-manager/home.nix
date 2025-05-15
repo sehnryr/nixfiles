@@ -129,9 +129,7 @@ in
       enableSccacheIntegration = config.modules.sccache.enable;
       enableNushellIntegration = config.modules.nushell.enable;
     };
-    nushell = {
-      enable = true;
-    };
+    nushell.enable = true;
     carapace = {
       enable = true;
       enableNushellIntegration = config.modules.nushell.enable;
