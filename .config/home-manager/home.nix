@@ -54,7 +54,6 @@ in
     pkgs.cmake
     pkgs.bun
     pkgs.deno
-    pkgs.rustup
     pkgs.wget
     pkgs.fastfetch
     pkgs.rclone
@@ -64,7 +63,6 @@ in
     pkgs.hyperfine
     pkgs.cargo-binstall
     pkgs.uv
-    pkgs.sccache
     pkgs.bruno
     pkgs.libreoffice-fresh
     pkgs.thunderbird
@@ -86,16 +84,6 @@ in
         run ${krisp-patcher}/bin/krisp-patcher "$node"
       done
     '';
-  };
-
-  home.file = {
-    ".cargo/config.toml" = {
-      enable = true;
-      text = ''
-        [build]
-        rustc-wrapper = "${pkgs.sccache}/bin/sccache"
-      '';
-    };
   };
 
   xdg.configFile = {
@@ -129,6 +117,10 @@ in
       enable = true;
       userName = "Youn Mélois";
       userEmail = "youn@melois.dev";
+    };
+    rustup = {
+      enable = true;
+      useSccache = true;
     };
     shell = {
       enable = true;
