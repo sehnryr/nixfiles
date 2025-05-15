@@ -95,18 +95,16 @@
           enabled = true;
           version = "2";
           default_model = {
-            provider = "openai";
-            model = "openrouter/auto";
+            provider = "google";
+            model = "gemini-2.5-pro-preview-05-06";
           };
         };
         language_models = {
-          openai = {
-            version = "1";
-            api_url = "https://openrouter.ai/api/v1";
+          google = {
             available_models = [
               {
-                display_name = "OpenRouter: Auto";
-                name = "openrouter/auto";
+                display_name = "Gemini 2.5 Pro Preview";
+                name = "gemini-2.5-pro-preview-05-06";
                 max_tokens = 1000000;
               }
             ];
