@@ -122,9 +122,11 @@ in
       enable = true;
       useSccache = true;
     };
-    shell = {
+    nushell = {
       enable = true;
-      useNushell = true;
+      useCarapace = true;
+      useStarship = true;
+      useDirenv = true;
     };
     editors = {
       enable = true;
@@ -162,6 +164,7 @@ in
     };
     ghostty = {
       enable = true;
+      package = config.lib.nixGL.wrap pkgs.ghostty;
       theme = {
         light = "Monokai Pro Light";
         dark = "Monokai Pro";

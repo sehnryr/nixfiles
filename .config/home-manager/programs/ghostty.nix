@@ -1,17 +1,22 @@
 {
   config,
-  lib,
   pkgs,
+  lib,
   ...
 }:
 
 let
   cfg = config.modules.ghostty;
   fonts = config.modules.fonts;
+  nushell = config.modules.nushell;
 in
 {
   options.modules.ghostty = {
     enable = lib.mkEnableOption "";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.ghostty;
+    };
     theme = {
       light = lib.mkOption {
         type = lib.types.str;
@@ -28,11 +33,9 @@ in
     programs.ghostty = lib.mkMerge [
       {
         enable = true;
-        package = config.lib.nixGL.wrap pkgs.ghostty;
+        package = cfg.package;
         settings = {
           theme = "light:${cfg.theme.light},dark:${cfg.theme.dark}";
-          # TODO: set conditionally when nushell is enabled
-          command = "${pkgs.nushell}/bin/nu";
           resize-overlay = "never";
         };
       }
@@ -40,6 +43,11 @@ in
         settings = {
           font-family = fonts.monospace.family;
           font-size = fonts.monospace.size;
+        };
+      })
+      (lib.mkIf nushell.enable {
+        settings = {
+          command = "${nushell.package}/bin/nu";
         };
       })
     ];
