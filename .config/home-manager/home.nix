@@ -50,7 +50,6 @@ in
     ];
 
   home.packages = [
-    pkgs.less
     pkgs.cmake
     pkgs.bun
     pkgs.deno
@@ -115,29 +114,82 @@ in
   modules = {
     git = {
       enable = true;
-      userName = "Youn Mélois";
-      userEmail = "youn@melois.dev";
+      user = {
+        name = "Youn Mélois";
+        email = "youn@melois.dev";
+      };
+      signing = {
+        format = "ssh";
+        key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+      };
     };
+    sccache.enable = true;
     rustup = {
       enable = true;
-      useSccache = true;
+      enableSccacheIntegration = config.modules.sccache.enable;
+      enableNushellIntegration = config.modules.nushell.enable;
     };
     nushell = {
       enable = true;
-      useCarapace = true;
-      useStarship = true;
-      useDirenv = true;
     };
-    editors = {
+    carapace = {
       enable = true;
-      enableNeovim = true;
-      enableZed = true;
+      enableNushellIntegration = config.modules.nushell.enable;
     };
-    services = {
+    starship = {
       enable = true;
-      enableSyncthing = true;
+      enableNushellIntegration = config.modules.nushell.enable;
     };
-    ssh.enable = true;
+    direnv = {
+      enable = true;
+      enableNushellIntegration = config.modules.nushell.enable;
+    };
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+    zed-editor = {
+      enable = true;
+      package = config.lib.nixGL.wrap pkgs.zed-editor;
+      zedAlias = true;
+      fonts.monospace.family = config.modules.fonts.monospace.family;
+      enableNushellIntegration = config.modules.nushell.enable;
+    };
+    syncthing = {
+      enable = true;
+      introducer.id = "2MFI55P-LSIS5AN-SKKZXOF-NJOELGG-U6UVN34-7O6HYIG-ZSDQJH5-QBURSAJ";
+      folders = {
+        "Desktop" = {
+          id = "desktop-sehn";
+          path = "${config.home.homeDirectory}/Desktop";
+        };
+        "Pictures" = {
+          id = "pictures-sehn";
+          path = "${config.home.homeDirectory}/Pictures";
+        };
+        "Videos" = {
+          id = "video-sehn";
+          path = "${config.home.homeDirectory}/Videos";
+        };
+      };
+    };
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "*" = {
+          identityFile = [
+            "${config.home.homeDirectory}/.ssh/id_ed25519"
+          ];
+        };
+        "melois.dev" = {
+          hostname = "melois.dev";
+          user = "root";
+          port = 8422;
+        };
+      };
+      enableNushellIntegration = config.modules.nushell.enable;
+    };
     fonts.enable = true;
     gnome-shell = {
       enable = true;
@@ -159,6 +211,16 @@ in
         showSeconds = true;
         showWeekend = true;
       };
+      fonts = {
+        default = {
+          family = config.modules.fonts.default.family;
+          size = config.modules.fonts.default.size;
+        };
+        monospace = {
+          family = config.modules.fonts.monospace.family;
+          size = config.modules.fonts.monospace.size;
+        };
+      };
       # TODO: conditionally enable when on laptop
       showBatteryPercentage = true;
     };
@@ -169,6 +231,11 @@ in
         light = "Monokai Pro Light";
         dark = "Monokai Pro";
       };
+      fonts.monospace = {
+        family = config.modules.fonts.monospace.family;
+        size = config.modules.fonts.monospace.size;
+      };
+      enableNushellIntegration = config.modules.nushell.enable;
     };
   };
 

@@ -6,7 +6,6 @@
 
 let
   cfg = config.modules.gnome-shell;
-  fonts = config.modules.fonts;
 in
 {
   options.modules.gnome-shell = {
@@ -22,6 +21,30 @@ in
     favoriteApps = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
+    };
+    fonts = {
+      default = lib.mkOption {
+        type = lib.types.nullOr (
+          lib.types.submodule {
+            options = {
+              family = lib.mkOption { type = lib.types.str; };
+              size = lib.mkOption { type = lib.types.int; };
+            };
+          }
+        );
+        default = null;
+      };
+      monospace = lib.mkOption {
+        type = lib.types.nullOr (
+          lib.types.submodule {
+            options = {
+              family = lib.mkOption { type = lib.types.str; };
+              size = lib.mkOption { type = lib.types.int; };
+            };
+          }
+        );
+        default = null;
+      };
     };
     accentColor = lib.mkOption {
       type = lib.types.str;
@@ -70,10 +93,12 @@ in
           clock-show-weekend = cfg.clock.showWeekend;
           show-battery-percentage = cfg.showBatteryPercentage;
         }
-        (lib.mkIf fonts.enable {
-          font-name = "${fonts.default.family} ${builtins.toString fonts.default.size}";
-          document-font-name = "${fonts.default.family} ${builtins.toString fonts.default.size}";
-          monospace-font-name = "${fonts.monospace.family} ${builtins.toString fonts.monospace.size}";
+        (lib.mkIf (cfg.fonts.default != null) {
+          font-name = "${cfg.fonts.default.family} ${builtins.toString cfg.fonts.default.size}";
+          document-font-name = "${cfg.fonts.default.family} ${builtins.toString cfg.fonts.default.size}";
+        })
+        (lib.mkIf (cfg.fonts.monospace != null) {
+          monospace-font-name = "${cfg.fonts.monospace.family} ${builtins.toString cfg.fonts.monospace.size}";
         })
       ];
       "org/gnome/desktop/wm/keybindings" = {

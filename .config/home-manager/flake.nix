@@ -35,8 +35,8 @@
         modules = [
           ./home.nix
           ./fonts
-          ./modules
           ./programs
+          ./services
         ];
 
         extraSpecialArgs = {

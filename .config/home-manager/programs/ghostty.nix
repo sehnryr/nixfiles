@@ -7,8 +7,6 @@
 
 let
   cfg = config.modules.ghostty;
-  fonts = config.modules.fonts;
-  nushell = config.modules.nushell;
 in
 {
   options.modules.ghostty = {
@@ -27,6 +25,22 @@ in
         default = "Ghostty Default StyleDark";
       };
     };
+    fonts = {
+      monospace = {
+        family = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+        };
+        size = lib.mkOption {
+          type = lib.types.nullOr lib.types.int;
+          default = null;
+        };
+      };
+    };
+    enableNushellIntegration = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -39,15 +53,19 @@ in
           resize-overlay = "never";
         };
       }
-      (lib.mkIf fonts.enable {
+      (lib.mkIf (cfg.fonts.monospace.family != null) {
         settings = {
-          font-family = fonts.monospace.family;
-          font-size = fonts.monospace.size;
+          font-family = cfg.fonts.monospace.family;
         };
       })
-      (lib.mkIf nushell.enable {
+      (lib.mkIf (cfg.fonts.monospace.size != null) {
         settings = {
-          command = "${nushell.package}/bin/nu";
+          font-size = cfg.fonts.monospace.size;
+        };
+      })
+      (lib.mkIf cfg.enableNushellIntegration {
+        settings = {
+          command = "nu";
         };
       })
     ];

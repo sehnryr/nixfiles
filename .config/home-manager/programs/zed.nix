@@ -1,39 +1,46 @@
 {
   config,
-  lib,
   pkgs,
+  lib,
   ...
 }:
 
 let
-  fonts = config.modules.fonts;
+  cfg = config.modules.zed-editor;
 in
 {
-  options.modules.editors = {
-    enable = lib.mkEnableOption "Editor configuration";
-    enableNeovim = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Enable Neovim configuration";
+  options.modules.zed-editor = {
+    enable = lib.mkEnableOption "";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.zed-zed-editor;
     };
-    enableZed = lib.mkOption {
+    zedAlias = lib.mkOption {
       type = lib.types.bool;
-      default = true;
-      description = "Enable Zed editor configuration";
+      default = false;
+    };
+    enableNushellIntegration = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+    fonts = {
+      monospace = lib.mkOption {
+        type = lib.types.nullOr (
+          lib.types.submodule {
+            options = {
+              family = lib.mkOption { type = lib.types.str; };
+            };
+          }
+        );
+        default = null;
+      };
     };
   };
 
-  config = lib.mkIf config.modules.editors.enable {
-    programs.neovim = lib.mkIf config.modules.editors.enableNeovim {
+  config = lib.mkIf cfg.enable {
+    programs.zed-editor = {
       enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-    };
-
-    programs.zed-editor = lib.mkIf config.modules.editors.enableZed {
-      enable = true;
-      package = config.lib.nixGL.wrap pkgs.zed-editor;
+      package = cfg.package;
       installRemoteServer = true;
       extensions = [
         "html"
@@ -78,9 +85,6 @@ in
             light = "One Light";
             dark = "Ayu Dark";
           };
-          terminal = {
-            shell.program = "${pkgs.nushell}/bin/nu";
-          };
           languages = {
             "YAML".tab_size = 2;
             "Ruby".tab_size = 2;
@@ -113,16 +117,17 @@ in
             };
           };
         }
-        (lib.mkIf fonts.enable {
-          buffer_font_family = fonts.monospace.family;
-          terminal = {
-            font_family = fonts.monospace.family;
-          };
+        (lib.mkIf (cfg.fonts.monospace != null) {
+          buffer_font_family = cfg.fonts.monospace.family;
+          terminal.font_family = cfg.fonts.monospace.family;
+        })
+        (lib.mkIf cfg.enableNushellIntegration {
+          terminal.shell.program = "nu";
         })
       ];
     };
 
-    home.shellAliases = lib.mkIf config.modules.editors.enableZed {
+    home.shellAliases = lib.mkIf cfg.zedAlias {
       zed = "zeditor";
     };
   };

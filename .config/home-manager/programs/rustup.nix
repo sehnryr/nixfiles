@@ -11,7 +11,11 @@ in
 {
   options.modules.rustup = {
     enable = lib.mkEnableOption "";
-    useSccache = lib.mkOption {
+    enableSccacheIntegration = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+    enableNushellIntegration = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
@@ -20,17 +24,23 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.rustup
-      (lib.mkIf cfg.useSccache pkgs.sccache)
     ];
 
-    home.file = lib.mkIf cfg.useSccache {
+    home.file = lib.mkIf cfg.enableSccacheIntegration {
       ".cargo/config.toml" = {
         enable = true;
         text = ''
           [build]
-          rustc-wrapper = "${pkgs.sccache}/bin/sccache"
+          rustc-wrapper = "sccache"
         '';
       };
+    };
+
+    programs.nushell = lib.mkIf cfg.enableNushellIntegration {
+      configFile.text = ''
+        use std/util "path add"
+        path add "${config.home.homeDirectory}/.cargo/bin"
+      '';
     };
   };
 }
