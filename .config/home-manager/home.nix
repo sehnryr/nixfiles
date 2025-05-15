@@ -124,13 +124,6 @@ in
 
   programs.home-manager.enable = true;
 
-  programs.gnome-shell = {
-    enable = true;
-    extensions = [
-      { package = pkgs.gnomeExtensions.appindicator; }
-    ];
-  };
-
   modules = {
     git = {
       enable = true;
@@ -151,7 +144,29 @@ in
       enableSyncthing = true;
     };
     ssh.enable = true;
-    theme.enable = true;
+    gnome-shell = {
+      enable = true;
+      extensions = [
+        pkgs.gnomeExtensions.appindicator
+      ];
+      experimentalFeatures = [
+        "scale-monitor-framebuffer"
+        "xwayland-native-scaling"
+      ];
+      favoriteApps = [
+        "zen.desktop"
+        "dev.zed.Zed.desktop"
+        "com.mitchellh.ghostty.desktop"
+        "discord.desktop"
+      ];
+      clock = {
+        format = "24h";
+        showSeconds = true;
+        showWeekend = true;
+      };
+      # TODO: conditionally enable when on laptop
+      showBatteryPercentage = true;
+    };
   };
 
   programs.topgrade = {
