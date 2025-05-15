@@ -6,29 +6,6 @@
   ...
 }:
 
-let
-  krisp-patcher =
-    pkgs.writers.writePython3Bin "krisp-patcher"
-      {
-        libraries = [
-          pkgs.python3Packages.capstone
-          pkgs.python3Packages.pyelftools
-        ];
-        flakeIgnore = [
-          "E501" # line too long (82 > 79 characters)
-          "F403" # 'from module import *' used; unable to detect undefined names
-          "F405" # name may be undefined, or defined from star imports: module
-        ];
-      }
-      (
-        builtins.readFile (
-          pkgs.fetchurl {
-            url = "https://pastebin.com/raw/8tQDsMVd";
-            sha256 = "sha256-IdXv0MfRG1/1pAAwHLS2+1NESFEz2uXrbSdvU9OvdJ8=";
-          }
-        )
-      );
-in
 {
   nixGL = {
     packages = nixgl.packages;
@@ -70,20 +47,7 @@ in
     pkgs.prismlauncher
     pkgs.protonvpn-gui
     (config.lib.nixGL.wrap pkgs.r2modman)
-
-    krisp-patcher
-    (config.lib.nixGL.wrap (pkgs.discord.override { withOpenASAR = true; }))
   ];
-
-  home.activation = {
-    patchKrisp = lib.hm.dag.entryAfter [ "installPackages" ] ''
-      run /usr/bin/pkill -f discord || true
-
-      for node in "${config.xdg.configHome}/discord/"*"/modules/discord_krisp/discord_krisp.node"; do
-        run ${krisp-patcher}/bin/krisp-patcher "$node"
-      done
-    '';
-  };
 
   xdg.configFile = {
     "wireplumber/wireplumber.conf.d/51-mitigate-annoying-profile-switch.conf" = {
@@ -112,6 +76,12 @@ in
   programs.home-manager.enable = true;
 
   modules = {
+    discord = {
+      enable = true;
+      package = config.lib.nixGL.wrap pkgs.discord;
+      useKrispPatcher = true;
+      useOpenASAR = true;
+    };
     git = {
       enable = true;
       user = {
