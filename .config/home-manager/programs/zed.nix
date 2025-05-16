@@ -58,6 +58,7 @@ in
         "wit"
         "scss"
         "angular"
+        "mcp-server-context7"
       ];
       extraPackages = [
         pkgs.nil
@@ -93,25 +94,6 @@ in
             "Nix" = {
               tab_size = 2;
               formatter = [ { external.command = "nixfmt"; } ];
-            };
-          };
-          assistant = {
-            enabled = true;
-            version = "2";
-            default_model = {
-              provider = "google";
-              model = "gemini-2.5-pro-preview-05-06";
-            };
-          };
-          language_models = {
-            google = {
-              available_models = [
-                {
-                  display_name = "Gemini 2.5 Pro Preview";
-                  name = "gemini-2.5-pro-preview-05-06";
-                  max_tokens = 1000000;
-                }
-              ];
             };
           };
         }
