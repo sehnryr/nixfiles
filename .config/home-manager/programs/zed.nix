@@ -59,12 +59,15 @@ in
         "scss"
         "angular"
         "mcp-server-context7"
+        "java"
       ];
       extraPackages = [
         pkgs.nil
         pkgs.nixd
         pkgs.nixfmt-rfc-style
         pkgs.ruff
+        pkgs.jdk21
+        pkgs.jdt-language-server
       ];
       userSettings = lib.mkMerge [
         {
