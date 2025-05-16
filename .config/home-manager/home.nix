@@ -75,10 +75,6 @@
   programs.home-manager.enable = true;
 
   modules = {
-    docker = {
-      enable = true;
-      useCompose = true;
-    };
     cargo-binstall.enable = true;
     discord = {
       enable = true;
