@@ -52,5 +52,10 @@ in
         ) cfg.folders;
       };
     };
+
+    xdg.desktopEntries.syncthing-ui = {
+      name = "";
+      noDisplay = true;
+    };
   };
 }

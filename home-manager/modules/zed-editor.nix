@@ -2,43 +2,23 @@
   config,
   pkgs,
   lib,
+  fonts,
   ...
 }:
 
 let
   cfg = config.modules.zed-editor;
 
-  enableNushellIntegration = config.modules.nushell.enable or false;
+  nushellEnabled = config.modules.nushell.enable or false;
 in
 {
   options.modules.zed-editor = {
-    enable = lib.mkEnableOption "";
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.zed-zed-editor;
-    };
-    zedAlias = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-    fonts = {
-      monospace = lib.mkOption {
-        type = lib.types.nullOr (
-          lib.types.submodule {
-            options = {
-              family = lib.mkOption { type = lib.types.str; };
-            };
-          }
-        );
-        default = null;
-      };
-    };
+    enable = lib.mkEnableOption "enable zed-editor";
   };
 
   config = lib.mkIf cfg.enable {
     programs.zed-editor = {
       enable = true;
-      package = cfg.package;
       installRemoteServer = true;
       extensions = [
         "html"
@@ -56,18 +36,15 @@ in
         "scala"
         "nu"
         "wit"
-        "scss"
-        "angular"
         "mcp-server-context7"
         "java"
       ];
-      extraPackages = [
-        pkgs.nil
-        pkgs.nixd
-        pkgs.nixfmt-rfc-style
-        pkgs.ruff
-        pkgs.jdk21
-        pkgs.jdt-language-server
+      extraPackages = with pkgs; [
+        nil
+        nixd
+        nixfmt-rfc-style
+        ruff
+        jdt-language-server
       ];
       userSettings = lib.mkMerge [
         {
@@ -81,6 +58,8 @@ in
           ];
           ui_font_size = 14;
           buffer_font_size = 14;
+          buffer_font_family = fonts.monospace.default.family;
+          terminal.font_family = fonts.monospace.default.family;
           format_on_save = "on";
           theme = {
             mode = "system";
@@ -100,17 +79,13 @@ in
             };
           };
         }
-        (lib.mkIf (cfg.fonts.monospace != null) {
-          buffer_font_family = cfg.fonts.monospace.family;
-          terminal.font_family = cfg.fonts.monospace.family;
-        })
-        (lib.mkIf enableNushellIntegration {
+        (lib.mkIf nushellEnabled {
           terminal.shell.program = "nu";
         })
       ];
     };
 
-    home.shellAliases = lib.mkIf cfg.zedAlias {
+    home.shellAliases = {
       zed = "zeditor";
     };
   };

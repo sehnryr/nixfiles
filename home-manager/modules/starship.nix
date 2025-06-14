@@ -7,17 +7,17 @@
 let
   cfg = config.modules.starship;
 
-  enableNushellIntegration = config.modules.nushell.enable or false;
+  nushellEnabled = config.modules.nushell.enable or false;
 in
 {
   options.modules.starship = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "enable starship";
   };
 
   config = lib.mkIf cfg.enable {
     programs.starship = {
       enable = true;
-      enableNushellIntegration = enableNushellIntegration;
+      enableNushellIntegration = nushellEnabled;
       settings = {
         scala.detect_folders = [ ];
       };

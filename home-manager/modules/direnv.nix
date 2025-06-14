@@ -7,17 +7,17 @@
 let
   cfg = config.modules.direnv;
 
-  enableNushellIntegration = config.modules.nushell.enable or false;
+  nushellEnabled = config.modules.nushell.enable or false;
 in
 {
   options.modules.direnv = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "enable direnv";
   };
 
   config = lib.mkIf cfg.enable {
     programs.direnv = {
       enable = true;
-      enableNushellIntegration = enableNushellIntegration;
+      enableNushellIntegration = nushellEnabled;
       nix-direnv.enable = true;
     };
   };

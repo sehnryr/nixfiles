@@ -7,17 +7,17 @@
 let
   cfg = config.modules.carapace;
 
-  enableNushellIntegration = config.modules.nushell.enable or false;
+  nushellEnabled = config.modules.nushell.enable or false;
 in
 {
   options.modules.carapace = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "enable carapace";
   };
 
   config = lib.mkIf cfg.enable {
     programs.carapace = {
       enable = true;
-      enableNushellIntegration = enableNushellIntegration;
+      enableNushellIntegration = nushellEnabled;
     };
   };
 }

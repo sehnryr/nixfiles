@@ -9,7 +9,7 @@ let
 in
 {
   options.modules.nushell = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "enable nushell";
   };
 
   config = lib.mkIf cfg.enable {
