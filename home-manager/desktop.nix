@@ -41,8 +41,9 @@ in
   age = {
     identityPaths = [ ssh.private.path ];
     secrets = {
-      arch-user-repository-ssh.file = ../secrets/arch-user-repository-ssh.age;
-      clever-cloud-ssh.file = ../secrets/clever-cloud-ssh.age;
+      "arch-user-repository-ssh".file = ../secrets/arch-user-repository-ssh.age;
+      "clever-cloud-ssh".file = ../secrets/clever-cloud-ssh.age;
+      "upload-keystore.jks".file = ../secrets/upload-keystore.jks.age;
     };
   };
 
