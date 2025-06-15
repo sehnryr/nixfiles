@@ -38,6 +38,13 @@
     powerKeyLongPress = "poweroff";
   };
 
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
+
+  services.fprintd.enable = true;
+
   powerManagement.enable = true;
 
   services.thermald.enable = true;
