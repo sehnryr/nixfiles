@@ -31,11 +31,21 @@
     pkg:
     builtins.elem (lib.getName pkg) [
       "discord"
+      "slack"
     ];
 
   home.packages = with pkgs; [
+    # cli
+    tealdeer
+
+    # gui
     nautilus # gnome file manager
     evince # gnome document viewer
+    libreoffice-fresh
+    signal-desktop
+    thunderbird
+    slack
+    vlc
   ];
 
   modules = {
