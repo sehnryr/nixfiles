@@ -41,9 +41,13 @@
     # gui
     nautilus # gnome file manager
     evince # gnome document viewer
+    loupe # gnome image viewer
+    gnome-disk-utility
+    gnome-calculator
     libreoffice-fresh
     signal-desktop
     thunderbird
+    resources
     slack
     vlc
   ];
