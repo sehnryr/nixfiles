@@ -8,7 +8,7 @@
 let
   cfg = config.modules.discord;
 
-  discordPackage = pkgs.discord.override { withOpenASAR = true; };
+  discordPackage = cfg.package.override { withOpenASAR = true; };
 
   krisp-patcher =
     pkgs.writers.writePython3Bin "krisp-patcher"
@@ -35,6 +35,10 @@ in
 {
   options.modules.discord = {
     enable = lib.mkEnableOption "enable discord";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.discord;
+    };
   };
 
   config = lib.mkIf cfg.enable {

@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +35,7 @@
       nixpkgs,
       nixos-hardware,
       home-manager,
+      nixgl,
       agenix,
       ...
     }@inputs:
@@ -39,6 +45,7 @@
         inherit system;
         overlays = [
           (import ./overlays/toml-generator.nix)
+          nixgl.overlay
         ];
       };
 
@@ -125,6 +132,23 @@
 
           modules = [
             ./home-manager/laptop.nix
+            ./home-manager/modules
+            agenix.homeManagerModules.default
+          ];
+        };
+        "${user.name}@desktop" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit nixgl;
+            inherit user;
+            inherit ssh;
+            inherit fonts;
+          };
+
+          modules = [
+            ./home-manager/desktop.nix
             ./home-manager/modules
             agenix.homeManagerModules.default
           ];

@@ -14,11 +14,16 @@ in
 {
   options.modules.zed-editor = {
     enable = lib.mkEnableOption "enable zed-editor";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.zed-editor;
+    };
   };
 
   config = lib.mkIf cfg.enable {
     programs.zed-editor = {
       enable = true;
+      package = cfg.package;
       installRemoteServer = true;
       extensions = [
         "html"
