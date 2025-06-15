@@ -29,6 +29,15 @@
   boot.initrd.luks.devices."luks-6626bbd6-72cd-4a7f-84c4-ee1abb1fafb6".device =
     "/dev/disk/by-uuid/6626bbd6-72cd-4a7f-84c4-ee1abb1fafb6";
 
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchDocked = "suspend";
+    lidSwitchExternalPower = "suspend";
+
+    powerKey = "suspend";
+    powerKeyLongPress = "poweroff";
+  };
+
   powerManagement.enable = true;
 
   services.thermald.enable = true;
