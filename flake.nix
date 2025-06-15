@@ -85,8 +85,8 @@
         };
         emoji = {
           default = {
-            package = pkgs.twemoji-color-font;
-            family = "Twitter Color Emoji";
+            package = pkgs.noto-fonts-color-emoji;
+            family = "Noto Color Emoji";
           };
         };
       };
