@@ -29,6 +29,10 @@
   boot.initrd.luks.devices."luks-6626bbd6-72cd-4a7f-84c4-ee1abb1fafb6".device =
     "/dev/disk/by-uuid/6626bbd6-72cd-4a7f-84c4-ee1abb1fafb6";
 
+  modules = {
+    fprintd.enable = true;
+  };
+
   services.logind = {
     lidSwitch = "suspend";
     lidSwitchDocked = "suspend";
@@ -37,13 +41,6 @@
     powerKey = "suspend";
     powerKeyLongPress = "poweroff";
   };
-
-  systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "simple";
-  };
-
-  services.fprintd.enable = true;
 
   powerManagement.enable = true;
 

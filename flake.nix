@@ -104,6 +104,7 @@
 
           modules = [
             ./nixos/laptop
+            ./nixos/modules
             nixos-hardware.nixosModules.framework-12th-gen-intel
           ];
         };
