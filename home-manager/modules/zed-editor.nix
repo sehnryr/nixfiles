@@ -45,6 +45,8 @@ in
         nixfmt-rfc-style
         ruff
         jdt-language-server
+        metals
+        bloop
       ];
       userSettings = lib.mkMerge [
         {
