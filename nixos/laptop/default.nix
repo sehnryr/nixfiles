@@ -31,15 +31,7 @@
 
   modules = {
     fprintd.enable = true;
-  };
-
-  services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchDocked = "suspend";
-    lidSwitchExternalPower = "suspend";
-
-    powerKey = "suspend";
-    powerKeyLongPress = "poweroff";
+    logind.enable = true;
   };
 
   powerManagement.enable = true;
