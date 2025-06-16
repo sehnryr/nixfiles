@@ -102,7 +102,7 @@
         "xwayland-native-scaling"
       ];
       favoriteApps = [
-        "zen-beta.desktop"
+        "zen-twilight.desktop"
         "dev.zed.Zed.desktop"
         "com.mitchellh.ghostty.desktop"
         "discord.desktop"

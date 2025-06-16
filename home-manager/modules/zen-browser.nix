@@ -12,7 +12,7 @@ let
 in
 {
   imports = [
-    inputs.zen-browser.homeModules.default
+    inputs.zen-browser.homeModules.twilight
   ];
 
   options.modules.zen-browser = {
@@ -29,11 +29,12 @@ in
         DisableFirefoxScreenshots = true;
         DisableFirefoxStudies = true;
         DisableTelemetry = true;
+        DisablePocket = true;
 
         DisableProfileImport = true;
 
         DisableSetDesktopBackground = true;
-        NoDefaultBookmarks = true;
+        NoDefaultBookmarks = false;
 
         DontCheckDefaultBrowser = true;
 
@@ -67,6 +68,154 @@ in
       profiles.${user.name} = {
         preConfig = builtins.readFile "${inputs.betterfox.outPath}/zen/user.js";
 
+        bookmarks = {
+          settings = [
+            {
+              name = "Syncthing";
+              url = "http://127.0.0.1:8384";
+            }
+            {
+              name = "ISEN";
+              bookmarks = [
+                {
+                  name = "Moodle";
+                  url = "https://web.isen-ouest.fr/moodle4";
+                }
+                {
+                  name = "Aurion";
+                  url = "https://web.isen-ouest.fr/webAurion";
+                }
+              ];
+            }
+            {
+              name = "Filesystem Hierarchy Standard";
+              url = "https://www.pathname.com/fhs/pub/fhs-2.3.html";
+            }
+            {
+              name = "Open Source Guides";
+              url = "https://opensource.guide/best-practices";
+            }
+            {
+              name = "Gaming";
+              bookmarks = [
+                {
+                  name = "Warframe";
+                  bookmarks = [
+                    {
+                      name = "Warframe Wiki";
+                      url = "https://wiki.warframe.com";
+                    }
+                    {
+                      name = "Warframe Market";
+                      url = "https://warframe.market";
+                    }
+                    {
+                      name = "Overframe";
+                      url = "https://overframe.gg";
+                    }
+                    {
+                      name = "Warframe Droptables";
+                      url = "https://www.warframe.com/droptables";
+                    }
+                  ];
+                }
+                {
+                  name = "Minecraft";
+                  bookmarks = [
+                    {
+                      name = "Minecraft Wiki";
+                      url = "https://minecraft.wiki";
+                    }
+                    {
+                      name = "Curseforge Minecraft";
+                      url = "https://www.curseforge.com/minecraft";
+                    }
+                    {
+                      name = "Modrinth";
+                      url = "https://modrinth.com";
+                    }
+                    {
+                      name = "Modpack Index";
+                      url = "https://www.modpackindex.com";
+                    }
+                  ];
+                }
+                {
+                  name = "AllKeyShop";
+                  url = "https://www.allkeyshop.com";
+                }
+              ];
+            }
+            {
+              name = "Server";
+              bookmarks = [
+                {
+                  name = "CapRover";
+                  url = "https://captain.beta.melois.dev";
+                }
+                {
+                  name = "Syncthing";
+                  url = "https://sync.melois.dev";
+                }
+              ];
+            }
+            {
+              name = "Cloud";
+              bookmarks = [
+                {
+                  name = "OVH";
+                  url = "https://www.ovh.com";
+                }
+                {
+                  name = "Cloudflare";
+                  url = "https://dash.cloudflare.com";
+                }
+                {
+                  name = "Clever Cloud";
+                  url = "https://console.clever-cloud.com";
+                }
+                {
+                  name = "Clever Cloud Par0";
+                  url = "https://console.par0.clvrcld.net";
+                }
+              ];
+            }
+            {
+              name = "iLovePDF";
+              url = "https://www.ilovepdf.com";
+            }
+            {
+              name = "Torrenting";
+              url = "https://rentry.co/megathread";
+            }
+            {
+              name = "WebAssembly";
+              bookmarks = [
+                {
+                  name = "WIT format";
+                  url = "https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md";
+                }
+                {
+                  name = "WebAssembly Component Model";
+                  url = "https://component-model.bytecodealliance.org";
+                }
+              ];
+            }
+            {
+              name = "eDocPerso";
+              url = "https://v2-app.edocperso.fr";
+            }
+            {
+              name = "On dit chiffrer, et pas crypter";
+              url = "https://chiffrer.info";
+            }
+            {
+              name = "On dit le Wi-Fi, et pas la Wi-Fi";
+              url = "https://lewifi.fr";
+            }
+          ];
+          force = true;
+        };
         search = {
           default = "ddg";
           privateDefault = "ddg";
