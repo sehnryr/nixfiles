@@ -46,7 +46,6 @@
     gnome-calculator
     libreoffice-fresh
     signal-desktop
-    thunderbird
     resources
     slack
     vlc
