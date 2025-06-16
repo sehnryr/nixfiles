@@ -51,7 +51,7 @@
         inherit system;
         overlays = [
           (import ./overlays/toml-generator.nix)
-          nur.overlay
+          nur.overlays.default
           nixgl.overlay
         ];
       };
