@@ -96,12 +96,8 @@
       extensions = [
         pkgs.gnomeExtensions.appindicator
       ];
-      experimentalFeatures = [
-        "scale-monitor-framebuffer"
-        "xwayland-native-scaling"
-      ];
       favoriteApps = [
-        "zen.desktop"
+        "zen-twilight.desktop"
         "dev.zed.Zed.desktop"
         "com.mitchellh.ghostty.desktop"
         "discord.desktop"
