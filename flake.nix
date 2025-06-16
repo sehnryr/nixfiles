@@ -154,6 +154,7 @@
           };
 
           modules = [
+            ./home-manager/common.nix
             ./home-manager/desktop.nix
             ./home-manager/modules
             agenix.homeManagerModules.default
@@ -170,6 +171,7 @@
           };
 
           modules = [
+            ./home-manager/common.nix
             ./home-manager/laptop.nix
             ./home-manager/modules
             agenix.homeManagerModules.default
@@ -186,6 +188,7 @@
           };
 
           modules = [
+            ./home-manager/common.nix
             ./home-manager/clever-cloud.nix
             ./home-manager/modules
             agenix.homeManagerModules.default
