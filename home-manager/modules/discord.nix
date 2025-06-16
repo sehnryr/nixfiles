@@ -54,9 +54,10 @@ in
         mkdir -p "$(dirname "/tmp/$node")"
         cp "$node" "/tmp/$node"
 
-        run ${krisp-patcher}/bin/krisp-patcher "/tmp/$node"
+        command=$(run ${krisp-patcher}/bin/krisp-patcher "/tmp/$node")
 
-        if [ $? -eq 0 ]; then
+        if [ "$command" = "Couldn't find patch location - already patched." ]; then
+          rm "/tmp/$node"
           already_patched=true
         fi
       done
