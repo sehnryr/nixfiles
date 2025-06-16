@@ -36,6 +36,8 @@
     # power management
     thermald.enable = true;
     tlp.enable = true;
+
+    pipewire.enable = true;
   };
 
   networking.hostName = "laptop"; # Define your hostname.
