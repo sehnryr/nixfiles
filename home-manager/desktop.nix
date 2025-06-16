@@ -1,31 +1,12 @@
 {
-  config,
   pkgs,
   lib,
-  nixgl,
   user,
   ssh,
-  fonts,
   ...
 }:
 
-let
-  getFonts = fonts: value: lib.mapAttrsToList (_: font: font.${value}) fonts;
-
-  fontsSans = getFonts fonts.sans;
-  fontsSerif = getFonts fonts.serif;
-  fontsMonospace = getFonts fonts.monospace;
-  fontsEmoji = getFonts fonts.emoji;
-in
 {
-  # TODO: remove this when passing to nixos
-  nixGL = {
-    packages = nixgl.packages;
-    defaultWrapper = "mesa";
-    installScripts = [ "mesa" ];
-    vulkan.enable = true;
-  };
-
   home.username = user.name;
   home.homeDirectory = user.homeDirectory;
 
@@ -54,30 +35,23 @@ in
       "slack"
     ];
 
-  home.packages =
-    with pkgs;
-    [
-      # cli
-      tealdeer
+  home.packages = with pkgs; [
+    # cli
+    tealdeer
 
-      # gui
-      nautilus # gnome file manager
-      evince # gnome document viewer
-      loupe # gnome image viewer
-      gnome-disk-utility
-      gnome-calculator
-      libreoffice-fresh
-      signal-desktop
-      thunderbird
-      resources
-      slack
-      vlc
-    ]
-    # TODO: remove this when passing to nixos
-    ++ (fontsSans "package")
-    ++ (fontsSerif "package")
-    ++ (fontsMonospace "package")
-    ++ (fontsEmoji "package");
+    # gui
+    nautilus # gnome file manager
+    evince # gnome document viewer
+    loupe # gnome image viewer
+    gnome-disk-utility
+    gnome-calculator
+    libreoffice-fresh
+    signal-desktop
+    thunderbird
+    resources
+    slack
+    vlc
+  ];
 
   modules = {
     # cli
@@ -91,18 +65,10 @@ in
     starship.enable = true;
 
     # gui
-    discord = {
-      enable = true;
-      package = config.lib.nixGL.wrap pkgs.discord;
-    };
-    ghostty = {
-      enable = true;
-      package = config.lib.nixGL.wrap pkgs.ghostty;
-    };
-    zed-editor = {
-      enable = true;
-      package = config.lib.nixGL.wrap pkgs.zed-editor;
-    };
+    discord.enable = true;
+    ghostty.enable = true;
+    zen-browser.enable = true;
+    zed-editor.enable = true;
 
     # services
     syncthing = {
@@ -142,37 +108,6 @@ in
       ];
       showBatteryPercentage = false;
     };
-  };
-
-  # TODO: remove this when passing to nixos
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
-      sansSerif = fontsSans "family";
-      serif = fontsSerif "family";
-      monospace = fontsMonospace "family";
-      emoji = fontsEmoji "family";
-    };
-  };
-
-  # TODO: remove this when passing to nixos
-  systemd.user = {
-    services = {
-      "ssh-agent" = {
-        Unit.Description = "SSH key agent";
-        Service = {
-          Type = "simple";
-          Environment = "SSH_AUTH_SOCK=%t/ssh-agent.socket";
-          ExecStart = "/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK";
-        };
-        Install.WantedBy = [ "default.target" ];
-      };
-    };
-  };
-
-  # TODO: remove this when passing to nixos
-  programs.nushell = lib.mkIf config.modules.nushell.enable {
-    environmentVariables.SSH_AUTH_SOCK = lib.hm.nushell.mkNushellInline ''$env.XDG_RUNTIME_DIR | path join "ssh-agent.socket"'';
   };
 
   programs.home-manager.enable = true;

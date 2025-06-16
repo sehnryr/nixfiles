@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +36,6 @@
       nixos-hardware,
       home-manager,
       nur,
-      nixgl,
       agenix,
       ...
     }@inputs:
@@ -52,7 +46,6 @@
         overlays = [
           (import ./overlays/toml-generator.nix)
           nur.overlays.default
-          nixgl.overlay
         ];
       };
 
@@ -108,6 +101,18 @@
     {
       # nixos-rebuild switch --flake .#<hostname>
       nixosConfigurations = {
+        "desktop" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            inherit user;
+            inherit fonts;
+          };
+
+          modules = [
+            ./nixos/desktop
+            ./nixos/modules
+          ];
+        };
         "laptop" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
@@ -138,6 +143,22 @@
       # nix run home-manager/release-25.05 -- switch --flake .#<hostname>
       # home-manager switch --flake .#<hostname>
       homeConfigurations = {
+        "${user.name}@desktop" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit user;
+            inherit ssh;
+            inherit fonts;
+          };
+
+          modules = [
+            ./home-manager/desktop.nix
+            ./home-manager/modules
+            agenix.homeManagerModules.default
+          ];
+        };
         "${user.name}@laptop" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
@@ -166,23 +187,6 @@
 
           modules = [
             ./home-manager/clever-cloud.nix
-            ./home-manager/modules
-            agenix.homeManagerModules.default
-          ];
-        };
-        "${user.name}@desktop" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit nixgl;
-            inherit user;
-            inherit ssh;
-            inherit fonts;
-          };
-
-          modules = [
-            ./home-manager/desktop.nix
             ./home-manager/modules
             agenix.homeManagerModules.default
           ];
