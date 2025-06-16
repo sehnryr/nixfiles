@@ -100,7 +100,6 @@
     in
     {
       # nixos-rebuild switch --flake .#<hostname>
-      # nh os switch
       nixosConfigurations = {
         "laptop" = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -118,7 +117,6 @@
       };
       # nix run home-manager/release-25.05 -- switch --flake .#<hostname>
       # home-manager switch --flake .#<hostname>
-      # nh home switch
       homeConfigurations = {
         "${user.name}@laptop" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;

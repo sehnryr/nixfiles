@@ -81,7 +81,6 @@ in
 
   modules = {
     # cli
-    nh.enable = true;
     ssh.enable = true;
     git.enable = true;
     direnv.enable = true;
