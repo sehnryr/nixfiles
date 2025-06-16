@@ -26,8 +26,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-6626bbd6-72cd-4a7f-84c4-ee1abb1fafb6".device =
-    "/dev/disk/by-uuid/6626bbd6-72cd-4a7f-84c4-ee1abb1fafb6";
+  boot.initrd.luks.devices."luks-8dc0e00a-1436-4770-b032-aa485da6c93e".device =
+    "/dev/disk/by-uuid/8dc0e00a-1436-4770-b032-aa485da6c93e";
 
   modules = {
     fprintd.enable = true;
