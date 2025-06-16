@@ -3,7 +3,6 @@
   pkgs,
   lib,
   inputs,
-  user,
   ...
 }:
 
@@ -65,7 +64,7 @@ in
         PasswordManagerEnabled = false;
         PrimaryPassword = false;
       };
-      profiles.${user.name} = {
+      profiles.default = {
         preConfig = builtins.readFile "${inputs.betterfox.outPath}/zen/user.js";
 
         bookmarks = {
