@@ -215,6 +215,23 @@ in
           ];
           force = true;
         };
+
+        extensions = {
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            buster-captcha-solver
+            darkreader
+            fastforwardteam
+            proton-pass
+            redirector
+            refined-github
+            sponsorblock
+            ublock-origin
+            violentmonkey
+            wayback-machine
+          ];
+          force = true;
+        };
+
         search = {
           default = "ddg";
           privateDefault = "ddg";
@@ -258,8 +275,11 @@ in
           };
           force = true;
         };
+
         settings = {
           "browser.urlbar.suggest.clipboard" = false;
+          "extensions.autoDisableScopes" = 0;
+
           "zen.welcome-screen.seen" = true;
           "zen.glance.enabled" = false;
 

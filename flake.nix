@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur = {
+      url = "github:nix-community/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +40,7 @@
       nixpkgs,
       nixos-hardware,
       home-manager,
+      nur,
       nixgl,
       agenix,
       ...
@@ -45,6 +51,7 @@
         inherit system;
         overlays = [
           (import ./overlays/toml-generator.nix)
+          nur.overlay
           nixgl.overlay
         ];
       };
