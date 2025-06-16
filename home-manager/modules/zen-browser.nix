@@ -259,33 +259,27 @@ in
           force = true;
         };
         settings = {
-          browser.urlbar.suggest.clipboard = false;
-          zen = {
-            welcome-screen.seen = true;
-            glance.enabled = false;
+          "browser.urlbar.suggest.clipboard" = false;
+          "zen.welcome-screen.seen" = true;
+          "zen.glance.enabled" = false;
 
-            mods.auto-update = false;
-            themes.disable-all = true;
+          "zen.mods.auto-update" = false;
+          "zen.themes.disable-all" = true;
 
-            urlbar.behavior = "normal";
+          "zen.urlbar.behavior" = "normal";
 
-            view = {
-              use-single-toolbar = false;
-              sidebar-expanded = true;
+          "zen.view.use-single-toolbar" = false;
+          "zen.view.sidebar-expanded" = true;
 
-              show-newtab-vertical = true;
-              show-newtab-button-border-top = false;
-              show-newtab-button-top = true;
+          "zen.view.show-newtab-vertical" = true;
+          "zen.view.show-newtab-button-border-top" = false;
+          "zen.view.show-newtab-button-top" = true;
 
-              compact = {
-                hide-tabbar = true;
-                hide-toolbar = false;
-                toolbar-flash-popup = false;
-                color-toolbar = true;
-                color-sidebar = true;
-              };
-            };
-          };
+          "zen.view.compact.hide-tabbar" = true;
+          "zen.view.compact.hide-toolbar" = false;
+          "zen.view.compact.toolbar-flash-popup" = false;
+          "zen.view.compact.color-toolbar" = true;
+          "zen.view.compact.color-sidebar" = true;
         };
       };
     };
