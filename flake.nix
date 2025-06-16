@@ -60,7 +60,7 @@
         name = "youn";
         email = "youn@melois.dev";
         homeDirectory = "/home/${name}";
-        nixConfigDirectory = "${homeDirectory}/nixos";
+        nixConfigDirectory = "${homeDirectory}/nixfiles";
         homeManagerConfigDirectory = "${nixConfigDirectory}/home-manager";
         nixosConfigDirectory = "${nixConfigDirectory}/nixos";
       };
