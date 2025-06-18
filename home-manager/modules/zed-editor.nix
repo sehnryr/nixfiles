@@ -16,7 +16,7 @@ in
     enable = lib.mkEnableOption "enable zed-editor";
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.zed-editor;
+      default = pkgs.zed-editor-fhs;
     };
   };
 
