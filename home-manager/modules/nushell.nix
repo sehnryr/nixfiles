@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }:
@@ -28,6 +29,13 @@ in
         ls.clickable_links = false;
         rm.always_trash = true;
       };
+      extraConfig = ''
+        source ${
+          pkgs.runCommand "nix-your-shell-nushell-config.nu" { } ''
+            ${lib.getExe pkgs.nix-your-shell} nu >> "$out"
+          ''
+        }
+      '';
     };
   };
 }
