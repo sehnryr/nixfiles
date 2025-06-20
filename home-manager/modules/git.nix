@@ -31,6 +31,9 @@ in
         format = "ssh";
         key = ssh.public.text;
       };
+      ignores = [
+        ".zed"
+      ];
     };
   };
 }
