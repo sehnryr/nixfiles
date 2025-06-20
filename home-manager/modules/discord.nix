@@ -51,35 +51,33 @@ in
       for node in "${config.xdg.configHome}/discord/"*"/modules/discord_krisp/discord_krisp.node"; do
         if [ ! -e "$node" ]; then continue; fi
 
-        mkdir -p "$(dirname "/tmp/$node")"
-        cp "$node" "/tmp/$node"
+        run mkdir -p "$(dirname "/tmp/$node")"
+        run cp "$node" "/tmp/$node"
 
         command=$(run ${krisp-patcher}/bin/krisp-patcher "/tmp/$node")
 
         if [ "$command" = "Couldn't find patch location - already patched." ]; then
-          rm "/tmp/$node"
+          run rm "/tmp/$node"
           already_patched=true
         fi
       done
 
-      if [ "$already_patched" = true ]; then
-        exit 0
-      fi
+      if [ "$already_patched" = false ]; then
+        discord_was_running=false
+        if ${pkgs.procps}/bin/pgrep -f discord > /dev/null; then
+          discord_was_running=true
+          run ${pkgs.procps}/bin/pkill -f discord || true
+        fi
 
-      discord_was_running=false
-      if ${pkgs.procps}/bin/pgrep -f discord > /dev/null; then
-        discord_was_running=true
-        run ${pkgs.procps}/bin/pkill -f discord || true
-      fi
+        for node in "${config.xdg.configHome}/discord/"*"/modules/discord_krisp/discord_krisp.node"; do
+          if [ ! -e "$node" ]; then continue; fi
+          run cp "/tmp/$node" "$node"
+          run rm "/tmp/$node"
+        done
 
-      for node in "${config.xdg.configHome}/discord/"*"/modules/discord_krisp/discord_krisp.node"; do
-        if [ ! -e "$node" ]; then continue; fi
-        run cp "/tmp/$node" "$node"
-        rm "/tmp/$node"
-      done
-
-      if [ "$discord_was_running" = true ]; then
-        run ${discordPackage}/bin/discord > /dev/null 2>&1 &
+        if [ "$discord_was_running" = true ]; then
+          run ${discordPackage}/bin/discord > /dev/null 2>&1 &
+        fi
       fi
     '';
   };
