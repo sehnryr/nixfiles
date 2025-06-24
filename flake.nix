@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-graalvm-21.url = "github:nixos/nixpkgs/ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
@@ -33,6 +34,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-graalvm-21,
       nixos-hardware,
       home-manager,
       nur,
@@ -48,6 +50,7 @@
           nur.overlays.default
         ];
       };
+      pkgs-graalvm-21 = import nixpkgs-graalvm-21 { inherit system; };
 
       user = rec {
         name = "youn";
@@ -147,6 +150,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
+            inherit pkgs-graalvm-21;
             inherit inputs;
             inherit user;
             inherit ssh;

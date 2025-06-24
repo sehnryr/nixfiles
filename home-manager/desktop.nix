@@ -38,6 +38,7 @@
     # gui
     discord.enable = true;
     ghostty.enable = true;
+    prism-launcher.enable = true;
     zen-browser.enable = true;
     zed-editor.enable = true;
 
