@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ssh,
   ...
 }:
@@ -19,13 +18,6 @@
     ".ssh/clever-cloud.pub".enable = true;
     ".ssh/arch-user-repository.pub".enable = true;
   };
-
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "discord"
-      "slack"
-    ];
 
   home.packages = with pkgs; [
     slack
