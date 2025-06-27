@@ -114,109 +114,67 @@
           };
         };
       };
+
+      mkNixosSystem =
+        modules:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            inherit user;
+            inherit fonts;
+          };
+
+          modules = [ ./nixos/modules ] ++ modules;
+        };
+
+      mkHomeManagerConfiguration =
+        modules:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit pkgs-unstable;
+            inherit pkgs-graalvm-21;
+            inherit inputs;
+            inherit user;
+            inherit ssh;
+            inherit fonts;
+          };
+
+          modules = [
+            ./home-manager/common.nix
+            ./home-manager/modules
+            agenix.homeManagerModules.default
+          ] ++ modules;
+        };
     in
     {
       # nixos-rebuild switch --flake .#<hostname>
       nixosConfigurations = {
-        "desktop" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit user;
-            inherit fonts;
-          };
-
-          modules = [
-            ./nixos/desktop
-            ./nixos/modules
-          ];
-        };
-        "laptop" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit user;
-            inherit fonts;
-          };
-
-          modules = [
-            ./nixos/laptop
-            ./nixos/modules
-            nixos-hardware.nixosModules.framework-12th-gen-intel
-          ];
-        };
-        "clever-cloud" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit user;
-            inherit fonts;
-          };
-
-          modules = [
-            ./nixos/clever-cloud
-            ./nixos/modules
-            nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-          ];
-        };
+        "desktop" = mkNixosSystem [
+          ./nixos/desktop
+        ];
+        "laptop" = mkNixosSystem [
+          ./nixos/laptop
+          nixos-hardware.nixosModules.framework-12th-gen-intel
+        ];
+        "clever-cloud" = mkNixosSystem [
+          ./nixos/clever-cloud
+          nixos-hardware.nixosModules.lenovo-thinkpad-t480s
+        ];
       };
       # nix run home-manager/release-25.05 -- switch --flake .#<hostname>
       # home-manager switch --flake .#<hostname>
       homeConfigurations = {
-        "${user.name}@desktop" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          extraSpecialArgs = {
-            inherit pkgs-unstable;
-            inherit pkgs-graalvm-21;
-            inherit inputs;
-            inherit user;
-            inherit ssh;
-            inherit fonts;
-          };
-
-          modules = [
-            ./home-manager/common.nix
-            ./home-manager/desktop.nix
-            ./home-manager/modules
-            agenix.homeManagerModules.default
-          ];
-        };
-        "${user.name}@laptop" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          extraSpecialArgs = {
-            inherit pkgs-unstable;
-            inherit pkgs-graalvm-21;
-            inherit inputs;
-            inherit user;
-            inherit ssh;
-            inherit fonts;
-          };
-
-          modules = [
-            ./home-manager/common.nix
-            ./home-manager/laptop.nix
-            ./home-manager/modules
-            agenix.homeManagerModules.default
-          ];
-        };
-        "${user.name}@clever-cloud" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          extraSpecialArgs = {
-            inherit pkgs-unstable;
-            inherit pkgs-graalvm-21;
-            inherit inputs;
-            inherit user;
-            inherit ssh;
-            inherit fonts;
-          };
-
-          modules = [
-            ./home-manager/common.nix
-            ./home-manager/clever-cloud.nix
-            ./home-manager/modules
-            agenix.homeManagerModules.default
-          ];
-        };
+        "${user.name}@desktop" = mkHomeManagerConfiguration [
+          ./home-manager/desktop.nix
+        ];
+        "${user.name}@laptop" = mkHomeManagerConfiguration [
+          ./home-manager/laptop.nix
+        ];
+        "${user.name}@clever-cloud" = mkHomeManagerConfiguration [
+          ./home-manager/clever-cloud.nix
+        ];
       };
     };
 }
