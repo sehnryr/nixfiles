@@ -50,4 +50,9 @@
   systemd.packages = with pkgs; [ lact ];
   systemd.services.lact.wantedBy = [ "multi-user.target" ];
 
+  # Enable Multipath TCP
+  services.mptcpd.enable = true;
+  boot.kernel.sysctl = {
+    "net.mptcp.enabled" = "1";
+  };
 }
