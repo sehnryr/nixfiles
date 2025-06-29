@@ -36,6 +36,12 @@
     steam.enable = true;
   };
 
+  networking.firewall.allowedUDPPorts = [
+    # Warframe ports
+    4950
+    4955
+  ];
+
   networking.hostName = "desktop";
 
   hardware.graphics = {
