@@ -19,11 +19,6 @@ in
       addKeysToAgent = "yes";
       matchBlocks = {
         "*".identityFile = [ ssh.private.path ];
-        "melois.dev" = {
-          hostname = "167.86.101.192";
-          user = "root";
-          port = 8422;
-        };
         "*.clever-cloud.com".identityFile = [
           (toString config.age.secrets.clever-cloud-ssh.path)
         ];
