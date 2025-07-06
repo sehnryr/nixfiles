@@ -37,7 +37,7 @@
     # services
     syncthing = {
       enable = true;
-      introducer.id = "2MFI55P-LSIS5AN-SKKZXOF-NJOELGG-U6UVN34-7O6HYIG-ZSDQJH5-QBURSAJ";
+      introducer.id = "GNRP5VZ-TGG7IN3-YSQHR6A-VMHHGYH-TMGVFVR-ZP7Y7XU-WE53UAZ-3GLQCA2";
       folders = {
         "Desktop" = {
           id = "desktop-sehn";
