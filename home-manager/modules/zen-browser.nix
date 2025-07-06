@@ -149,8 +149,8 @@ in
               name = "Server";
               bookmarks = [
                 {
-                  name = "CapRover";
-                  url = "https://captain.beta.melois.dev";
+                  name = "Ente";
+                  url = "https://ente.melois.dev";
                 }
                 {
                   name = "Syncthing";
