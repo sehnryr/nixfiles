@@ -11,6 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur = {
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +44,7 @@
       nixpkgs-graalvm-21,
       nixos-hardware,
       home-manager,
+      disko,
       nur,
       agenix,
       ...
@@ -121,6 +127,7 @@
           specialArgs = {
             inherit inputs;
             inherit user;
+            inherit ssh;
             inherit fonts;
           };
 
@@ -157,6 +164,11 @@
         "laptop" = mkNixosSystem [
           ./nixos/laptop
           nixos-hardware.nixosModules.framework-12th-gen-intel
+        ];
+        #
+        "server" = mkNixosSystem [
+          disko.nixosModules.disko
+          ./nixos/server
         ];
         "clever-cloud" = mkNixosSystem [
           ./nixos/clever-cloud
