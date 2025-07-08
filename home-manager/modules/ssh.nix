@@ -18,7 +18,12 @@ in
       enable = true;
       addKeysToAgent = "yes";
       matchBlocks = {
-        "*".identityFile = [ ssh.private.path ];
+        "*" = {
+          identityFile = [ ssh.private.path ];
+          setEnv = {
+            TERM = "xterm-256color";
+          };
+        };
         "*.clever-cloud.com".identityFile = [
           (toString config.age.secrets.clever-cloud-ssh.path)
         ];
