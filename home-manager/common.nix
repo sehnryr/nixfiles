@@ -47,6 +47,7 @@
     # cli
     ssh.enable = true;
     git.enable = true;
+    jujutsu.enable = true;
     direnv.enable = true;
     neovim.enable = true;
     nushell.enable = true;
