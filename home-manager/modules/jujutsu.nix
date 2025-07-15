@@ -30,6 +30,9 @@ in
           default-command = [ "log" ];
           pager = "less -FR";
         };
+        git = {
+          private-commits = "description(glob:'wip:*') | description(glob:'private:*')";
+        };
       };
     };
 
