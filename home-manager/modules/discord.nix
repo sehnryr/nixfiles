@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgs-unstable,
   lib,
   ...
 }:
@@ -9,7 +8,7 @@
 let
   cfg = config.modules.discord;
 
-  discordPackage = pkgs-unstable.discord.override { withOpenASAR = true; };
+  discordPackage = pkgs.discord.override { withOpenASAR = true; };
 
   krisp-patcher =
     pkgs.writers.writePython3Bin "krisp-patcher"

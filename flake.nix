@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-graalvm-21.url = "github:nixos/nixpkgs/ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
@@ -40,7 +39,6 @@
   outputs =
     {
       nixpkgs,
-      nixpkgs-unstable,
       nixpkgs-graalvm-21,
       nixos-hardware,
       home-manager,
@@ -63,10 +61,6 @@
         inherit system;
         inherit config;
         inherit overlays;
-      };
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        inherit config;
       };
       pkgs-graalvm-21 = import nixpkgs-graalvm-21 {
         inherit system;
@@ -140,7 +134,6 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit pkgs-unstable;
             inherit pkgs-graalvm-21;
             inherit inputs;
             inherit user;
