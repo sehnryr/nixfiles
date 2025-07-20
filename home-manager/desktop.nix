@@ -22,7 +22,7 @@
   };
 
   home.packages = with pkgs; [
-    signal-desktop
+    beeper
     slack
   ];
 
