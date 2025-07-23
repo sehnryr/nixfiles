@@ -8,8 +8,6 @@
 
 let
   cfg = config.modules.jujutsu;
-
-  gitEnabled = config.modules.git.enable or false;
 in
 {
   options.modules.jujutsu = {
@@ -36,8 +34,7 @@ in
       };
     };
 
-    xdg.configFile."git/ignore" = {
-      enable = !gitEnabled;
+    home.file.".gitignore" = {
       text = ''
         .zed/
       '';
