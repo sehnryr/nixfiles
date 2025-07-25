@@ -73,7 +73,10 @@ in
             "YAML".tab_size = 2;
             "Ruby".tab_size = 2;
             "Python" = {
-              language_servers = [ "ruff" ];
+              language_servers = [
+                "pyright"
+                "ruff"
+              ];
               formatter = [ { language_server.name = "ruff"; } ];
             };
             "Nix" = {
