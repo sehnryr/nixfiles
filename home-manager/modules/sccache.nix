@@ -18,15 +18,17 @@ in
       pkgs.sccache
     ];
 
-    home.file = {
-      ".cargo/config.toml" = {
-        enable = true;
-        text = lib.generators.toTOML {
-          build = {
-            rustc-wrapper = "${pkgs.sccache}/bin/sccache";
-          };
-        };
-      };
+    home.activation.aws-credentials = lib.hm.dag.entryBetween [ "agenix" ] [ "cleanup" ] ''
+      mkdir -p "$HOME/.aws"
+      ln -sf "${config.age.secrets."sccache-aws-credentials".path}" "$HOME/.aws/credentials"
+    '';
+
+    home.sessionVariables = {
+      SCCACHE_BUCKET = "sccache";
+      SCCACHE_ENDPOINT = "cellar-c2.services.clever-cloud.com";
+      SCCACHE_REGION = "US";
+
+      RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
     };
   };
 }

@@ -36,6 +36,7 @@ in
           ''
         }
       '';
+      environmentVariables = config.home.sessionVariables;
     };
   };
 }

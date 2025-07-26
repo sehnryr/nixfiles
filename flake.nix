@@ -53,7 +53,6 @@
         allowUnfree = true;
       };
       overlays = [
-        (import ./overlays/toml-generator.nix)
         nur.overlays.default
       ];
 

@@ -5,4 +5,5 @@ in
   "secrets/arch-user-repository-ssh.age".publicKeys = [ master ];
   "secrets/clever-cloud-ssh.age".publicKeys = [ master ];
   "secrets/upload-keystore.jks.age".publicKeys = [ master ];
+  "secrets/sccache-aws-credentials.age".publicKeys = [ master ];
 }

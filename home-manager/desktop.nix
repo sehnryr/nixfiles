@@ -12,6 +12,7 @@
       "arch-user-repository-ssh".file = ../secrets/arch-user-repository-ssh.age;
       "clever-cloud-ssh".file = ../secrets/clever-cloud-ssh.age;
       "upload-keystore.jks".file = ../secrets/upload-keystore.jks.age;
+      "sccache-aws-credentials".file = ../secrets/sccache-aws-credentials.age;
     };
   };
 
