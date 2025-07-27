@@ -25,6 +25,8 @@ in
 
         jdks = [
           pkgs-graalvm-21.graalvm-ce
+          jdk17
+          jdk8
         ];
       })
     ];
