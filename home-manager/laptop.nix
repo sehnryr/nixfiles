@@ -38,19 +38,19 @@
     # services
     syncthing = {
       enable = true;
-      introducer.id = "GNRP5VZ-TGG7IN3-YSQHR6A-VMHHGYH-TMGVFVR-ZP7Y7XU-WE53UAZ-3GLQCA2";
-      folders = {
-        "Desktop" = {
-          id = "desktop-sehn";
-          path = "${user.homeDirectory}/Desktop";
+      overrideDevices = false;
+      settings = {
+        gui.enabled = false;
+        devices = {
+          "server" = {
+            id = "TTUFKM7-A5RG55J-R3SN7YO-I2KAPCQ-FZROOD5-736WAXG-ZQXSIYZ-5PXUBAJ";
+            introducer = true;
+          };
         };
-        "Pictures" = {
-          id = "pictures-sehn";
-          path = "${user.homeDirectory}/Pictures";
-        };
-        "Videos" = {
-          id = "video-sehn";
-          path = "${user.homeDirectory}/Videos";
+        folders = {
+          "${user.homeDirectory}/Desktop".devices = [ "server" ];
+          "${user.homeDirectory}/Pictures".devices = [ "server" ];
+          "${user.homeDirectory}/Videos".devices = [ "server" ];
         };
       };
     };

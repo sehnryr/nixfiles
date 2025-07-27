@@ -1,7 +1,5 @@
 {
   modulesPath,
-  pkgs,
-  lib,
   ssh,
   ...
 }:
@@ -19,14 +17,41 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+
+  users.users."root" = {
+    openssh.authorizedKeys.keys = [ ssh.public.text ];
+  };
+
   services.openssh.enable = true;
 
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
-  ];
-
-  users.users.root.openssh.authorizedKeys.keys = [ ssh.public.text ];
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    overrideDevices = false;
+    overrideFolders = false;
+    settings = {
+      gui.enabled = false;
+      options = {
+        announceLANAddresses = false;
+        localAnnounceEnabled = false;
+        natEnabled = false;
+      };
+      devices = {
+        "desktop" = {
+          id = "XISPYUG-DNTVMB2-PHCHRCI-TMOTNJR-GJSK7LZ-6N4LN5P-GK6SISC-U43A2AD";
+          autoAcceptFolders = true;
+        };
+        "laptop" = {
+          id = "KTQFQBS-PJBRNJU-NYWCB4W-OFQJO7S-PDWZ2P2-SVVRTEP-IPLQNUQ-L4PSUA5";
+          autoAcceptFolders = true;
+        };
+        "mobile" = {
+          id = "C5FRWWE-HZQ2H7F-RO522LK-Q4JIGZL-ET6LZMT-CL737LK-A7LRPUW-OBWYQAC";
+          autoAcceptFolders = true;
+        };
+      };
+    };
+  };
 
   system.stateVersion = "25.05";
 }

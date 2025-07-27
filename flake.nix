@@ -144,7 +144,8 @@
             ./home-manager/common.nix
             ./home-manager/modules
             agenix.homeManagerModules.default
-          ] ++ modules;
+          ]
+          ++ modules;
         };
     in
     {
@@ -157,7 +158,7 @@
           ./nixos/laptop
           nixos-hardware.nixosModules.framework-12th-gen-intel
         ];
-        #
+        # nixos-rebuild --target-host root@<hostname> switch --flake ~/nixfiles#server
         "server" = mkNixosSystem [
           disko.nixosModules.disko
           ./nixos/server
