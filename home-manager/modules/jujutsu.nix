@@ -37,6 +37,9 @@ in
     home.file.".gitignore" = {
       text = ''
         .zed/
+        .direnv/
+        .env
+        .envrc.local
       '';
     };
   };

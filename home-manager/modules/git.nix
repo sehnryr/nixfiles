@@ -33,6 +33,9 @@ in
       };
       ignores = [
         ".zed"
+        ".direnv/"
+        ".env"
+        ".envrc.local"
       ];
     };
   };
