@@ -8,6 +8,22 @@
 
 let
   cfg = config.modules.zen-browser;
+
+  mkEngine =
+    {
+      name,
+      alias,
+      url,
+    }:
+    {
+      name = name;
+      urls = [
+        {
+          template = url;
+        }
+      ];
+      definedAliases = [ alias ];
+    };
 in
 {
   imports = [
@@ -40,13 +56,6 @@ in
         HardwareAcceleration = true;
 
         HttpsOnlyMode = "force_enabled";
-
-        DNSOverHTTPS = {
-          Enabled = true;
-          ProviderURL = "https://security.cloudflare-dns.com/dns-query";
-          Fallback = false;
-          Locked = true;
-        };
 
         ShowHomeButton = false;
         Homepage = {
@@ -197,6 +206,19 @@ in
               ];
             }
             {
+              name = "Nix";
+              bookmarks = [
+                {
+                  name = "Home Manager configuration options";
+                  url = "https://nix-community.github.io/home-manager/options.xhtml";
+                }
+                {
+                  name = "NixOS configuration options";
+                  url = "https://nixos.org/manual/nixos/stable/options.html";
+                }
+              ];
+            }
+            {
               name = "eDocPerso";
               url = "https://v2-app.edocperso.fr";
             }
@@ -232,41 +254,30 @@ in
           default = "ddg";
           privateDefault = "ddg";
           engines = {
-            nix-packages = {
-              name = "Nix Packages";
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages";
-                  params = [
-                    {
-                      name = "type";
-                      value = "packages";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
+            rust-docs = mkEngine {
+              name = "rust-docs";
+              alias = "!rs";
+              url = "https://doc.rust-lang.org/stable/std/index.html?search={searchTerms}";
             };
-            nixos-wiki = {
+            docs-rs = mkEngine {
+              name = "docs.rs";
+              alias = "!dr";
+              url = "https://docs.rs/releases/search?query={searchTerms}";
+            };
+            crates-io = mkEngine {
+              name = "crates.io";
+              alias = "!cr";
+              url = "https://crates.io/search?q={searchTerms}";
+            };
+            nix-packages = mkEngine {
+              name = "Nix Packages";
+              alias = "!np";
+              url = "https://search.nixos.org/packages?type=packages&query={searchTerms}";
+            };
+            nixos-wiki = mkEngine {
               name = "NixOS Wiki";
-              urls = [
-                {
-                  template = "https://wiki.nixos.org/w/index.php";
-                  params = [
-                    {
-                      name = "search";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@nw" ];
+              alias = "!nw";
+              url = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
             };
           };
           force = true;
