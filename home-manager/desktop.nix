@@ -28,7 +28,7 @@
     slack
   ];
 
-  modules = {
+  programs = {
     # gui
     discord.enable = true;
     ghostty.enable = true;
@@ -36,7 +36,22 @@
     zen-browser.enable = true;
     zed-editor.enable = true;
 
-    # services
+    # desktop manager
+    gnome-shell = {
+      enable = true;
+      extensionsPackages = [
+        pkgs.gnomeExtensions.appindicator
+      ];
+      favoriteApps = [
+        "zen-twilight.desktop"
+        "dev.zed.Zed.desktop"
+        "com.mitchellh.ghostty.desktop"
+        "discord.desktop"
+      ];
+    };
+  };
+
+  services = {
     syncthing = {
       enable = true;
       overrideDevices = false;
@@ -54,20 +69,6 @@
           "${user.homeDirectory}/Videos".devices = [ "server" ];
         };
       };
-    };
-
-    # desktop manager
-    gnome-shell = {
-      enable = true;
-      extensions = [
-        pkgs.gnomeExtensions.appindicator
-      ];
-      favoriteApps = [
-        "zen-twilight.desktop"
-        "dev.zed.Zed.desktop"
-        "com.mitchellh.ghostty.desktop"
-        "discord.desktop"
-      ];
     };
   };
 }

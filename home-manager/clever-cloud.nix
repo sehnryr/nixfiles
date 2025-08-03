@@ -24,7 +24,7 @@
     slack
   ];
 
-  modules = {
+  programs = {
     # gui
     discord.enable = true;
     ghostty.enable = true;
@@ -34,7 +34,7 @@
     # desktop manager
     gnome-shell = {
       enable = true;
-      extensions = [
+      extensionsPackages = [
         pkgs.gnomeExtensions.appindicator
       ];
       experimentalFeatures = [

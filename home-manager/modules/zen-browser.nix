@@ -7,7 +7,7 @@
 }:
 
 let
-  cfg = config.modules.zen-browser;
+  cfg = config.programs.zen-browser;
 
   mkEngine =
     {
@@ -30,13 +30,8 @@ in
     inputs.zen-browser.homeModules.twilight
   ];
 
-  options.modules.zen-browser = {
-    enable = lib.mkEnableOption "enable zen-browser";
-  };
-
   config = lib.mkIf cfg.enable {
     programs.zen-browser = {
-      enable = true;
       policies = {
         DisableAppUpdate = true;
 

@@ -7,10 +7,10 @@
 }:
 
 let
-  cfg = config.modules.prism-launcher;
+  cfg = config.programs.prism-launcher;
 in
 {
-  options.modules.prism-launcher = {
+  options.programs.prism-launcher = {
     enable = lib.mkEnableOption "enable prism-launcher";
   };
 

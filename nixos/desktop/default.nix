@@ -32,8 +32,13 @@
       "steam-unwrapped"
     ];
 
-  modules = {
+  programs = {
     steam.enable = true;
+  };
+
+  services = {
+    printing.enable = true;
+    mptcpd.enable = true;
   };
 
   networking.firewall.allowedUDPPorts = [
@@ -49,16 +54,7 @@
     enable32Bit = true;
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   environment.systemPackages = with pkgs; [ lact ];
   systemd.packages = with pkgs; [ lact ];
   systemd.services.lact.wantedBy = [ "multi-user.target" ];
-
-  # Enable Multipath TCP
-  services.mptcpd.enable = true;
-  boot.kernel.sysctl = {
-    "net.mptcp.enabled" = "1";
-  };
 }

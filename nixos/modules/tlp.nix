@@ -5,18 +5,13 @@
 }:
 
 let
-  cfg = config.modules.tlp;
+  cfg = config.services.tlp;
 in
 {
-  options.modules.tlp = {
-    enable = lib.mkEnableOption "enable tlp";
-  };
-
   config = lib.mkIf cfg.enable {
     powerManagement.enable = true;
 
     services.tlp = {
-      enable = true;
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";

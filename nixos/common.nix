@@ -22,8 +22,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  modules = {
-    logind.enable = true;
+  services = {
+    printing.enable = lib.mkDefault false;
     pipewire.enable = true;
   };
 

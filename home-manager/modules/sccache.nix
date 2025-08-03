@@ -6,10 +6,10 @@
 }:
 
 let
-  cfg = config.modules.sccache;
+  cfg = config.programs.sccache;
 in
 {
-  options.modules.sccache = {
+  options.programs.sccache = {
     enable = lib.mkEnableOption "enable sccache";
   };
 

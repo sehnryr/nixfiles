@@ -7,16 +7,11 @@
 }:
 
 let
-  cfg = config.modules.ssh;
+  cfg = config.programs.ssh;
 in
 {
-  options.modules.ssh = {
-    enable = lib.mkEnableOption "enable ssh";
-  };
-
   config = lib.mkIf cfg.enable {
     programs.ssh = {
-      enable = true;
       addKeysToAgent = "yes";
       matchBlocks = {
         "*" = {

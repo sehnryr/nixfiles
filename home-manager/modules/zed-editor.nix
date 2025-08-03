@@ -7,18 +7,18 @@
 }:
 
 let
-  cfg = config.modules.zed-editor;
-
-  nushellEnabled = config.modules.nushell.enable or false;
+  cfg = config.programs.zed-editor;
 in
 {
-  options.modules.zed-editor = {
-    enable = lib.mkEnableOption "enable zed-editor";
+  options.programs.zed-editor = {
+    enableNushellIntegration = lib.mkOption {
+      type = lib.types.bool;
+      default = config.home.shell.enableNushellIntegration;
+    };
   };
 
   config = lib.mkIf cfg.enable {
     programs.zed-editor = {
-      enable = true;
       package = pkgs.zed-editor-fhs;
       installRemoteServer = true;
       extensions = [
@@ -85,7 +85,7 @@ in
             };
           };
         }
-        (lib.mkIf nushellEnabled {
+        (lib.mkIf cfg.enableNushellIntegration {
           terminal.shell.program = "nu";
         })
       ];

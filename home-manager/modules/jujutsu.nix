@@ -7,16 +7,11 @@
 }:
 
 let
-  cfg = config.modules.jujutsu;
+  cfg = config.programs.jujutsu;
 in
 {
-  options.modules.jujutsu = {
-    enable = lib.mkEnableOption "enable jujutsu";
-  };
-
   config = lib.mkIf cfg.enable {
     programs.jujutsu = {
-      enable = true;
       settings = {
         inherit user;
         signing = {

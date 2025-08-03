@@ -5,16 +5,11 @@
 }:
 
 let
-  cfg = config.modules.steam;
+  cfg = config.programs.steam;
 in
 {
-  options.modules.steam = {
-    enable = lib.mkEnableOption "enable steam";
-  };
-
   config = lib.mkIf cfg.enable {
     programs.steam = {
-      enable = true;
       extest.enable = true;
       localNetworkGameTransfers.openFirewall = true;
     };

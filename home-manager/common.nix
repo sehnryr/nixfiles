@@ -43,7 +43,7 @@
     vlc
   ];
 
-  modules = {
+  programs = {
     # cli
     ssh.enable = true;
     git.enable = true;

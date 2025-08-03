@@ -6,14 +6,11 @@
 }:
 
 let
-  cfg = config.modules.gnome-shell;
-
-  ghosttyEnabled = config.modules.ghostty.enable or false;
+  cfg = config.programs.gnome-shell;
 in
 {
-  options.modules.gnome-shell = {
-    enable = lib.mkEnableOption "";
-    extensions = lib.mkOption {
+  options.programs.gnome-shell = {
+    extensionsPackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = [ ];
     };
@@ -33,10 +30,9 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.gnome-shell = {
-      enable = true;
       extensions = builtins.map (extension: {
         package = extension;
-      }) cfg.extensions;
+      }) cfg.extensionsPackages;
     };
 
     dconf.settings = {
@@ -53,9 +49,8 @@ in
         document-font-name = "${fonts.sans.default.family} 11";
         monospace-font-name = "${fonts.monospace.default.family} 10";
       };
-      "org/gnome/desktop/wm/keybindings" = lib.mkIf ghosttyEnabled {
+      "org/gnome/desktop/wm/keybindings" = lib.mkIf config.programs.ghostty.enable {
         # disable those keybindings since ghostty uses them
-        # TODO: conditionally disable keybindings when ghostty is enabled
         switch-to-workspace-up = [ ];
         switch-to-workspace-down = [ ];
         switch-to-workspace-left = [ ];

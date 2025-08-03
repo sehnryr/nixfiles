@@ -1,30 +1,24 @@
 {
   config,
-  pkgs,
   lib,
   fonts,
   ...
 }:
 
 let
-  cfg = config.modules.ghostty;
-
-  nushellEnabled = config.modules.nushell.enable or false;
+  cfg = config.programs.ghostty;
 in
 {
-  options.modules.ghostty = {
-    enable = lib.mkEnableOption "enable ghostty";
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.ghostty;
+  options.programs.ghostty = {
+    enableNushellIntegration = lib.mkOption {
+      type = lib.types.bool;
+      default = config.home.shell.enableNushellIntegration;
     };
   };
 
   config = lib.mkIf cfg.enable {
     programs.ghostty = lib.mkMerge [
       {
-        enable = true;
-        package = cfg.package;
         settings = {
           theme = "light:Monokai Pro Light,dark:Monokai Pro";
           resize-overlay = "never";
@@ -32,9 +26,9 @@ in
           font-size = 10;
         };
       }
-      (lib.mkIf nushellEnabled {
+      (lib.mkIf cfg.enableNushellIntegration {
         settings = {
-          command = "nu";
+          command = "${config.programs.nushell.package}/bin/nu";
         };
       })
     ];

@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.modules.discord;
+  cfg = config.programs.discord;
 
   discordPackage = pkgs.discord.override { withOpenASAR = true; };
 
@@ -33,7 +33,7 @@ let
       );
 in
 {
-  options.modules.discord = {
+  options.programs.discord = {
     enable = lib.mkEnableOption "enable discord";
   };
 

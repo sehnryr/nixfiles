@@ -6,18 +6,13 @@
 }:
 
 let
-  cfg = config.modules.nushell;
+  cfg = config.programs.nushell;
 in
 {
-  options.modules.nushell = {
-    enable = lib.mkEnableOption "enable nushell";
-  };
-
   config = lib.mkIf cfg.enable {
     home.shell.enableNushellIntegration = true;
 
     programs.nushell = {
-      enable = true;
       settings = {
         show_banner = false;
         history = {
