@@ -54,6 +54,7 @@
     sccache.enable = true;
     carapace.enable = true;
     starship.enable = true;
+    nix-your-shell.enable = true;
   };
 
   programs.home-manager.enable = true;
