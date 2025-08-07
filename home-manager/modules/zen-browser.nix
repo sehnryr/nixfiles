@@ -211,6 +211,10 @@ in
                   name = "NixOS configuration options";
                   url = "https://nixos.org/manual/nixos/stable/options.html";
                 }
+                {
+                  name = "Nix package versions";
+                  url = "https://lazamar.co.uk/nix-versions/";
+                }
               ];
             }
             {
