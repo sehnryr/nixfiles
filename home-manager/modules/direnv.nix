@@ -11,6 +11,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.direnv = {
       nix-direnv.enable = true;
+      silent = true;
     };
   };
 }
