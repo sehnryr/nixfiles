@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgs-graalvm-21,
   lib,
   ...
 }:
@@ -24,7 +23,7 @@ in
         ];
 
         jdks = [
-          pkgs-graalvm-21.graalvm-ce
+          graalvm21-ce
           jdk17
           jdk8
         ];

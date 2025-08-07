@@ -197,7 +197,7 @@
         "type": "github"
       }
     },
-    "nixpkgs-graalvm-21": {
+    "nixpkgs-graalvm-ce-21": {
       "locked": {
         "lastModified": 1709246466,
         "narHash": "sha256-jN8Y5Zv2tNUKIGuSqhm8yIMn2x6jhMQvNwKYduvKxjU=",
@@ -259,7 +259,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "nixpkgs-graalvm-21": "nixpkgs-graalvm-21",
+        "nixpkgs-graalvm-ce-21": "nixpkgs-graalvm-ce-21",
         "nur": "nur",
         "zen-browser": "zen-browser"
       }

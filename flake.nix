@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-graalvm-21.url = "github:nixos/nixpkgs/ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
+    nixpkgs-graalvm-ce-21.url = "github:nixos/nixpkgs/ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
@@ -40,7 +40,6 @@
   outputs =
     {
       nixpkgs,
-      nixpkgs-graalvm-21,
       nixos-hardware,
       home-manager,
       disko,
@@ -59,6 +58,15 @@
             inherit system;
             inherit config;
           };
+          graalvm21-ce =
+            (import inputs.nixpkgs-graalvm-ce-21 {
+              inherit system;
+              inherit config;
+            }).graalvm-ce.overrideAttrs
+              (old: {
+                name = "graalvm-ce";
+                version = "21.0.2";
+              });
         })
         nur.overlays.default
       ];
@@ -67,9 +75,6 @@
         inherit system;
         inherit config;
         inherit overlays;
-      };
-      pkgs-graalvm-21 = import nixpkgs-graalvm-21 {
-        inherit system;
       };
 
       user = rec {
@@ -140,7 +145,6 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit pkgs-graalvm-21;
             inherit inputs;
             inherit user;
             inherit ssh;
