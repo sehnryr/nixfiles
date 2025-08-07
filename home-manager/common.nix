@@ -52,7 +52,12 @@
     neovim.enable = true;
     nushell.enable = true;
     sccache.enable = true;
-    carapace.enable = true;
+    carapace = {
+      enable = true;
+      # TODO: remove when https://github.com/nix-community/home-manager/issues/7517
+      # is resolved
+      package = pkgs.unstable.carapace;
+    };
     starship.enable = true;
     nix-your-shell.enable = true;
   };

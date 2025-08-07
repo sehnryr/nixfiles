@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-graalvm-21.url = "github:nixos/nixpkgs/ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
@@ -53,6 +54,12 @@
         allowUnfree = true;
       };
       overlays = [
+        (final: prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit system;
+            inherit config;
+          };
+        })
         nur.overlays.default
       ];
 
