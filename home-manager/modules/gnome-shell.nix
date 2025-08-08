@@ -39,6 +39,9 @@ in
       "org/gnome/shell" = {
         favorite-apps = cfg.favoriteApps;
       };
+      "org/gnome/desktop/calendar" = {
+        show-weekdate = true;
+      };
       "org/gnome/desktop/interface" = {
         accent-color = "orange";
         clock-format = "24h";
