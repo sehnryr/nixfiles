@@ -43,9 +43,10 @@ in
     ];
 
     home.activation.krispPatcher = lib.hm.dag.entryAfter [ "installPackages" ] ''
-      already_patched=false
       for node in "${config.xdg.configHome}/discord/"*"/modules/discord_krisp/discord_krisp.node"; do
         if [ ! -e "$node" ]; then continue; fi
+
+        already_patched=false
 
         run mkdir -p "$(dirname "/tmp/$node")"
         run cp "$node" "/tmp/$node"
@@ -56,25 +57,22 @@ in
           run rm "/tmp/$node"
           already_patched=true
         fi
-      done
 
-      if [ "$already_patched" = false ]; then
-        discord_was_running=false
-        if ${pkgs.procps}/bin/pgrep -f discord > /dev/null; then
-          discord_was_running=true
-          run ${pkgs.procps}/bin/pkill -f discord || true
-        fi
+        if [ "$already_patched" = false ]; then
+          discord_was_running=false
+          if ${pkgs.procps}/bin/pgrep -f discord > /dev/null; then
+            discord_was_running=true
+            run ${pkgs.procps}/bin/pkill -f discord || true
+          fi
 
-        for node in "${config.xdg.configHome}/discord/"*"/modules/discord_krisp/discord_krisp.node"; do
-          if [ ! -e "$node" ]; then continue; fi
           run cp "/tmp/$node" "$node"
           run rm "/tmp/$node"
-        done
 
-        if [ "$discord_was_running" = true ]; then
-          run ${discordPackage}/bin/discord > /dev/null 2>&1 &
+          if [ "$discord_was_running" = true ]; then
+            run ${discordPackage}/bin/discord > /dev/null 2>&1 &
+          fi
         fi
-      fi
+      done
     '';
   };
 }
