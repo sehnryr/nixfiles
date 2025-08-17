@@ -13,7 +13,10 @@ in
   config = lib.mkIf cfg.enable {
     programs.jujutsu = {
       settings = {
-        inherit user;
+        user = {
+          name = user.fullName;
+          email = user.email;
+        };
         signing = {
           behavior = "own";
           backend = "ssh";
@@ -22,20 +25,33 @@ in
         ui = {
           default-command = [ "log" ];
           pager = "less -FR";
+          conflict-marker-style = "git";
+        };
+        template = {
+          git_push_bookmark = ''"${user.name}/push-" ++ change_id.short()'';
         };
         git = {
-          private-commits = "description(glob:'wip:*') | description(glob:'private:*')";
+          executable-path = "${config.programs.git.package}/bin/git";
+          push-new-bookmarks = true;
+          private-commits = "description(glob:'private:*')";
         };
+        "--scope" = [
+          {
+            "--when".repositories = [
+              "${user.homeDirectory}/clever-cloud"
+              "${user.homeDirectory}/Code/clever-cloud"
+            ];
+            user.email = "${user.name}.${user.family}@clever-cloud.com";
+            signing.key = config.home.file.".ssh/clever-cloud.pub".text;
+          }
+        ];
       };
     };
 
+    # jj doesn't seem to read `$XDG_CONFIG_HOME/git/ignore` although it should be:
+    # https://jj-vcs.github.io/jj/latest/working-copy/#ignored-files
     home.file.".gitignore" = {
-      text = ''
-        .zed/
-        .direnv/
-        .env
-        .envrc.local
-      '';
+      text = builtins.concatStringsSep "\n" config.programs.git.ignores;
     };
   };
 }

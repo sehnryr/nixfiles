@@ -79,6 +79,8 @@
 
       user = rec {
         name = "youn";
+        family = "melois";
+        fullName = "Youn Mélois";
         email = "youn@melois.dev";
         homeDirectory = "/home/${name}";
         nixConfigDirectory = "${homeDirectory}/nixfiles";

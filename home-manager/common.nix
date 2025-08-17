@@ -2,6 +2,7 @@
   pkgs,
   lib,
   user,
+  ssh,
   ...
 }:
 
@@ -14,7 +15,7 @@
   home.file = {
     ".ssh/master.pub" = {
       enable = lib.mkDefault false;
-      text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPO/hKBeNBJVbq8yPL13KRBLCn+gpXyNtAs1UyvyP9Z";
+      text = ssh.public.text;
     };
 
     ".ssh/clever-cloud.pub" = {
