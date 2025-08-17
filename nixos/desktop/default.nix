@@ -6,21 +6,7 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPatches =
-    let
-      commit = "bbf56029322c06a9227f09c2064f50278111159a";
-      patchUrl = "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/patch/?id=${commit}";
-      patchFile = pkgs.fetchurl {
-        url = patchUrl;
-        hash = "sha256-are5n1N5wwE+LZqbbi1ofENyliHH2bDNhV2DYiC0FZ4=";
-      };
-    in
-    [
-      {
-        name = "Bluetooth: btusb: Add new VID/PID 13d3/3613 for MT7925";
-        patch = patchFile;
-      }
-    ];
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
 
   boot.initrd.luks.devices."luks-efba64ac-5927-4281-b972-4df09a479d35".device =
     "/dev/disk/by-uuid/efba64ac-5927-4281-b972-4df09a479d35";
