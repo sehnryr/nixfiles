@@ -238,7 +238,7 @@ in
             buster-captcha-solver
             darkreader
             fastforwardteam
-            proton-pass
+            onepassword-password-manager
             redirector
             refined-github
             sponsorblock
