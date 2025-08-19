@@ -27,7 +27,7 @@ in
           pager = "less -FR";
           conflict-marker-style = "git";
         };
-        template = {
+        templates = {
           git_push_bookmark = ''"${user.name}/push-" ++ change_id.short()'';
         };
         git = {
