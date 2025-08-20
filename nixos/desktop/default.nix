@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -14,11 +18,14 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "1password"
+      "1password-cli"
       "steam"
       "steam-unwrapped"
     ];
 
   programs = {
+    _1password.enable = true;
     steam.enable = true;
   };
 
@@ -26,12 +33,6 @@
     printing.enable = true;
     mptcpd.enable = true;
   };
-
-  networking.firewall.allowedUDPPorts = [
-    # Warframe ports
-    4950
-    4955
-  ];
 
   networking.hostName = "desktop";
 
