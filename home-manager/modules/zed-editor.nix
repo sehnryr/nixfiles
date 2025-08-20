@@ -19,6 +19,7 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.zed-editor = {
+      package = pkgs.unstable.zed-editor;
       installRemoteServer = true;
       extraPackages = with pkgs; [
         nil
