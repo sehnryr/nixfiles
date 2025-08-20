@@ -2,7 +2,6 @@
   config,
   lib,
   user,
-  ssh,
   ...
 }:
 
@@ -20,7 +19,12 @@ in
         signing = {
           behavior = "own";
           backend = "ssh";
-          key = ssh.public.text;
+          key = config.home.file.".ssh/master.pub".text;
+          backends = {
+            ssh = {
+              program = "op-ssh-sign";
+            };
+          };
         };
         ui = {
           default-command = [ "log" ];

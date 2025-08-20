@@ -2,7 +2,6 @@
   pkgs,
   lib,
   user,
-  ssh,
   ...
 }:
 
@@ -15,7 +14,7 @@
   home.file = {
     ".ssh/master.pub" = {
       enable = lib.mkDefault false;
-      text = ssh.public.text;
+      text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPO/hKBeNBJVbq8yPL13KRBLCn+gpXyNtAs1UyvyP9Z";
     };
 
     ".ssh/clever-cloud.pub" = {
@@ -53,7 +52,6 @@
     direnv.enable = true;
     neovim.enable = true;
     nushell.enable = true;
-    sccache.enable = true;
     carapace = {
       enable = true;
       # TODO: remove when https://github.com/nix-community/home-manager/issues/7517

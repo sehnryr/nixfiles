@@ -2,7 +2,6 @@
   config,
   lib,
   user,
-  ssh,
   ...
 }:
 
@@ -16,21 +15,32 @@ in
         enable = true;
       };
       extraConfig = {
-        init.defaultBranch = "main";
-        pull.rebase = true;
+        user = {
+          name = user.fullName;
+          email = user.email;
+          signingKey = config.home.file.".ssh/master.pub".text;
+        };
+        gpg = {
+          format = "ssh";
+        };
+        "gpg \"ssh\"" = {
+          program = "op-ssh-sign";
+        };
+        tag = {
+          gpgSign = true;
+        };
+        init = {
+          defaultBranch = "main";
+        };
+        pull = {
+          rebase = true;
+        };
         "includeIf \"gitdir:${user.homeDirectory}/clever-cloud\"" = {
           path = builtins.toString config.xdg.configFile."git/work".source;
         };
         "includeIf \"gitdir:${user.homeDirectory}/Code/clever-cloud\"" = {
           path = builtins.toString config.xdg.configFile."git/work".source;
         };
-      };
-      userName = user.fullName;
-      userEmail = user.email;
-      signing = {
-        signByDefault = true;
-        format = "ssh";
-        key = ssh.public.text;
       };
       ignores = [
         ".zed"

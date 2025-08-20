@@ -21,11 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,7 +39,6 @@
       home-manager,
       disko,
       nur,
-      agenix,
       ...
     }@inputs:
     let
@@ -88,11 +82,6 @@
         nixosConfigDirectory = "${nixConfigDirectory}/nixos";
       };
 
-      ssh = {
-        private.path = "${user.homeDirectory}/.ssh/master";
-        public.text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPO/hKBeNBJVbq8yPL13KRBLCn+gpXyNtAs1UyvyP9Z";
-      };
-
       fonts = {
         sans = {
           default = {
@@ -134,7 +123,6 @@
           specialArgs = {
             inherit inputs;
             inherit user;
-            inherit ssh;
             inherit fonts;
           };
 
@@ -149,14 +137,12 @@
           extraSpecialArgs = {
             inherit inputs;
             inherit user;
-            inherit ssh;
             inherit fonts;
           };
 
           modules = [
             ./home-manager/common.nix
             ./home-manager/modules
-            agenix.homeManagerModules.default
           ]
           ++ modules;
         };
