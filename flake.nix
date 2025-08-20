@@ -77,9 +77,10 @@
         fullName = "Youn Mélois";
         email = "youn@melois.dev";
         homeDirectory = "/home/${name}";
-        nixConfigDirectory = "${homeDirectory}/nixfiles";
-        homeManagerConfigDirectory = "${nixConfigDirectory}/home-manager";
-        nixosConfigDirectory = "${nixConfigDirectory}/nixos";
+        nixfilesDirectory = "${homeDirectory}/nixfiles";
+        configDirectory = "${nixfilesDirectory}/config";
+        homeManagerConfigDirectory = "${nixfilesDirectory}/home-manager";
+        nixosConfigDirectory = "${nixfilesDirectory}/nixos";
       };
 
       fonts = {

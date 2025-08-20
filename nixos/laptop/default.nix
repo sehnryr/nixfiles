@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   ...
 }:
@@ -21,6 +22,9 @@
 
   programs = {
     _1password.enable = true;
+    libraries = with pkgs; [
+      openssl
+    ];
   };
 
   services = {

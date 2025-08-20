@@ -1,0 +1,52 @@
+{
+    "auto_install_extensions": {
+        "html": true,
+        "toml": true,
+        "dockerfile": true,
+        "git-firefly": true,
+        "sql": true,
+        "ruby": true,
+        "make": true,
+        "xml": true,
+        "nix": true,
+        "ruff": true,
+        "deno": true,
+        "proto": true,
+        "scala": true,
+        "nu": true,
+        "wit": true,
+        "java": true,
+        "mcp-server-context7": true
+    },
+    "tab_size": 4,
+    "preferred_line_length": 100,
+    "soft_wrap": "editor_width",
+    "wrap_guides": [80, 100],
+    "ui_font_size": 14,
+    "buffer_font_size": 14,
+    "buffer_font_family": "Maple Mono NL NF",
+    "format_on_save": "on",
+    "theme": {
+        "mode": "system",
+        "light": "One Light",
+        "dark": "Ayu Dark"
+    },
+    "terminal": {
+        "font_family": "Maple Mono NL NF",
+        "shell": {
+            "program": "nu"
+        }
+    },
+    "languages": {
+        "YAML": { "tab_size": 2 },
+        "Ruby": { "tab_size": 2 },
+        "Python": {
+            "language_servers": ["pyright", "ruff"],
+            "formatter": [{ "language_server": { "name": "ruff" } }]
+        },
+        "Nix": {
+            "tab_size": 2,
+            "formatter": [{ "external": { "command": "nixfmt" } }]
+        }
+    }
+}
