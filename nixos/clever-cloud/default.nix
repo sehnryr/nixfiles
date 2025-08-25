@@ -36,5 +36,9 @@
     tlp.enable = true;
   };
 
+  virtualisation = {
+    libvirtd.enable = true;
+  };
+
   networking.hostName = "clever-cloud";
 }

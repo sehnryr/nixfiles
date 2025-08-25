@@ -40,6 +40,10 @@
     mptcpd.enable = true;
   };
 
+  virtualisation = {
+    libvirtd.enable = true;
+  };
+
   networking.hostName = "desktop";
 
   hardware.graphics = {
