@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   user,
   ...
@@ -18,6 +19,36 @@
   ];
 
   programs = {
+    # cli
+    git = {
+      enable = true;
+      scopes = [
+        {
+          when = [
+            "${user.homeDirectory}/clever-cloud"
+          ];
+          config = {
+            user.email = "${user.name}.${user.family}@clever-cloud.com";
+            user.signingKey = config.home.file.".ssh/clever-cloud.pub".text;
+          };
+        }
+      ];
+    };
+    jujutsu = {
+      enable = true;
+      scopes = [
+        {
+          when = [
+            "${user.homeDirectory}/clever-cloud"
+          ];
+          config = {
+            user.email = "${user.name}.${user.family}@clever-cloud.com";
+            signing.key = config.home.file.".ssh/clever-cloud.pub".text;
+          };
+        }
+      ];
+    };
+
     # gui
     discord.enable = true;
     ghostty.enable = true;
