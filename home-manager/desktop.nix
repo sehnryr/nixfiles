@@ -32,6 +32,14 @@
             user.signingKey = config.home.file.".ssh/clever-cloud.pub".text;
           };
         }
+        {
+          when = [
+            "${user.homeDirectory}/stratorys"
+          ];
+          config = {
+            user.email = "${user.name}.${user.family}@stratorys.com";
+          };
+        }
       ];
     };
     jujutsu = {
@@ -44,6 +52,14 @@
           config = {
             user.email = "${user.name}.${user.family}@clever-cloud.com";
             signing.key = config.home.file.".ssh/clever-cloud.pub".text;
+          };
+        }
+        {
+          when = [
+            "${user.homeDirectory}/stratorys"
+          ];
+          config = {
+            user.email = "${user.name}.${user.family}@stratorys.com";
           };
         }
       ];
