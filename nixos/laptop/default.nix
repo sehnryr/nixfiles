@@ -22,9 +22,12 @@
 
   programs = {
     _1password.enable = true;
-    libraries = with pkgs; [
-      openssl
-    ];
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        openssl
+      ];
+    };
   };
 
   services = {
