@@ -52,6 +52,9 @@
           config = {
             user.email = "${user.name}.${user.family}@clever-cloud.com";
             signing.key = config.home.file.".ssh/clever-cloud.pub".text;
+            revset-aliases = {
+              "immutable_heads()" = "builtin_immutable_heads() ~ remote_bookmarks(remote=glob:\"clever-*\")";
+            };
           };
         }
         {
