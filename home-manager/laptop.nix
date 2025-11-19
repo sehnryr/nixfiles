@@ -9,7 +9,6 @@
   home.file = {
     ".ssh/master.pub".enable = true;
     ".ssh/clever-cloud.pub".enable = true;
-    ".ssh/arch-user-repository.pub".enable = true;
   };
 
   home.packages = with pkgs; [

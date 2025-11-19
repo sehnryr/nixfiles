@@ -21,11 +21,6 @@
       enable = lib.mkDefault false;
       text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID1krg5H1ekYVacZPCKvYARdBy4JT5M+fGo2EFvJD0n4";
     };
-
-    ".ssh/arch-user-repository.pub" = {
-      enable = lib.mkDefault false;
-      text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEDJ8D1zFG29hHuE5uJk1W5D+UrmhYlUYks8MvLtZQoa";
-    };
   };
 
   home.packages = with pkgs; [
