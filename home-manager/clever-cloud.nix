@@ -17,6 +17,8 @@
   ];
 
   programs = {
+    onepassword-secrets.enable = true;
+
     # cli
     git = {
       enable = true;
@@ -46,6 +48,7 @@
         }
       ];
     };
+    codex.enable = true;
 
     # gui
     ghostty.enable = true;
