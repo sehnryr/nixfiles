@@ -12,6 +12,7 @@
   };
 
   home.packages = with pkgs; [
+    discord
     slack
   ];
 
@@ -47,7 +48,6 @@
     };
 
     # gui
-    discord.enable = true;
     ghostty.enable = true;
     zen-browser.enable = true;
     zed-editor.enable = true;

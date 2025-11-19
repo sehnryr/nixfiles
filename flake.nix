@@ -3,6 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-graalvm-ce-21.url = "github:nixos/nixpkgs?rev=ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
+    nixpkgs-discord.url = "github:sehnryr/nixpkgs?rev=0aca1326f08df548c529e310476beb2b3b11933f";
 
     nixos-hardware.url = "github:nixos/nixos-hardware?ref=master";
 
@@ -67,6 +68,11 @@
                 name = "graalvm-ce";
                 version = "21.0.2";
               });
+          discord =
+            (import inputs.nixpkgs-discord {
+              inherit system;
+              inherit config;
+            }).discord;
         })
         nur.overlays.default
       ];

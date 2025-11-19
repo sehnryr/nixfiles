@@ -12,6 +12,7 @@
   };
 
   home.packages = with pkgs; [
+    discord
     signal-desktop
     beeper
     slack
@@ -68,7 +69,6 @@
     };
 
     # gui
-    discord.enable = true;
     ghostty.enable = true;
     prism-launcher.enable = true;
     zen-browser.enable = true;
