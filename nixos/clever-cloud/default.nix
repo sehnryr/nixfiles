@@ -32,6 +32,7 @@
 
   services = {
     clamav.enable = true;
+    onepassword-secrets.enable = true;
     # power management
     thermald.enable = true;
     tlp.enable = true;

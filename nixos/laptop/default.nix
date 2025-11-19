@@ -32,6 +32,7 @@
 
   services = {
     clamav.enable = true;
+    onepassword-secrets.enable = true;
     fprintd.enable = true;
 
     # power management

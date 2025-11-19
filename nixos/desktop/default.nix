@@ -37,6 +37,7 @@
 
   services = {
     clamav.enable = true;
+    onepassword-secrets.enable = true;
     printing.enable = true;
     mptcpd.enable = true;
   };

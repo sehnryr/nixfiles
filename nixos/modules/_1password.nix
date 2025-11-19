@@ -23,24 +23,5 @@ in
         mode = "0755";
       };
     };
-
-    services.onepassword-secrets = {
-      enable = true;
-      # 0640 root:onepassword-secrets
-      tokenFile = "/etc/opnix-token";
-
-      secrets = {
-        clamavNotificationApiCredential = {
-          reference = "op://OpNix/ClamAV notification API/credential";
-          owner = "clamav";
-          group = "clamav";
-        };
-        clamavNotificationApiUrl = {
-          reference = "op://OpNix/ClamAV notification API/url";
-          owner = "clamav";
-          group = "clamav";
-        };
-      };
-    };
   };
 }
