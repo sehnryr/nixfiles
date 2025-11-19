@@ -10,7 +10,7 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
 
   boot.initrd.luks.devices."luks-efba64ac-5927-4281-b972-4df09a479d35".device =
     "/dev/disk/by-uuid/efba64ac-5927-4281-b972-4df09a479d35";
