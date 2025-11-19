@@ -43,11 +43,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    programs.delta.enable = true;
+
     programs.git = {
-      delta = {
-        enable = true;
-      };
-      extraConfig = lib.mkMerge [
+      settings = lib.mkMerge [
         {
           user = {
             name = user.fullName;

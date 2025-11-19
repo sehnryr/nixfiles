@@ -10,6 +10,7 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.ssh = {
+      enableDefaultConfig = false;
       matchBlocks = {
         "*" = {
           identityAgent = "~/.1password/agent.sock";

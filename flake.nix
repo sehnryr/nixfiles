@@ -8,8 +8,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware?ref=master";
 
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     disko = {
