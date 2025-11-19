@@ -31,6 +31,7 @@
   };
 
   services = {
+    clamav.enable = true;
     # power management
     thermald.enable = true;
     tlp.enable = true;

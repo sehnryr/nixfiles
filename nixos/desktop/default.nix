@@ -36,6 +36,7 @@
   };
 
   services = {
+    clamav.enable = true;
     printing.enable = true;
     mptcpd.enable = true;
   };

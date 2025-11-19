@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    opnix = {
+      url = "github:brizzbuzz/opnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +44,7 @@
       home-manager,
       disko,
       nur,
+      opnix,
       ...
     }@inputs:
     let
@@ -127,7 +133,11 @@
             inherit fonts;
           };
 
-          modules = [ ./nixos/modules ] ++ modules;
+          modules = [
+            ./nixos/modules
+            opnix.nixosModules.default
+          ]
+          ++ modules;
         };
 
       mkHomeManagerConfiguration =
@@ -144,6 +154,7 @@
           modules = [
             ./home-manager/common.nix
             ./home-manager/modules
+            opnix.homeManagerModules.default
           ]
           ++ modules;
         };

@@ -31,6 +31,7 @@
   };
 
   services = {
+    clamav.enable = true;
     fprintd.enable = true;
 
     # power management
