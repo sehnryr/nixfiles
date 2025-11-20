@@ -21,6 +21,13 @@ in
           owner = "youn";
           group = "users";
         };
+        githubPersonalAccessToken = {
+          reference = "op://OpNix/Github Personal Access Token/credential";
+          path = ".opnix/secrets/github-personal-access-token";
+          mode = "0600";
+          owner = "youn";
+          group = "users";
+        };
       };
     };
   };
