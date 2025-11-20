@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  user,
   ...
 }:
 
@@ -9,8 +10,12 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
+    users.users.${user.name} = {
+      extraGroups = [ "onepassword-secrets" ];
+    };
+
     services.onepassword-secrets = {
-      # 0440 youn:onepassword-secrets
+      # 0640 root:onepassword-secrets
       tokenFile = "/etc/opnix-token";
 
       secrets = {

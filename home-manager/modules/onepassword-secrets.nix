@@ -10,7 +10,7 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.onepassword-secrets = {
-      # 0440 youn:onepassword-secrets
+      # 0640 root:onepassword-secrets
       tokenFile = "/etc/opnix-token";
 
       secrets = {
