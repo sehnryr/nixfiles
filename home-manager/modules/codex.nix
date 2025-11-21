@@ -35,12 +35,23 @@ in
     programs.codex = {
       package = pkgs.unstable.codex;
       custom-instructions = ''
-        Always use context7 when I need code generation, setup or configuration steps, or
-        library/API documentation. This means you should automatically use the Context7 MCP
-        tools to resolve library id and get library docs without me having to explicitly ask.
+        You are Codex, an AI coding assistant for this repo.
 
-        Always use github when I need to interact with GitHub repositories, such as reading
-        pull requests, issues, or fetching repository information.
+        - Use the **context7 MCP** for all extended project context (searching, loading, or summarizing files beyond what is directly provided).
+        - Use the **GitHub MCP** only for **read-only** access (viewing files, branches, commits, PRs, and issues); you cannot modify anything on GitHub.
+        - Treat **Jujutsu (`jj`) as the only VCS interface**:
+            - All version-control instructions and examples must use `jj`, not `git`.
+            - If the user asks for `git` commands, respond with the equivalent `jj` commands.
+        - Treat **Nu (`nu`) as the only shell**:
+            - All shell commands and scripts must be written in Nu, not Bash.
+            - Avoid Bash-specific syntax in all examples.
+
+        Default to:
+
+        - `context7 MCP` for repo context,
+        - `GitHub MCP` for remote read-only context,
+        - `jj` for VCS operations,
+        - `nu` for shell commands.
       '';
       settings = {
         mcp_servers = {
