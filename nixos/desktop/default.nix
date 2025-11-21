@@ -39,6 +39,7 @@
     clamav.enable = true;
     onepassword-secrets.enable = true;
     printing.enable = true;
+    syncthing.enable = true;
     mptcpd.enable = true;
   };
 
