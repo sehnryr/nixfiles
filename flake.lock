@@ -151,17 +151,17 @@
     },
     "nixpkgs-discord": {
       "locked": {
-        "lastModified": 1763600114,
-        "narHash": "sha256-ew69p9XbPmsX0+Kf2lZIn1SvGHTMZSSKbDylfslGH0w=",
+        "lastModified": 1763840652,
+        "narHash": "sha256-80OhWAa2fQIDm9rM+cejTuH0AJZkoqTAzOAy7r7hyk0=",
         "owner": "sehnryr",
         "repo": "nixpkgs",
-        "rev": "41407f09ce7a3ad0d92772c7f1279c893891a799",
+        "rev": "e475d5430b45d51f7c4d18126a2ad887f8c33616",
         "type": "github"
       },
       "original": {
         "owner": "sehnryr",
         "repo": "nixpkgs",
-        "rev": "41407f09ce7a3ad0d92772c7f1279c893891a799",
+        "rev": "e475d5430b45d51f7c4d18126a2ad887f8c33616",
         "type": "github"
       }
     },

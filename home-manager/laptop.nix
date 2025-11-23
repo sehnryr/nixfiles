@@ -12,7 +12,7 @@
   };
 
   home.packages = with pkgs; [
-    (discord.override { withOpenASAR = true; })
+    discord
     signal-desktop
     beeper
     slack
