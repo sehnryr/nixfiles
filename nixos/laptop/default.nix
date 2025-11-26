@@ -34,7 +34,6 @@
     clamav.enable = true;
     onepassword-secrets.enable = true;
     fprintd.enable = true;
-    syncthing.enable = true;
 
     # power management
     thermald.enable = true;

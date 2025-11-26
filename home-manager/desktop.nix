@@ -92,6 +92,10 @@
     };
   };
 
+  services = {
+    syncthing.enable = true;
+  };
+
   xdg.configFile."tombi/config.toml" = {
     source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/tombi/config.toml";
   };
