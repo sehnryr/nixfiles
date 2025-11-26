@@ -14,7 +14,6 @@
   home.packages = with pkgs; [
     discord
     signal-desktop
-    beeper
     slack
   ];
 
