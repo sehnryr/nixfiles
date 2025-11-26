@@ -3,12 +3,16 @@
 {
   config = {
     services.logind = {
-      lidSwitch = "suspend";
-      lidSwitchDocked = "suspend";
-      lidSwitchExternalPower = "suspend";
+      settings = {
+        Login = {
+          HandleLidSwitch = "suspend";
+          HandleLidSwitchDocked = "suspend";
+          HandleLidSwitchExternalPower = "suspend";
 
-      powerKey = "suspend";
-      powerKeyLongPress = "poweroff";
+          HandlePowerKey = "suspend";
+          HandlePowerKeyLongPress = "poweroff";
+        };
+      };
     };
   };
 }

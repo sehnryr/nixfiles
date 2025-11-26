@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-graalvm-ce-21.url = "github:nixos/nixpkgs?rev=ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
     nixpkgs-discord.url = "github:sehnryr/nixpkgs?rev=e475d5430b45d51f7c4d18126a2ad887f8c33616";
@@ -8,8 +8,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware?ref=master";
 
     home-manager = {
-      url = "github:nix-community/home-manager?ref=master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/home-manager?ref=release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
@@ -185,7 +185,7 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
         ];
       };
-      # nix run home-manager/release-25.05 -- switch --flake .#<hostname>
+      # nix run home-manager/release-25.11 -- switch --flake .#<hostname>
       # home-manager switch --flake .#<hostname>
       homeConfigurations = {
         "${user.name}@desktop" = mkHomeManagerConfiguration [

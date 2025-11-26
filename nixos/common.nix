@@ -48,12 +48,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # GTK 4.20 onwards removed compose keys and dead key handling.
+  # We need to provide a proper input method for handling those.
+  # https://github.com/ghostty-org/ghostty/discussions/8899#discussioncomment-14717979
+  i18n.inputMethod = {
+    enable = true;
+    type = "ibus";
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   services.xserver.excludePackages = with pkgs; [ xterm ];
 
