@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  user,
   ...
 }:
 
@@ -13,7 +14,7 @@ in
       enableDefaultConfig = false;
       matchBlocks = {
         "*" = {
-          identityAgent = "~/.1password/agent.sock";
+          identityAgent = "${user.homeDirectory}/.1password/agent.sock";
           setEnv.TERM = "xterm-256color";
         };
       };
