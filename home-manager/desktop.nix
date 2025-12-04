@@ -89,6 +89,12 @@
         "discord.desktop"
       ];
     };
+
+    # Window manager
+    niri = {
+      enable = false;
+      package = pkgs.niri-unstable;
+    };
   };
 
   services = {

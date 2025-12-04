@@ -27,6 +27,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,8 +84,10 @@
               inherit system;
               inherit config;
             }).discord;
+          noctalia-shell = inputs.noctalia.packages.${system}.default;
         })
         nur.overlays.default
+        inputs.niri.overlays.niri
       ];
 
       pkgs = import nixpkgs {
@@ -140,6 +153,12 @@
           };
 
           modules = [
+            {
+              nixpkgs = {
+                inherit config;
+                inherit overlays;
+              };
+            }
             ./nixos/modules
             opnix.nixosModules.default
           ]
