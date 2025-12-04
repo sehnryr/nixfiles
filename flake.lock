@@ -151,17 +151,17 @@
     },
     "nixpkgs-discord": {
       "locked": {
-        "lastModified": 1763840652,
-        "narHash": "sha256-80OhWAa2fQIDm9rM+cejTuH0AJZkoqTAzOAy7r7hyk0=",
+        "lastModified": 1764874544,
+        "narHash": "sha256-ucrTutn3jEIFu6kK6hZGHxxubg2qVuQZhBszEcbiUHc=",
         "owner": "sehnryr",
         "repo": "nixpkgs",
-        "rev": "e475d5430b45d51f7c4d18126a2ad887f8c33616",
+        "rev": "0d113150dad20423c915e969644871f2a2b732e4",
         "type": "github"
       },
       "original": {
         "owner": "sehnryr",
+        "ref": "discord-fhs-krisp-fix",
         "repo": "nixpkgs",
-        "rev": "e475d5430b45d51f7c4d18126a2ad887f8c33616",
         "type": "github"
       }
     },
