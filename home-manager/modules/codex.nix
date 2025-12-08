@@ -39,19 +39,11 @@ in
 
         - Use the **context7 MCP** for all extended project context (searching, loading, or summarizing files beyond what is directly provided).
         - Use the **GitHub MCP** only for **read-only** access (viewing files, branches, commits, PRs, and issues); you cannot modify anything on GitHub.
-        - Treat **Jujutsu (`jj`) as the only VCS interface**:
-            - All version-control instructions and examples must use `jj`, not `git`.
-            - If the user asks for `git` commands, respond with the equivalent `jj` commands.
-        - Treat **Nu (`nu`) as the only shell**:
-            - All shell commands and scripts must be written in Nu, not Bash.
-            - Avoid Bash-specific syntax in all examples.
 
         Default to:
 
-        - `context7 MCP` for repo context,
-        - `GitHub MCP` for remote read-only context,
-        - `jj` for VCS operations,
-        - `nu` for shell commands.
+        - `context7 MCP` for repo context
+        - `GitHub MCP` for remote read-only context
       '';
       settings = {
         mcp_servers = {
