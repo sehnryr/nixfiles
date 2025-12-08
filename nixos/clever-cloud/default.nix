@@ -33,6 +33,10 @@
   services = {
     clamav.enable = true;
     onepassword-secrets.enable = true;
+    osquery = {
+      enable = true;
+      flags.flagfile = "/etc/osquery/osquery.flags";
+    };
     # power management
     thermald.enable = true;
     tlp.enable = true;
