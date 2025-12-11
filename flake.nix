@@ -2,8 +2,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-graalvm-ce-21.url = "github:nixos/nixpkgs?rev=ed4db9c6c75079ff3570a9e3eb6806c8f692dc26";
-    nixpkgs-discord.url = "github:sehnryr/nixpkgs?ref=discord-fhs-krisp-fix";
 
     nixos-hardware.url = "github:nixos/nixos-hardware?ref=master";
 
@@ -54,27 +52,14 @@
         allowUnfree = true;
       };
       overlays = [
+        nur.overlays.default
         (final: prev: {
           unstable = import inputs.nixpkgs-unstable {
             inherit system;
             inherit config;
           };
-          graalvm21-ce =
-            (import inputs.nixpkgs-graalvm-ce-21 {
-              inherit system;
-              inherit config;
-            }).graalvm-ce.overrideAttrs
-              (old: {
-                name = "graalvm-ce";
-                version = "21.0.2";
-              });
-          discord =
-            (import inputs.nixpkgs-discord {
-              inherit system;
-              inherit config;
-            }).discord;
         })
-        nur.overlays.default
+        (final: pref: import ./pkgs { pkgs = final; })
       ];
 
       pkgs = import nixpkgs {

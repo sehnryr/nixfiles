@@ -149,38 +149,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-discord": {
-      "locked": {
-        "lastModified": 1764874544,
-        "narHash": "sha256-ucrTutn3jEIFu6kK6hZGHxxubg2qVuQZhBszEcbiUHc=",
-        "owner": "sehnryr",
-        "repo": "nixpkgs",
-        "rev": "0d113150dad20423c915e969644871f2a2b732e4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sehnryr",
-        "ref": "discord-fhs-krisp-fix",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-graalvm-ce-21": {
-      "locked": {
-        "lastModified": 1709246466,
-        "narHash": "sha256-jN8Y5Zv2tNUKIGuSqhm8yIMn2x6jhMQvNwKYduvKxjU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ed4db9c6c75079ff3570a9e3eb6806c8f692dc26",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ed4db9c6c75079ff3570a9e3eb6806c8f692dc26",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1764667669,
@@ -246,8 +214,6 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-discord": "nixpkgs-discord",
-        "nixpkgs-graalvm-ce-21": "nixpkgs-graalvm-ce-21",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "opnix": "opnix",
