@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 
@@ -14,15 +13,6 @@
 
   boot.initrd.luks.devices."luks-efba64ac-5927-4281-b972-4df09a479d35".device =
     "/dev/disk/by-uuid/efba64ac-5927-4281-b972-4df09a479d35";
-
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "1password"
-      "1password-cli"
-      "steam"
-      "steam-unwrapped"
-    ];
 
   programs = {
     _1password.enable = true;

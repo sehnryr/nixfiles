@@ -140,6 +140,12 @@
           };
 
           modules = [
+            {
+              nixpkgs = {
+                inherit config;
+                inherit overlays;
+              };
+            }
             ./nixos/modules
             opnix.nixosModules.default
           ]
