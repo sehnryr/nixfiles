@@ -14,6 +14,7 @@
 
   programs = {
     _1password.enable = true;
+    steam.enable = true;
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
