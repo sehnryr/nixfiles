@@ -50,6 +50,15 @@
             "program": "nu"
         }
     },
+    "lsp": {
+        "rust-analyzer": {
+            "initialization_options": {
+                "check": {
+                    "command": "clippy"
+                }
+            }
+        }
+    },
     "languages": {
         "YAML": { "tab_size": 2 },
         "Ruby": { "tab_size": 2 },
