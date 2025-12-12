@@ -74,19 +74,6 @@ in
         bookmarks = {
           settings = [
             {
-              name = "ISEN";
-              bookmarks = [
-                {
-                  name = "Moodle";
-                  url = "https://web.isen-ouest.fr/moodle4";
-                }
-                {
-                  name = "Aurion";
-                  url = "https://web.isen-ouest.fr/webAurion";
-                }
-              ];
-            }
-            {
               name = "Filesystem Hierarchy Standard";
               url = "https://www.pathname.com/fhs/pub/fhs-2.3.html";
             }
