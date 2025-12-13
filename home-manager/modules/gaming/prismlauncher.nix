@@ -6,11 +6,11 @@
 }:
 
 let
-  cfg = config.programs.prism-launcher;
+  cfg = config.programs.prismlauncher;
 in
 {
-  options.programs.prism-launcher = {
-    enable = lib.mkEnableOption "enable prism-launcher";
+  options.programs.prismlauncher = {
+    enable = lib.mkEnableOption "prismlauncher";
   };
 
   config = lib.mkIf cfg.enable {
@@ -21,6 +21,10 @@ in
           vlc
           alsa-oss
         ];
+
+        jdk21 = graalvm21-ce;
+        jdk17 = jdk17;
+        jdk8 = jdk8;
 
         jdks = [
           graalvm21-ce

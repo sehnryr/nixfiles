@@ -4,39 +4,10 @@
   user,
   ...
 }:
-
 let
   cfg = config.programs.jujutsu;
-
-  toWhenList =
-    items:
-    builtins.map (
-      { when, config }:
-      config
-      // {
-        "--when".repositories = when;
-      }
-    ) items;
 in
 {
-  options.programs.jujutsu = {
-    scopes = lib.mkOption {
-      type = lib.types.listOf (
-        lib.types.submodule {
-          options = {
-            when = lib.mkOption {
-              type = lib.types.listOf lib.types.str;
-            };
-            config = lib.mkOption {
-              type = lib.types.attrs;
-            };
-          };
-        }
-      );
-      default = [ ];
-    };
-  };
-
   config = lib.mkIf cfg.enable {
     programs.jujutsu = {
       settings = {
@@ -67,7 +38,16 @@ in
           push-new-bookmarks = true;
           private-commits = "description(glob:'private:*')";
         };
-        "--scope" = toWhenList cfg.scopes;
+        "--scope" = [
+          {
+            "--when".repositories = [ "${user.homeDirectory}/clever-cloud" ];
+            user.email = "${user.name}.${user.family}@clever-cloud.com";
+            signing.key = config.home.file.".ssh/clever-cloud.pub".text;
+            revset-aliases = {
+              "immutable_heads()" = "builtin_immutable_heads() ~ remote_bookmarks(remote=glob:\"clever-*\")";
+            };
+          }
+        ];
       };
     };
 

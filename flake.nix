@@ -149,7 +149,6 @@
           };
 
           modules = [
-            ./home-manager/common.nix
             ./home-manager/modules
             opnix.homeManagerModules.default
           ]

@@ -14,26 +14,21 @@ let
   githubPersonalAccessTokenPath =
     config.programs.onepassword-secrets.secretPaths.githubPersonalAccessToken;
 
-  context7Runner = pkgs.writeShellScriptBin "context7-mcp-runner" ''
+  context7Runner = pkgs.writeShellScript "context7-mcp-runner" ''
     export PATH="${lib.makeBinPath [ nodejsPkg ]}:$PATH"
     export CONTEXT7_API_KEY="$(${pkgs.coreutils}/bin/cat ${context7ApiKeyPath})"
     exec "${nodejsPkg}/bin/npx" -y @upstash/context7-mcp
   '';
 
-  githubRunner = pkgs.writeShellScriptBin "github-mcp-runner" ''
+  githubRunner = pkgs.writeShellScript "github-mcp-runner" ''
     export GITHUB_PERSONAL_ACCESS_TOKEN="$(${pkgs.coreutils}/bin/cat ${githubPersonalAccessTokenPath})"
     exec "${pkgs.unstable.github-mcp-server}/bin/github-mcp-server" stdio
   '';
 in
 {
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      context7Runner
-      githubRunner
-    ];
-
     programs.codex = {
-      package = pkgs.unstable.codex;
+      package = pkgs.codex;
       custom-instructions = ''
         You are Codex, an AI coding assistant for this repo.
 
@@ -48,11 +43,11 @@ in
       settings = {
         mcp_servers = {
           context7 = {
-            command = "context7-mcp-runner";
+            command = "${context7Runner}";
             args = [ ];
           };
           github = {
-            command = "github-mcp-runner";
+            command = "${githubRunner}";
             args = [ ];
           };
         };

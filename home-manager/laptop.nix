@@ -1,90 +1,25 @@
 {
-  config,
-  pkgs,
   user,
   ...
 }:
 
 {
-  home.file = {
-    ".ssh/master.pub".enable = true;
-    ".ssh/clever-cloud.pub".enable = true;
-  };
+  home.username = user.name;
+  home.homeDirectory = user.homeDirectory;
 
-  home.packages = with pkgs; [
-    discord
-    signal-desktop
-    slack
-  ];
-
-  programs = {
-    onepassword-secrets.enable = true;
-
-    # cli
-    git = {
+  modules = {
+    cli.enable = true;
+    dev.enable = true;
+    security.enable = true;
+    desktop = {
       enable = true;
-      scopes = [
-        {
-          when = [
-            "${user.homeDirectory}/clever-cloud"
-          ];
-          config = {
-            user.email = "${user.name}.${user.family}@clever-cloud.com";
-            user.signingKey = config.home.file.".ssh/clever-cloud.pub".text;
-          };
-        }
-      ];
+      device = "laptop";
     };
-    jujutsu = {
-      enable = true;
-      scopes = [
-        {
-          when = [
-            "${user.homeDirectory}/clever-cloud"
-          ];
-          config = {
-            user.email = "${user.name}.${user.family}@clever-cloud.com";
-            signing.key = config.home.file.".ssh/clever-cloud.pub".text;
-            revset-aliases = {
-              "immutable_heads()" = "builtin_immutable_heads() ~ remote_bookmarks(remote=glob:\"clever-*\")";
-            };
-          };
-        }
-      ];
-    };
-    codex.enable = true;
-
-    # gui
-    ghostty.enable = true;
-    prism-launcher.enable = true;
-    zen-browser.enable = true;
-    zed-editor.enable = true;
-
-    # desktop manager
-    gnome-shell = {
-      enable = true;
-      extensionsPackages = [
-        pkgs.gnomeExtensions.appindicator
-      ];
-      experimentalFeatures = [
-        "scale-monitor-framebuffer"
-        "xwayland-native-scaling"
-      ];
-      favoriteApps = [
-        "zen-twilight.desktop"
-        "dev.zed.Zed.desktop"
-        "com.mitchellh.ghostty.desktop"
-        "discord.desktop"
-      ];
-      showBatteryPercentage = true;
-    };
+    gaming.enable = true;
+    backup.enable = true;
   };
 
-  services = {
-    syncthing.enable = true;
-  };
+  home.stateVersion = "25.05";
 
-  xdg.configFile."tombi/config.toml" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/tombi/config.toml";
-  };
+  programs.home-manager.enable = true;
 }
