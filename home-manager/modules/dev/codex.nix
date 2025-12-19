@@ -28,7 +28,7 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.codex = {
-      package = pkgs.codex;
+      package = pkgs.unstable.codex;
       custom-instructions = ''
         You are Codex, an AI coding assistant for this repo.
 
