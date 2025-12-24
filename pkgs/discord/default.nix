@@ -6,11 +6,11 @@
 }:
 callPackage ./linux.nix rec {
   pname = "discord";
-  version = "0.0.118";
+  version = "0.0.119";
 
   src = fetchurl {
     url = "https://stable.dl2.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-    hash = "sha256-B7gCr+DGoEghMw624OwyBOnPVxDvrYHUBAB9gSStw4g=";
+    hash = "sha256-/NfgHBXsUWYoDEVGz13GBU1ISpSdB5OmrjhSN25SBMg=";
   };
 
   branch = "stable";
