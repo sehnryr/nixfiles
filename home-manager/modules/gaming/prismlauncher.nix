@@ -22,11 +22,8 @@ in
           alsa-oss
         ];
 
-        jdk21 = graalvm21-ce;
-        jdk17 = jdk17;
-        jdk8 = jdk8;
-
         jdks = [
+          graalvm25-ce
           graalvm21-ce
           jdk17
           jdk8
