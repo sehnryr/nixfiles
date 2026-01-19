@@ -41,7 +41,7 @@ in
         "--scope" = [
           {
             "--when".repositories = [ "${user.homeDirectory}/clever-cloud" ];
-            user.email = "${user.name}.${user.family}@clever-cloud.com";
+            user.email = "${user.name}.${user.family}@clever.cloud";
             signing.key = config.home.file.".ssh/clever-cloud.pub".text;
             revset-aliases = {
               "immutable_heads()" = "builtin_immutable_heads() ~ remote_bookmarks(remote=glob:\"clever-*\")";

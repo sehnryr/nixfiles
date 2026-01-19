@@ -40,7 +40,7 @@ in
           path = builtins.toString (
             toml.generate "config.toml" {
               user = {
-                email = "${user.name}.${user.family}@clever-cloud.com";
+                email = "${user.name}.${user.family}@clever.cloud";
                 signingKey = config.home.file.".ssh/clever-cloud.pub".text;
               };
             }
