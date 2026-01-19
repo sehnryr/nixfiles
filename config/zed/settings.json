@@ -69,6 +69,10 @@
         "Nix": {
             "tab_size": 2,
             "formatter": [{ "external": { "command": "nixfmt" } }]
+        },
+        "Markdown": {
+            "soft_wrap": "preferred_line_length",
+            "preferred_line_length": 80
         }
     }
 }
