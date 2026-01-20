@@ -86,6 +86,7 @@
   users.users.${user.name} = {
     isNormalUser = true;
     description = user.name;
+    shell = pkgs.nushell;
     extraGroups = [
       "networkmanager"
       "wheel"
