@@ -59,7 +59,7 @@
             inherit config;
           };
         })
-        (final: pref: import ./pkgs { pkgs = final; })
+        (final: prev: import ./pkgs { pkgs = final; })
       ];
 
       pkgs = import nixpkgs {
