@@ -17,7 +17,6 @@
   programs = {
     _1password.enable = true;
     steam.enable = true;
-    lutris.enable = true;
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
