@@ -13,5 +13,10 @@ in
       nix-direnv.enable = true;
       silent = true;
     };
+
+    programs.git.ignores = lib.mkIf config.programs.git.enable [
+      ".direnv/"
+      ".envrc.local"
+    ];
   };
 }

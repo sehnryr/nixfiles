@@ -39,5 +39,9 @@ in
     xdg.configFile."tombi/config.toml" = {
       source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/tombi/config.toml";
     };
+
+    programs.git.ignores = lib.mkIf config.programs.git.enable [
+      ".zed"
+    ];
   };
 }
