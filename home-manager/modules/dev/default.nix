@@ -34,6 +34,7 @@ in
     ];
 
     programs = {
+      claude-code.enable = true;
       codex.enable = true;
       direnv.enable = true;
       neovim.enable = true;
