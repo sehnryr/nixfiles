@@ -34,6 +34,11 @@
       url = "github:yokoffing/Betterfox";
       flake = false;
     };
+
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -53,6 +58,7 @@
       };
       overlays = [
         nur.overlays.default
+        inputs.claude-code.overlays.default
         (final: prev: {
           unstable = import inputs.nixpkgs-unstable {
             inherit system;

@@ -11,7 +11,7 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.claude-code = {
-      package = pkgs.unstable.claude-code;
+      package = pkgs.claude-code;
     };
 
     programs.git.ignores = lib.mkIf config.programs.git.enable [
