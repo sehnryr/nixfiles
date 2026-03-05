@@ -1,17 +1,5 @@
 {
-    "edit_predictions": {
-        "mode": "subtle"
-    },
-    "features": {
-        "edit_prediction_provider": "zed"
-    },
-    "agent": {
-        "default_profile": "ask",
-        "default_model": {
-            "provider": "zed.dev",
-            "model": "claude-sonnet-4"
-        }
-    },
+    "disable_ai": true,
     "auto_install_extensions": {
         "html": true,
         "toml": true,
