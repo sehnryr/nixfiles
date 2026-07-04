@@ -1,44 +1,45 @@
 {
-    "enabledPlugins": {
-        "rust-analyzer-lsp@claude-plugins-official": true
-    },
-    "skipAutoPermissionPrompt": true,
-    "alwaysThinkingEnabled": false,
-    "effortLevel": "high",
-    "tui": "default",
-    "skipWorkflowUsageWarning": true,
-    "hooks": {
-        "SessionStart": [
-            {
-                "matcher": "startup|resume|clear|compact",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "$HOME/.claude/hooks/reinject-rules"
-                    }
-                ]
-            }
-        ],
-        "Stop": [
-            {
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "$HOME/.claude/hooks/style-lint"
-                    }
-                ]
-            }
-        ],
-        "PostToolUse": [
-            {
-                "matcher": "Edit|Write|MultiEdit",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "$HOME/.claude/hooks/file-style-lint"
-                    }
-                ]
-            }
+  "model": "claude-opus-4-7",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/reinject-rules"
+          }
         ]
-    }
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/style-lint"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/file-style-lint"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "high",
+  "tui": "default",
+  "skipWorkflowUsageWarning": true,
+  "skipAutoPermissionPrompt": true
 }
