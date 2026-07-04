@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   user,
   ...
@@ -10,6 +11,7 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.jujutsu = {
+      package = pkgs.unstable.jujutsu;
       settings = {
         user = {
           name = user.fullName;
@@ -36,7 +38,6 @@ in
         };
         git = {
           executable-path = "${config.programs.git.package}/bin/git";
-          push-new-bookmarks = true;
           private-commits = "description(glob:'private:*')";
         };
         "--scope" = [
