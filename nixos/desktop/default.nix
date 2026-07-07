@@ -43,6 +43,8 @@
 
   networking.hostName = "desktop";
 
+  networking.firewall.allowedTCPPorts = [ 50080 ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

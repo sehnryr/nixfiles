@@ -1,8 +1,8 @@
 let
-  fileNames = builtins.attrNames (builtins.readDir ./.);
-  files = builtins.map (name: ./. + ("/" + name)) fileNames;
-  filterOut = file: files: builtins.filter (file': file' != file) files;
+  moduleNames = builtins.attrNames (builtins.readDir ./.);
+  modules = builtins.map (name: ./. + ("/" + name)) moduleNames;
+  filterOut = module: modules: builtins.filter (module': module' != module) modules;
 in
 {
-  imports = filterOut ./default.nix files;
+  imports = filterOut ./default.nix modules;
 }

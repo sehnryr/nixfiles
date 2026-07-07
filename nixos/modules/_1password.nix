@@ -4,12 +4,15 @@
   user,
   ...
 }:
-
 let
-  cfg = config.programs._1password;
+  cfg = config.modules._1password;
 in
 {
+  options.modules._1password.enable = lib.mkEnableOption "1Password";
+
   config = lib.mkIf cfg.enable {
+    programs._1password.enable = true;
+
     programs._1password-gui = {
       enable = lib.mkDefault true;
       polkitPolicyOwners = lib.mkDefault [ user.name ];

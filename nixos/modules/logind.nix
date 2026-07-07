@@ -5,15 +5,18 @@
 }:
 
 let
-  cfg = config.services.logind;
+  cfg = config.modules.logind;
 in
 {
-  options.services.logind = {
-    enable = lib.mkEnableOption "logind";
+  options.modules.logind.enable = lib.mkEnableOption "logind";
+  options.services.logind.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = cfg.enable;
   };
 
   config = lib.mkIf cfg.enable {
     services.logind = {
+      # enable = true;
       settings = {
         Login = {
           HandleLidSwitch = "suspend";

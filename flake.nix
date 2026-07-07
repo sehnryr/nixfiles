@@ -190,8 +190,8 @@
           ./nixos/server
         ];
         "clever-cloud" = mkNixosSystem [
-          ./nixos/clever-cloud
-          nixos-hardware.nixosModules.lenovo-thinkpad-t480s
+          disko.nixosModules.disko
+          ./nixos/host/clever-cloud
         ];
       };
       # nix run home-manager/release-25.11 -- switch --flake .#<hostname>

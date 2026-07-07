@@ -5,9 +5,8 @@
   user,
   ...
 }:
-
 let
-  cfg = config.services.clamav;
+  cfg = config.modules.clamav;
 
   clamavNotificationApiCredentialFile =
     config.services.onepassword-secrets.secretPaths."clamavNotificationApiCredential";
@@ -42,8 +41,12 @@ let
   '';
 in
 {
-  options.services.clamav = {
+  options.modules.clamav = {
     enable = lib.mkEnableOption "clamav";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = config.services.clamav.package;
+    };
   };
 
   config = lib.mkIf cfg.enable {
