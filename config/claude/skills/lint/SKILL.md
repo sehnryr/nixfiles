@@ -9,6 +9,7 @@ description: >
   persistent style persona; `lint` is an on-demand deep check that also covers
   Nix, Rust, shell, vcs, and working-method rules the style persona omits.
 argument-hint: "[diff|reply|<path>]"
+allowed-tools: Read(//home/youn/.claude/rules/**)
 ---
 
 # Lint
