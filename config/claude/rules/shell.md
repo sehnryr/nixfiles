@@ -1,7 +1,15 @@
-# Shell and tools
+# Nushell syntax detail
 
-- The Bash tool runs under bash, so commands you run yourself use bash syntax. The user's interactive shell is nushell, so any command you suggest for the user to run (for example with the `!` prefix) must be nushell syntax, not bash.
-- Nushell is not bash-compatible. Command substitution is `(cmd)`, not `$(cmd)`. Set environment with `$env.X = "..."`, not `export X=...` or a `X=val cmd` prefix. Sequence commands with `;`. There are no heredocs. Confirm nushell syntax instead of assuming bash carries over.
-- When a user-facing command handles structured data, use nushell's pipelines instead of external text tools: parse with `from json` or `from yaml`, select with `get`, filter with `where`, emit with `to json`. This removes any need for `jq`.
-- This is NixOS with per-project devShells, so common CLI helpers are not installed globally. `jq`, `python`, `python3`, `fd`, and `rg` are absent from the user's environment. Claude Code does put its own `rg` on the Bash tool's PATH (ripgrep is in the `claude-code` package closure), so the Bash tool can use `rg`, but do not assume any of these exist in the user's shell or in a command you suggest.
-- Do not write a Python or Node script to substitute for a missing CLI tool, and do not reach for Python for work the Read / Edit / Write tools, nushell builtins, or bash builtins already do. For a genuine one-off need, run the tool ephemerally with `nix run nixpkgs#<tool> -- ...` rather than assuming it is installed.
+The user's interactive shell is nushell. Any command suggested for the user to run (for example with the `!` prefix) must be nushell syntax:
+
+- Command substitution: `(cmd)`, not `$(cmd)`.
+- Environment: `$env.X = "..."`, not `export X=...` or a `X=val cmd` prefix.
+- Sequencing: `;`, not `&&` or `||`.
+- No heredocs.
+- Structured data: use nushell pipelines instead of external text tools. Parse with `from json` or `from yaml`, select with `get`, filter with `where`, emit with `to json`. This removes any need for `jq`.
+
+Confirm nushell syntax instead of assuming bash carries over.
+
+# NixOS environment
+
+The user does not have `jq`, `python`, `python3`, `fd`, or `rg` installed globally; they live in per-project devShells. Claude Code puts its own `rg` on the Bash tool's PATH, so the Bash tool can use `rg`, but do not assume the user's shell can. For a genuine one-off need, run the tool ephemerally with `nix run nixpkgs#<tool> -- ...`.
