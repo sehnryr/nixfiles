@@ -11,6 +11,17 @@
           }
         ]
       }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/reinject-rules-subagent"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {

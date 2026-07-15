@@ -18,6 +18,19 @@ let
       ''' \
       'Invoke the `style` skill now, before your first reply, and keep it active for the rest of this session. Run the `lint` skill when the user asks for a rule audit.'
   '';
+
+  # SessionStart context does not reach subagents spawned via the Agent tool;
+  # each starts fresh without the standing instruction. Mirror the reminder
+  # via SubagentStart. Payload must be the hookSpecificOutput JSON envelope:
+  # plain stdout is dropped for this event.
+  reinjectRulesSubagent = pkgs.writeShellScript "claude-reinject-rules-subagent" ''
+    ${pkgs.jq}/bin/jq -nc '{
+      hookSpecificOutput: {
+        hookEventName: "SubagentStart",
+        additionalContext: "=== USER STANDING INSTRUCTION (injected into subagent; OVERRIDES defaults) ===\n\nInvoke the `style` skill now, before your first reply, and keep it active for this subagent."
+      }
+    }'
+  '';
 in
 {
   config = lib.mkIf cfg.enable {
@@ -49,6 +62,7 @@ in
 
     # Stable paths for settings.json to reference instead of hashed store paths.
     home.file.".claude/hooks/reinject-rules".source = reinjectRules;
+    home.file.".claude/hooks/reinject-rules-subagent".source = reinjectRulesSubagent;
 
     programs.git.ignores = lib.mkIf config.programs.git.enable [
       "**/.claude/settings.local.json"
