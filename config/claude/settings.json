@@ -22,6 +22,21 @@
           }
         ]
       }
+  "permissions": {
+    "deny": [
+      "Bash(sed -i:*)",
+      "Bash(sed --in-place:*)",
+      "Bash(gsed -i:*)",
+      "Bash(gsed --in-place:*)",
+      "Bash(perl -i:*)",
+      "Bash(perl -pi:*)",
+      "Bash(ruby -i:*)",
+      "Bash(awk -i inplace:*)",
+      "Bash(gawk -i inplace:*)",
+      "Bash(git checkout --:*)",
+      "Bash(git restore:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -f:*)"
     ]
   },
   "enabledPlugins": {

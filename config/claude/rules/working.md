@@ -9,3 +9,7 @@
 # Irreversible actions
 
 Confirm before irreversible or outward-facing actions: commits, pushes, deleting files, rewriting history, sending to external services. Approval for one action does not extend to next.
+
+# File edits
+
+Never edit files through the shell (`sed -i`, `perl -i`, `awk -i inplace`, `>` or `>>` redirects, `tee`, heredoc-and-redirect). Use Read/Edit/Write. Shell-based mutation bypasses the diff surface and is denied at the permission layer for the common cases; the rule exists so wrapped forms (`bash -c 'sed …'`, absolute paths) do not sneak past.
