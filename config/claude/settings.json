@@ -22,7 +22,30 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
+    "allow": [
+      "Bash(rtk ls:*)",
+      "Bash(rtk tree:*)",
+      "Bash(rtk read:*)",
+      "Bash(rtk grep:*)",
+      "Bash(rtk rg:*)",
+      "Bash(rtk find:*)",
+      "Bash(rtk wc:*)",
+      "Bash(rtk diff:*)"
+    ],
     "deny": [
       "Bash(sed -i:*)",
       "Bash(sed --in-place:*)",
