@@ -18,6 +18,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  zramSwap = {
+    enable = true;
+    memoryPercent = 200;
+  };
+
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8 * 1024; # MB
+    }
+  ];
+
   networking.hostName = "clever-cloud";
 
   networking.networkmanager.enable = true;
