@@ -24,11 +24,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783124463,
-        "narHash": "sha256-rIawyN3+D9uqGmoYpTLZ2D6PYEp8xPykto8Uu+ER830=",
+        "lastModified": 1785885616,
+        "narHash": "sha256-Hh4MzujEHy75qPgJNZCegxMKFPmw668/nM/ru7UxvOI=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "9b05ec91a00ee8edea17b9279d55a5c1f084d754",
+        "rev": "da1dadd694a371cf99531fe979103c634263086c",
         "type": "github"
       },
       "original": {
@@ -73,6 +73,30 @@
         "owner": "nix-community",
         "repo": "fenix",
         "rev": "3abc2d5559f4dc30c710ab152abcb4cb60b561ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
+    "fenix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "moerae",
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": [
+          "moerae"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786005881,
+        "narHash": "sha256-Bj3VKIiwX1daO4vOIyAM507A65J0aaRSctc87kiT7H4=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "a7c3ef79859bf024cdc865a0ed8f14a4e3f31099",
         "type": "github"
       },
       "original": {
@@ -180,6 +204,28 @@
         "type": "github"
       }
     },
+    "moerae": {
+      "inputs": {
+        "fenix": "fenix_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786111004,
+        "narHash": "sha256-/rAJzPNKKGqUWm75j6grTPDd5YcQaOKm9hsURhuAyTU=",
+        "owner": "ymelois",
+        "repo": "moerae",
+        "rev": "a0af4d075146377887448deb977cea6b200280d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ymelois",
+        "repo": "moerae",
+        "rev": "a0af4d075146377887448deb977cea6b200280d0",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1778143761,
@@ -277,6 +323,7 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "minecraft-server-manager": "minecraft-server-manager",
+        "moerae": "moerae",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

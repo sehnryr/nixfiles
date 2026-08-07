@@ -47,6 +47,11 @@
       url = "github:ymelois/minecraft-server-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    moerae = {
+      url = "github:ymelois/moerae?rev=a0af4d075146377887448deb977cea6b200280d0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -68,6 +73,7 @@
         nur.overlays.default
         inputs.claude-code.overlays.default
         inputs.minecraft-server-manager.overlays.default
+        inputs.moerae.overlays.default
         (final: prev: {
           unstable = import inputs.nixpkgs-unstable {
             inherit system;

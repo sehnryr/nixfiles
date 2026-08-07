@@ -37,7 +37,10 @@ in
     # rtk intercepts Bash tool calls via a PreToolUse hook declared in
     # settings.json. The hook shells out to `rtk hook claude`, so the binary
     # must be on Claude Code's PATH. Pulled from unstable; not yet in 25.11.
-    home.packages = [ pkgs.unstable.rtk ];
+    home.packages = [
+      pkgs.unstable.rtk
+      pkgs.moerae
+    ];
 
     programs.claude-code = {
       package = pkgs.claude-code;
