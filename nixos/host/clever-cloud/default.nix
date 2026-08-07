@@ -13,6 +13,17 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
+    "auto-allocate-uids"
+    "cgroups"
+  ];
+
+  nix.settings.auto-allocate-uids = true;
+  nix.settings.system-features = [
+    "uid-range"
+    "devnet"
+  ];
+  nix.settings.extra-sandbox-paths = [
+    "/dev/net"
   ];
 
   boot.loader.systemd-boot.enable = true;
