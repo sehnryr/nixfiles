@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ./disk-config.nix
     ./hardware-configuration.nix
     ../../modules
   ];
@@ -18,9 +17,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "clever-cloud";
+  networking.hostName = "desktop";
 
   networking.networkmanager.enable = true;
+
+  environment.systemPackages = [
+    pkgs.unstable.signal-desktop
+  ];
+
+  programs.nix-ld.enable = true;
 
   modules = {
     store-tweaks.enable = true;
@@ -34,9 +39,8 @@
     libvirtd.enable = true;
     i18n.enable = true;
     fwupd.enable = true;
-    # power management
-    thermald.enable = true;
-    tlp.enable = true;
+    mptcpd.enable = true;
+    steam.enable = true;
   };
 
   time.timeZone = "Europe/Paris";
@@ -52,5 +56,17 @@
     packages = [ ];
   };
 
-  system.stateVersion = "25.11";
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+
+  hardware.amdgpu.overdrive.enable = true;
+
+  services.lact.enable = true;
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
+
+  boot.initrd.luks.devices."luks-efba64ac-5927-4281-b972-4df09a479d35".device =
+    "/dev/disk/by-uuid/efba64ac-5927-4281-b972-4df09a479d35";
+
+  system.stateVersion = "26.05";
 }

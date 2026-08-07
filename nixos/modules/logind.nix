@@ -3,7 +3,6 @@
   lib,
   ...
 }:
-
 let
   cfg = config.modules.logind;
 in

@@ -177,7 +177,7 @@
       # nixos-rebuild switch --flake .#<hostname>
       nixosConfigurations = {
         "desktop" = mkNixosSystem [
-          ./nixos/desktop
+          ./nixos/host/desktop
         ];
         "laptop" = mkNixosSystem [
           ./nixos/laptop
