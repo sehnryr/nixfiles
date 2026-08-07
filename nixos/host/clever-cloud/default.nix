@@ -34,6 +34,7 @@
     libvirtd.enable = true;
     i18n.enable = true;
     fwupd.enable = true;
+    tailscale.enable = true;
     # power management
     thermald.enable = true;
     tlp.enable = true;
