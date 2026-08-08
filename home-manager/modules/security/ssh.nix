@@ -12,10 +12,10 @@ in
   config = lib.mkIf cfg.enable {
     programs.ssh = {
       enableDefaultConfig = false;
-      matchBlocks = {
-        "*" = {
-          identityAgent = "${user.homeDirectory}/.1password/agent.sock";
-          setEnv.TERM = "xterm-256color";
+      settings = {
+        "Host *" = {
+          IdentityAgent = "${user.homeDirectory}/.1password/agent.sock";
+          SetEnv.TERM = "xterm-256color";
         };
       };
     };
