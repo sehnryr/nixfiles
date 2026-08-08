@@ -186,7 +186,7 @@
           ./nixos/host/desktop
         ];
         "laptop" = mkNixosSystem [
-          ./nixos/laptop
+          ./nixos/host/laptop
           nixos-hardware.nixosModules.framework-12th-gen-intel
         ];
         # nixos-rebuild --target-host root@<hostname> switch --flake ~/nixfiles#server
