@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  user,
   ...
 }:
 
@@ -31,6 +32,10 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
+    home.file.".zen" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${user.homeDirectory}/.config/zen";
+    };
+
     programs.zen-browser = {
       policies = {
         DisableAppUpdate = true;
