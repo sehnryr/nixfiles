@@ -7,7 +7,8 @@
 
 let
   cfg = config.programs.claude-code;
-  secretPaths = config.programs.onepassword-secrets.secretPaths;
+
+  context7KeyFile = config.age.secrets.context7Key.path;
 
   # Force-invoke the `style` skill on SessionStart. A minimal reminder is cheaper
   # than dumping the full rule set on every session boundary.
@@ -44,7 +45,7 @@ in
         context7 = {
           command = pkgs.writeShellScript "context7-mcp" ''
             export PATH="${lib.makeBinPath [ pkgs.nodejs ]}:$PATH"
-            export CONTEXT7_API_KEY="$(cat ${secretPaths.context7ApiKey})"
+            export CONTEXT7_API_KEY="$(cat ${context7KeyFile})"
             exec ${pkgs.nodejs}/bin/npx -y @upstash/context7-mcp
           '';
           type = "stdio";

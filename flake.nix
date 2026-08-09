@@ -32,10 +32,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    opnix = {
-      url = "github:brizzbuzz/opnix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "utils";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        systems.follows = "systems";
+        darwin.follows = "";
+      };
     };
 
     zen-browser = {
@@ -161,7 +165,7 @@
             }
             ./nixos/modules
             inputs.disko.nixosModules.disko
-            inputs.opnix.nixosModules.default
+            inputs.agenix.nixosModules.default
             inputs.minecraft-server-manager.nixosModules.default
             module
           ];
@@ -180,7 +184,7 @@
 
           modules = [
             ./home-manager/modules
-            inputs.opnix.homeManagerModules.default
+            inputs.agenix.homeManagerModules.default
             module
           ];
         };

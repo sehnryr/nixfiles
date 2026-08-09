@@ -8,10 +8,8 @@
 let
   cfg = config.modules.clamav;
 
-  clamavNotificationApiCredentialFile =
-    config.services.onepassword-secrets.secretPaths."clamavNotificationApiCredential";
-  clamavNotificationApiUrlFile =
-    config.services.onepassword-secrets.secretPaths."clamavNotificationApiUrl";
+  clamavNotifyUrlFile = config.age.secrets.clamavNotifyUrl.path;
+  clamavNotifyCredentialFile = config.age.secrets.clamavNotifyCredential.path;
 
   clamavNotify = pkgs.writeShellScript "clamav-notify-cc.sh" ''
     function check_variables () {
@@ -27,8 +25,8 @@ let
       local user="$(${pkgs.coreutils}/bin/whoami)"
       local fqdn="$(${pkgs.hostname}/bin/hostname -f)"
       echo "Virus detection notification sent at: $(${pkgs.coreutils}/bin/date)"
-      ${pkgs.curl}/bin/curl "$(${pkgs.coreutils}/bin/cat ${clamavNotificationApiUrlFile})" \
-        --user "$(${pkgs.coreutils}/bin/cat ${clamavNotificationApiCredentialFile})" \
+      ${pkgs.curl}/bin/curl "$(${pkgs.coreutils}/bin/cat ${clamavNotifyUrlFile})" \
+        --user "$(${pkgs.coreutils}/bin/cat ${clamavNotifyCredentialFile})" \
         --json "{\"virus\":\"''${virus_name}\",\"file\":\"''${filename}\",\"user\":\"''${user}\",\"host\":\"''${fqdn}\"}"
     }
 

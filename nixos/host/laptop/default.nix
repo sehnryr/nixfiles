@@ -40,7 +40,7 @@
     store-tweaks.enable = true;
     logind.enable = true;
     _1password.enable = true;
-    onepassword-secrets.enable = true;
+    age.enable = true;
     clamav.enable = true;
     pipewire.enable = true;
     gnome.enable = true;

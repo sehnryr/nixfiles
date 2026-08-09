@@ -20,7 +20,10 @@ in
   config = lib.mkIf cfg.enable {
     programs = {
       ssh.enable = true;
-      onepassword-secrets.enable = true;
+    };
+
+    modules = {
+      age.enable = true;
     };
   };
 }
