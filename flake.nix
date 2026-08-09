@@ -76,6 +76,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       home-manager,
       ...
@@ -151,6 +152,7 @@
         module:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
+            inherit self;
             inherit inputs;
             inherit user;
             inherit fonts;
@@ -177,6 +179,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
+            inherit self;
             inherit inputs;
             inherit user;
             inherit fonts;

@@ -31,11 +31,11 @@ in
     };
 
     xdg.configFile."zed/settings.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/zed/settings.json";
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./settings.json;
     };
 
     xdg.configFile."tombi/config.toml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/tombi/config.toml";
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./config.json;
     };
 
     programs.git.ignores = lib.mkIf config.programs.git.enable [

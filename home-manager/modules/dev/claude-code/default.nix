@@ -54,15 +54,15 @@ in
     };
 
     home.file.".claude/rules" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/claude/rules";
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./rules;
     };
 
     home.file.".claude/skills" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/claude/skills";
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./skills;
     };
 
     home.file.".claude/settings.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/claude/settings.json";
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./settings.json;
     };
 
     # Stable paths for settings.json to reference instead of hashed store paths.

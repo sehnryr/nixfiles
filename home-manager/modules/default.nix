@@ -1,4 +1,5 @@
 {
+  self,
   config,
   lib,
   user,
@@ -13,14 +14,27 @@ in
   imports = filterOut ./default.nix modules;
 
   options.user = {
+    flakeDirectory = lib.mkOption {
+      type = lib.types.path;
+      default = "${config.home.homeDirectory}/nixfiles";
+    };
     configDirectory = lib.mkOption {
       type = lib.types.path;
-      default = "${config.home.homeDirectory}/nixfiles/config";
+      default = "${config.user.flakeDirectory}/config";
     };
   };
 
   config = {
     home.username = user.name;
     home.homeDirectory = "/home/${user.name}";
+
+    lib.file.mkRelativeOutOfStoreSymlink =
+      path:
+      let
+        flakeDirectory = config.user.flakeDirectory;
+        storeDirectory = toString self;
+        pathStr = toString path;
+      in
+      config.lib.file.mkOutOfStoreSymlink "${flakeDirectory}/${lib.removePrefix "${storeDirectory}/" pathStr}";
   };
 }
