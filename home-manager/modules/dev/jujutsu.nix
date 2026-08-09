@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   user,
   ...
@@ -11,7 +10,6 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.jujutsu = {
-      package = pkgs.unstable.jujutsu;
       settings = {
         user = {
           name = user.fullName;

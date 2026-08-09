@@ -3,7 +3,10 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=master";
 
-    nixos-hardware.url = "github:nixos/nixos-hardware?ref=master";
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-26.05";
@@ -183,6 +186,7 @@
           ./nixos/host/desktop
         ];
         "laptop" = mkNixosSystem [
+          disko.nixosModules.disko
           ./nixos/host/laptop
           nixos-hardware.nixosModules.framework-12th-gen-intel
         ];
