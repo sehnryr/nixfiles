@@ -1,6 +1,6 @@
 let
   moduleNames = builtins.attrNames (builtins.readDir ./.);
-  modules = builtins.map (name: ./. + ("/" + name)) moduleNames;
+  modules = map (name: ./. + ("/" + name)) moduleNames;
   filterOut = module: modules: builtins.filter (module': module' != module) modules;
 in
 {

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   ...
 }:
 
@@ -28,10 +27,10 @@ in
           };
         };
         folders = builtins.listToAttrs (
-          builtins.map (
+          map (
             folder:
             let
-              fullPath = "${user.homeDirectory}/${folder}";
+              fullPath = "${config.home.homeDirectory}/${folder}";
               dashed = builtins.replaceStrings [ "/" " " ] [ "-" "-" ] fullPath;
               stripped =
                 let

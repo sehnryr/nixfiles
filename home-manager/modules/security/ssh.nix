@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   ...
 }:
 
@@ -14,7 +13,7 @@ in
       enableDefaultConfig = false;
       settings = {
         "Host *" = {
-          IdentityAgent = "${user.homeDirectory}/.1password/agent.sock";
+          IdentityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
           SetEnv.TERM = "xterm-256color";
         };
       };

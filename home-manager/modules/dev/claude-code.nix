@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  user,
   ...
 }:
 
@@ -54,15 +53,15 @@ in
     };
 
     home.file.".claude/rules" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/claude/rules";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/claude/rules";
     };
 
     home.file.".claude/skills" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/claude/skills";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/claude/skills";
     };
 
     home.file.".claude/settings.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/claude/settings.json";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/claude/settings.json";
     };
 
     # Stable paths for settings.json to reference instead of hashed store paths.

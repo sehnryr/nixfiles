@@ -36,8 +36,8 @@ in
         pull = {
           rebase = true;
         };
-        "includeIf \"gitdir:${user.homeDirectory}/clever-cloud\"" = {
-          path = builtins.toString (
+        "includeIf \"gitdir:${config.home.homeDirectory}/clever-cloud\"" = {
+          path = toString (
             toml.generate "config.toml" {
               user = {
                 email = "${user.name}.${user.family}@clever.cloud";

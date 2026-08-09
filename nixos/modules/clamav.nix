@@ -55,7 +55,7 @@ in
         enable = true;
         settings = {
           OnAccessExcludeUname = "clamav";
-          OnAccessIncludePath = "${user.homeDirectory}/Downloads";
+          OnAccessIncludePath = "${config.users.users.${user.name}.home}/Downloads";
           VirusEvent = "${clamavNotify}";
         };
       };

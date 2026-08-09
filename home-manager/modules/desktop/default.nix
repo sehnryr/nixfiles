@@ -8,7 +8,7 @@ let
   cfg = config.modules.desktop;
 
   moduleNames = builtins.attrNames (builtins.readDir ./.);
-  modules = builtins.map (name: ./. + ("/" + name)) moduleNames;
+  modules = map (name: ./. + ("/" + name)) moduleNames;
   filterOut = module: modules: builtins.filter (module': module' != module) modules;
 in
 {
@@ -52,7 +52,7 @@ in
         extensionsPackages = [
           pkgs.gnomeExtensions.appindicator
         ];
-        experimentalFeatures = lib.optionals (cfg.device == "laptop") [
+        experimentalFeatures = [
           "scale-monitor-framebuffer"
           "xwayland-native-scaling"
         ];
@@ -62,7 +62,7 @@ in
           "com.mitchellh.ghostty.desktop"
           "discord.desktop"
         ];
-        showBatteryPercentage = (cfg.device == "laptop");
+        showBatteryPercentage = true;
       };
     };
   };

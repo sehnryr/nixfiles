@@ -60,11 +60,7 @@
   outputs =
     {
       nixpkgs,
-      nixos-hardware,
       home-manager,
-      disko,
-      nur,
-      opnix,
       ...
     }@inputs:
     let
@@ -73,7 +69,7 @@
         allowUnfree = true;
       };
       overlays = [
-        nur.overlays.default
+        inputs.nur.overlays.default
         inputs.claude-code.overlays.default
         inputs.minecraft-server-manager.overlays.default
         inputs.moerae.overlays.default
@@ -92,16 +88,11 @@
         inherit overlays;
       };
 
-      user = rec {
+      user = {
         name = "youn";
         family = "melois";
         fullName = "Youn Mélois";
         email = "youn@melois.dev";
-        homeDirectory = "/home/${name}";
-        nixfilesDirectory = "${homeDirectory}/nixfiles";
-        configDirectory = "${nixfilesDirectory}/config";
-        homeManagerConfigDirectory = "${nixfilesDirectory}/home-manager";
-        nixosConfigDirectory = "${nixfilesDirectory}/nixos";
       };
 
       fonts = {
@@ -140,7 +131,7 @@
       };
 
       mkNixosSystem =
-        modules:
+        module:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
@@ -156,13 +147,15 @@
               };
             }
             ./nixos/modules
-            opnix.nixosModules.default
-          ]
-          ++ modules;
+            inputs.disko.nixosModules.disko
+            inputs.opnix.nixosModules.default
+            inputs.minecraft-server-manager.nixosModules.default
+            module
+          ];
         };
 
       mkHomeManagerConfiguration =
-        modules:
+        module:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
@@ -174,45 +167,26 @@
 
           modules = [
             ./home-manager/modules
-            opnix.homeManagerModules.default
-          ]
-          ++ modules;
+            inputs.opnix.homeManagerModules.default
+            module
+          ];
         };
     in
     {
       # nixos-rebuild switch --flake .#<hostname>
       nixosConfigurations = {
-        "desktop" = mkNixosSystem [
-          ./nixos/host/desktop
-        ];
-        "laptop" = mkNixosSystem [
-          disko.nixosModules.disko
-          ./nixos/host/laptop
-          nixos-hardware.nixosModules.framework-12th-gen-intel
-        ];
+        "desktop" = mkNixosSystem ./nixos/host/desktop;
+        "laptop" = mkNixosSystem ./nixos/host/laptop;
         # nixos-rebuild --target-host root@<hostname> switch --flake ~/nixfiles#server
-        "server" = mkNixosSystem [
-          disko.nixosModules.disko
-          inputs.minecraft-server-manager.nixosModules.default
-          ./nixos/server
-        ];
-        "clever-cloud" = mkNixosSystem [
-          disko.nixosModules.disko
-          ./nixos/host/clever-cloud
-        ];
+        "server" = mkNixosSystem ./nixos/server;
+        "clever-cloud" = mkNixosSystem ./nixos/host/clever-cloud;
       };
-      # nix run home-manager/release-25.11 -- switch --flake .#<hostname>
+      # nix run home-manager/release-26.05 -- switch --flake .#<hostname>
       # home-manager switch --flake .#<hostname>
       homeConfigurations = {
-        "${user.name}@desktop" = mkHomeManagerConfiguration [
-          ./home-manager/desktop.nix
-        ];
-        "${user.name}@laptop" = mkHomeManagerConfiguration [
-          ./home-manager/laptop.nix
-        ];
-        "${user.name}@clever-cloud" = mkHomeManagerConfiguration [
-          ./home-manager/clever-cloud.nix
-        ];
+        "desktop" = mkHomeManagerConfiguration ./home-manager/desktop.nix;
+        "laptop" = mkHomeManagerConfiguration ./home-manager/laptop.nix;
+        "clever-cloud" = mkHomeManagerConfiguration ./home-manager/clever-cloud.nix;
       };
     };
 }

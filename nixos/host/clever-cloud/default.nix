@@ -7,7 +7,6 @@
   imports = [
     ./disk-config.nix
     ./hardware-configuration.nix
-    ../../modules
   ];
 
   nix.settings.experimental-features = [

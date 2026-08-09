@@ -1,12 +1,4 @@
 {
-  user,
-  ...
-}:
-
-{
-  home.username = user.name;
-  home.homeDirectory = user.homeDirectory;
-
   modules = {
     cli.enable = true;
     dev.enable = true;

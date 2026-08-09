@@ -30,7 +30,7 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.gnome-shell = {
-      extensions = builtins.map (extension: {
+      extensions = map (extension: {
         package = extension;
       }) cfg.extensionsPackages;
     };

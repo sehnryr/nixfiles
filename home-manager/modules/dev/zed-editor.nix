@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  user,
   ...
 }:
 
@@ -32,11 +31,11 @@ in
     };
 
     xdg.configFile."zed/settings.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/zed/settings.json";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/zed/settings.json";
     };
 
     xdg.configFile."tombi/config.toml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${user.configDirectory}/tombi/config.toml";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.user.configDirectory}/tombi/config.toml";
     };
 
     programs.git.ignores = lib.mkIf config.programs.git.enable [

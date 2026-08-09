@@ -40,7 +40,7 @@ in
         };
         "--scope" = [
           {
-            "--when".repositories = [ "${user.homeDirectory}/clever-cloud" ];
+            "--when".repositories = [ "${config.home.homeDirectory}/clever-cloud" ];
             user.email = "${user.name}.${user.family}@clever.cloud";
             signing.key = config.home.file.".ssh/clever-cloud.pub".text;
             revset-aliases = {

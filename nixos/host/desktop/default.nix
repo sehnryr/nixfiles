@@ -6,7 +6,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules
   ];
 
   nix.settings.experimental-features = [
