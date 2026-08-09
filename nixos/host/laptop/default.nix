@@ -18,6 +18,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  zramSwap = {
+    enable = true;
+    memoryPercent = 200;
+  };
+
   networking.hostName = "laptop";
 
   networking.networkmanager.enable = true;
