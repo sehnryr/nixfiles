@@ -17,6 +17,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  zramSwap = {
+    enable = true;
+    memoryPercent = 200;
+  };
+
   networking.hostName = "desktop";
 
   networking.networkmanager.enable = true;
@@ -62,8 +67,6 @@
   hardware.amdgpu.overdrive.enable = true;
 
   services.lact.enable = true;
-
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
 
   boot.initrd.luks.devices."luks-efba64ac-5927-4281-b972-4df09a479d35".device =
     "/dev/disk/by-uuid/efba64ac-5927-4281-b972-4df09a479d35";
