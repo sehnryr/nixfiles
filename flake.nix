@@ -1,5 +1,14 @@
 {
   inputs = {
+    systems = {
+      url = "path:./systems.nix";
+      flake = false;
+    };
+    utils = {
+      url = "path:./utils";
+      inputs.systems.follows = "systems";
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=master";
 
@@ -26,6 +35,7 @@
     opnix = {
       url = "github:brizzbuzz/opnix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "utils";
     };
 
     zen-browser = {
@@ -43,7 +53,10 @@
 
     claude-code = {
       url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "utils";
+      };
     };
 
     minecraft-server-manager = {
