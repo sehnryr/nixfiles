@@ -12,4 +12,4 @@ Confirm before irreversible or outward-facing actions: commits, pushes, deleting
 
 # File edits
 
-Never edit files through the shell (`sed -i`, `perl -i`, `awk -i inplace`, `>` or `>>` redirects, `tee`, heredoc-and-redirect). Use Read/Edit/Write. Shell-based mutation bypasses the diff surface and is denied at the permission layer for the common cases; the rule exists so wrapped forms (`bash -c 'sed …'`, absolute paths) do not sneak past.
+Never edit files through the shell (`sed -i`, `perl -i`, `awk -i inplace`, `>` or `>>` redirects, `tee`, heredoc-and-redirect). Use Read/Edit/Write. Shell-based mutation bypasses the diff surface and is denied at the permission layer for the common cases; the rule exists so wrapped forms (`bash -c 'sed …'`, absolute paths) do not sneak past. Shell is for building, testing, running formatters, version control, searching, inspecting.

@@ -12,4 +12,4 @@ Confirm nushell syntax instead of assuming bash carries over.
 
 # NixOS environment
 
-User does not have `jq`, `python`, `python3`, `fd`, or `rg` installed globally; they live in per-project devShells. Claude Code puts its own `rg` on Bash tool's PATH, so Bash tool can use `rg`, but do not assume user's shell can. For genuine one-off need, run tool ephemerally with `nix run nixpkgs#<tool> -- ...`.
+User does not have `jq`, `python`, `python3`, `fd`, or `rg` installed globally; they live in per-project devShells. Claude Code puts its own `rg` on Bash tool's PATH, so Bash tool can use `rg`, but do not assume user's shell can. For genuine one-off need, run tool ephemerally with `nix run nixpkgs#<tool> -- ...`. Do not write a Python or Node script as a substitute for a missing CLI.

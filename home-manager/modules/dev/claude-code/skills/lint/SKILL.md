@@ -5,11 +5,12 @@ description: >
   the deeper rule files in ~/.claude/rules). Use when the user says "lint",
   "audit rules", "check against rules", "does this follow the rules", or when
   they want a rule-conformance pass on a diff, a reply, or a file. Reports
-  concrete violations; does not rewrite. Distinct from `style`, which is the
-  persistent style persona; `lint` is an on-demand deep check that also covers
-  Nix, Rust, shell, vcs, and working-method rules the style persona omits.
+  concrete violations; does not rewrite. Distinct from the House output style,
+  which governs replies persistently; `lint` is an on-demand deep check that
+  also covers Nix, Rust, shell, vcs, and working-method rules the output style
+  omits.
 argument-hint: "[diff|reply|<path>]"
-allowed-tools: Read(//home/youn/.claude/rules/**)
+allowed-tools: Read(//home/youn/.claude/rules/**), Read(//home/youn/.claude/output-styles/**)
 ---
 
 # Lint
@@ -30,7 +31,7 @@ If unclear, ask which one.
 
 ## Rule sources
 
-Read every markdown file in `~/.claude/rules/` at audit time. Load fresh; do not cache. The current set:
+Read every markdown file in `~/.claude/rules/` at audit time, plus `~/.claude/output-styles/house.md` for the compact style rules. Load fresh; do not cache. The current rule set:
 
 - `nix.md`: formatter selection, `flake check` gate, build-not-switch validation, eval-only check, never run `switch`.
 - `rust.md`: `cargo fmt` without `+nightly` under a flake toolchain.
@@ -38,7 +39,7 @@ Read every markdown file in `~/.claude/rules/` at audit time. Load fresh; do not
 - `vcs.md`: forge CLI structured-output convention.
 - `working.md`: lazy failure modes (unverified claims, workarounds without prior-art check, "turn the safety off" smells, pushback handling, session-level verification bar), confirmation before irreversible actions.
 
-The compact style rules (writing register, banned words, negative parallelism, working-method basics) live in the `style` skill and apply to prose. `lint` also enforces them on any target that contains prose (`reply` and `.md` files under `<path>`).
+The compact style rules (writing register, banned words, negative parallelism, working-method basics) live in the House output style (`~/.claude/output-styles/house.md`) and apply to prose. `lint` also enforces them on any target that contains prose (`reply` and `.md` files under `<path>`).
 
 ## How to run
 
@@ -66,4 +67,4 @@ The compact style rules (writing register, banned words, negative parallelism, w
 
 ## Boundaries
 
-Does not run the `style` persona; does not rewrite; does not commit or push. If the user asks to fix the violations, hand back to the main loop; do not fix inside the audit.
+Does not rewrite; does not commit or push. If the user asks to fix the violations, hand back to the main loop; do not fix inside the audit.

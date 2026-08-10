@@ -6,8 +6,8 @@ description: >
   Cuts input tokens on every future session that loads the file. Use when the
   user says "compress <path>", "shrink this memory file", "/compress", or
   asks to reduce input-token cost of a specific file. Not a chat persona; the
-  `style` skill governs replies. Refuse for source code, config files, or
-  files that encode multi-step protocols the user needs preserved verbatim.
+  House output style governs replies. Refuse for source code, config files,
+  or files that encode multi-step protocols the user needs preserved verbatim.
 argument-hint: "<path>"
 ---
 
@@ -109,5 +109,5 @@ If the user asked to run and the file is a protocol-style `SKILL.md`, refuse and
 - One file per invocation.
 - No recursive directory walk. If the user says "compress ~/.claude/rules", ask which file first, then compress one at a time and let the user diff between passes.
 - No `.original.md` backup: user chose to rely on `jj`/`git`. Bail out on a dirty working tree.
-- The `style` skill still governs everything you write in chat. This skill only governs the file rewrite.
+- The House output style still governs everything you write in chat. This skill only governs the file rewrite.
 - `stop compress` / `normal mode` reverts.

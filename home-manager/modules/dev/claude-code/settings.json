@@ -1,28 +1,6 @@
 {
   "model": "claude-sonnet-5",
   "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "startup|resume|clear|compact",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/reinject-rules"
-          }
-        ]
-      }
-    ],
-    "SubagentStart": [
-      {
-        "matcher": ".*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/reinject-rules-subagent"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
@@ -30,6 +8,16 @@
           {
             "type": "command",
             "command": "rtk hook claude"
+          }
+        ]
+      }
+    ],
+    "MessageDisplay": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/render"
           }
         ]
       }
@@ -65,7 +53,8 @@
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true
   },
-  "alwaysThinkingEnabled": false,
+  "outputStyle": "House",
+  "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "tui": "default",
   "skipWorkflowUsageWarning": true,

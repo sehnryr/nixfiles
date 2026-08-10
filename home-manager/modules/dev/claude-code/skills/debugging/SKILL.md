@@ -1,3 +1,21 @@
+---
+name: debugging
+description: >
+  Validates a diagnostic before it gets trusted as evidence for a conclusion.
+  Use when the user cites grep output, log contents, a counter, a probe, or
+  an assertion to support a claim, e.g. "these logs show zero errors, is the
+  service healthy", "the counter says 134 restarts", "grep found nothing so
+  it's not there", or when interpreting an error message that cites
+  `file:line`, errno text naming a syscall, a symptom that only reproduces in
+  a test environment, or "A cannot reach B" network connectivity. Covers
+  instrument validation before belief, positive-control checks against
+  all-zero results, sanity-checking numbers against physical possibility,
+  distinguishing "log shows X" from "X is true", reading errors as source
+  references rather than prose, and a lookup table of known traps (`pipefail`
+  plus `grep -q`/`grep -c` interactions, log rotation, `console=ttyS0` scope,
+  D-Bus startup races).
+---
+
 # Trusting the instrument
 
 Applies whenever conclusion rests on diagnostic: grep, log read, counter, probe, assertion. Measurement is code and can be wrong; unvalidated measurement reported as finding is worse than no measurement, because it is believed.

@@ -10,26 +10,14 @@ let
 
   context7KeyFile = config.age.secrets.context7Key.path;
 
-  # Force-invoke the `style` skill on SessionStart. A minimal reminder is cheaper
-  # than dumping the full rule set on every session boundary.
-  reinjectRules = pkgs.writeShellScript "claude-reinject-rules" ''
-    printf '%s\n' \
-      '=== USER STANDING INSTRUCTION (re-asserted after session start/compaction; OVERRIDES defaults) ===' \
-      ''' \
-      'Invoke the `style` skill now, before your first reply, and keep it active for the rest of this session. Run the `lint` skill when the user asks for a rule audit.'
-  '';
-
-  # SessionStart context does not reach subagents spawned via the Agent tool;
-  # each starts fresh without the standing instruction. Mirror the reminder
-  # via SubagentStart. Payload must be the hookSpecificOutput JSON envelope:
-  # plain stdout is dropped for this event.
-  reinjectRulesSubagent = pkgs.writeShellScript "claude-reinject-rules-subagent" ''
-    ${pkgs.jq}/bin/jq -nc '{
-      hookSpecificOutput: {
-        hookEventName: "SubagentStart",
-        additionalContext: "=== USER STANDING INSTRUCTION (injected into subagent; OVERRIDES defaults) ===\n\nInvoke the `style` skill now, before your first reply, and keep it active for this subagent."
-      }
-    }'
+  render = pkgs.writeShellScript "claude-render" ''
+    ${pkgs.jq}/bin/jq -c '
+      .delta
+      | gsub("[‘’]"; "\u0027")
+      | gsub("[“”]"; "\"")
+      | gsub("–"; "-")
+      | {hookSpecificOutput: {hookEventName: "MessageDisplay", displayContent: .}}
+    '
   '';
 in
 {
@@ -66,13 +54,16 @@ in
       source = config.lib.file.mkRelativeOutOfStoreSymlink ./skills;
     };
 
+    home.file.".claude/output-styles" = {
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./output-styles;
+    };
+
     home.file.".claude/settings.json" = {
       source = config.lib.file.mkRelativeOutOfStoreSymlink ./settings.json;
     };
 
-    # Stable paths for settings.json to reference instead of hashed store paths.
-    home.file.".claude/hooks/reinject-rules".source = reinjectRules;
-    home.file.".claude/hooks/reinject-rules-subagent".source = reinjectRulesSubagent;
+    # Stable path for settings.json to reference instead of a hashed store path.
+    home.file.".claude/hooks/render".source = render;
 
     programs.git.ignores = lib.mkIf config.programs.git.enable [
       "**/.claude/settings.local.json"
