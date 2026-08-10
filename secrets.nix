@@ -5,4 +5,8 @@ in
   "secrets/clamav-notify-url.age".publicKeys = [ master ];
   "secrets/clamav-notify-credential.age".publicKeys = [ master ];
   "secrets/context7-key.age".publicKeys = [ master ];
+  # osquery files
+  "secrets/fleet.pem.age".publicKeys = [ master ];
+  "secrets/secret.txt.age".publicKeys = [ master ];
+  "secrets/osquery.flags.age".publicKeys = [ master ];
 }

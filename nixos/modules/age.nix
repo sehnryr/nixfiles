@@ -17,12 +17,6 @@ in
       "z /etc/age/key.txt 0640 root agesecrets - -"
     ];
 
-    age = {
-      identityPaths = [ "/etc/age/key.txt" ];
-      secrets = {
-        clamavNotifyUrl.file = ../../secrets/clamav-notify-url.age;
-        clamavNotifyCredential.file = ../../secrets/clamav-notify-credential.age;
-      };
-    };
+    age.identityPaths = [ "/etc/age/key.txt" ];
   };
 }

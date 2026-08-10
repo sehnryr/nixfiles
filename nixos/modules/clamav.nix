@@ -48,6 +48,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    modules.age.enable = true;
+    age.secrets = {
+      clamavNotifyUrl.file = ../../secrets/clamav-notify-url.age;
+      clamavNotifyCredential.file = ../../secrets/clamav-notify-credential.age;
+    };
+
     services.clamav = {
       daemon = {
         enable = true;

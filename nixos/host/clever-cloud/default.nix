@@ -50,6 +50,7 @@
     _1password.enable = true;
     age.enable = true;
     clamav.enable = true;
+    osquery.enable = true;
     pipewire.enable = true;
     gnome.enable = true;
     fonts.enable = true;
