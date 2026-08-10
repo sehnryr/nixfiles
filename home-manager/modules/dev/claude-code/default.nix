@@ -34,6 +34,11 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
+    modules.age.enable = true;
+    age.secrets = {
+      context7Key.file = ../../../../secrets/context7-key.age;
+    };
+
     home.packages = [
       pkgs.rtk
       pkgs.moerae
