@@ -8,6 +8,9 @@ description: >
   asks to reduce input-token cost of a specific file. Not a chat persona; the
   House output style governs replies. Refuse for source code, config files,
   or files that encode multi-step protocols the user needs preserved verbatim.
+  If the ask is "Claude ignores this rule" or "this file is bloated" rather
+  than a plain token-cost request, that's the distill skill's job: it triages
+  what to delete or move before this skill's rewrite ever runs.
 argument-hint: "<path>"
 ---
 
