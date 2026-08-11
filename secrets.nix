@@ -4,6 +4,8 @@ in
 {
   "secrets/1password-agent.toml.age".publicKeys = [ master ];
   "secrets/context7-key.age".publicKeys = [ master ];
+  "secrets/nix-cache-key.age".publicKeys = [ master ];
+  "secrets/nix-cache-s3-env.age".publicKeys = [ master ];
   "secrets/clamav-notify-url.age".publicKeys = [ master ];
   "secrets/clamav-notify-credential.age".publicKeys = [ master ];
   # osquery files
