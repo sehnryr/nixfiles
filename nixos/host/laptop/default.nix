@@ -51,6 +51,11 @@
     steam.enable = true;
     fprintd.enable = true;
 
+    tailscale = {
+      enable = true;
+      loginServer = "https://headscale.youn.dev";
+    };
+
     # power management
     thermald.enable = true;
     tlp.enable = true;

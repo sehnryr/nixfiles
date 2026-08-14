@@ -45,6 +45,11 @@
     fwupd.enable = true;
     mptcpd.enable = true;
     steam.enable = true;
+
+    tailscale = {
+      enable = true;
+      loginServer = "https://headscale.youn.dev";
+    };
   };
 
   time.timeZone = "Europe/Paris";

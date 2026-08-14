@@ -36,6 +36,20 @@
 
   networking.hostName = "server";
 
+  modules = {
+    headscale = {
+      enable = true;
+      hostname = "headscale.youn.dev";
+      baseDomain = "tailnet.youn.dev";
+    };
+
+    tailscale = {
+      enable = true;
+      loginServer = "https://headscale.youn.dev";
+    };
+  };
+
+  age.identityPaths = [ "/etc/age/key.txt" ];
   users.users."root" = {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPO/hKBeNBJVbq8yPL13KRBLCn+gpXyNtAs1UyvyP9Z"
