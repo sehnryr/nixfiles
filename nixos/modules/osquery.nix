@@ -10,7 +10,13 @@ in
   options.modules.osquery.enable = lib.mkEnableOption "osquery";
 
   config = lib.mkIf cfg.enable {
-    modules.age.enable = true;
+    assertions = [
+      {
+        assertion = config.modules.age.enable;
+        message = "modules.age is required for osquery";
+      }
+    ];
+
     age.secrets = {
       osqueryFleetCert.file = ../../secrets/fleet.pem.age;
       osqueryEnrollSecret.file = ../../secrets/secret.txt.age;

@@ -1,9 +1,12 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
+  cfg = config.modules.nix-cache;
+
   bucket = "nix-cache";
   endpoint = "cellar-c2.services.clever-cloud.com";
 
@@ -20,25 +23,36 @@ let
   '';
 in
 {
-  age.secrets.nix-cache-key.file = ../../secrets/nix-cache-key.age;
-  age.secrets.nix-cache-s3-env.file = ../../secrets/nix-cache-s3-env.age;
+  options.modules.nix-cache.enable = lib.mkEnableOption "nix-cache";
 
-  nix.settings = {
-    secret-key-files = [ config.age.secrets.nix-cache-key.path ];
-    post-build-hook = "${uploader}";
-
-    substituters = [
-      "https://cache.nixos.org"
-      cacheUrl
+  config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.modules.age.enable;
+        message = "modules.age is required for nix-cache";
+      }
     ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-cache:pCcfH/mDrfqY2V+nhAyGNBrS7+YrGXwtGiYBWAd89zY="
-    ];
-  };
 
-  systemd.services.nix-daemon = {
-    serviceConfig.EnvironmentFile = config.age.secrets.nix-cache-s3-env.path;
-    restartTriggers = [ config.age.secrets.nix-cache-s3-env.file ];
+    age.secrets.nix-cache-key.file = ../../secrets/nix-cache-key.age;
+    age.secrets.nix-cache-s3-env.file = ../../secrets/nix-cache-s3-env.age;
+
+    nix.settings = {
+      secret-key-files = [ config.age.secrets.nix-cache-key.path ];
+      post-build-hook = "${uploader}";
+
+      substituters = [
+        "https://cache.nixos.org"
+        cacheUrl
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-cache:pCcfH/mDrfqY2V+nhAyGNBrS7+YrGXwtGiYBWAd89zY="
+      ];
+    };
+
+    systemd.services.nix-daemon = {
+      serviceConfig.EnvironmentFile = config.age.secrets.nix-cache-s3-env.path;
+      restartTriggers = [ config.age.secrets.nix-cache-s3-env.file ];
+    };
   };
 }

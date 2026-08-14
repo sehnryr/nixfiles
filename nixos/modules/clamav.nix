@@ -48,7 +48,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    modules.age.enable = true;
+    assertions = [
+      {
+        assertion = config.modules.age.enable;
+        message = "modules.age is required for clamav";
+      }
+    ];
+
     age.secrets = {
       clamavNotifyUrl.file = ../../secrets/clamav-notify-url.age;
       clamavNotifyCredential.file = ../../secrets/clamav-notify-credential.age;

@@ -198,7 +198,7 @@
         "desktop" = mkNixosSystem ./nixos/host/desktop;
         "laptop" = mkNixosSystem ./nixos/host/laptop;
         # nixos-rebuild --target-host root@<hostname> switch --flake ~/nixfiles#server
-        "server" = mkNixosSystem ./nixos/server;
+        "server" = mkNixosSystem ./nixos/host/server;
         "clever-cloud" = mkNixosSystem ./nixos/host/clever-cloud;
       };
       # nix run home-manager/release-26.05 -- switch --flake .#<hostname>

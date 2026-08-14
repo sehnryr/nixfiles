@@ -14,26 +14,25 @@
     ./syncthing.nix
   ];
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   environment.systemPackages = with pkgs; [
     neovim
     gitMinimal
   ];
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-  nix.settings.auto-optimise-store = true;
+  boot.initrd.systemd.enable = false;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  zramSwap = {
+    enable = true;
+    memoryPercent = 200;
+  };
 
   networking.hostName = "server";
 
