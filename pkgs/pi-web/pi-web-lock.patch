@@ -1,0 +1,133 @@
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1598,7 +1598,8 @@
+       },
+       "engines": {
+         "node": ">=22.19.0"
+-      }
++      },
++      "integrity": "sha512-evyzXYWCLQGmcaBYHlmSku02r8qoN4SGI60GZABo6iV+H+nqX+P9ud8fEZ4GmRq9mUSREvvfX+w9dA9ThF9C6w=="
+     },
+     "node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-ai": {
+       "version": "0.84.1",
+@@ -1623,7 +1624,8 @@
+       },
+       "engines": {
+         "node": ">=22.19.0"
+-      }
++      },
++      "integrity": "sha512-wMsAdJMxuNri08vLqTyYVI201DQQezGhPSTkzYsHdw5dYX3rCNwEmSvpaAwhi7ELKI/2tE/CEgSWg/6iRxSgdQ=="
+     },
+     "node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-client": {
+       "version": "0.84.1",
+@@ -1634,7 +1636,8 @@
+       },
+       "engines": {
+         "node": ">=22.19.0"
+-      }
++      },
++      "integrity": "sha512-/V5hGHE4Zq+jG0GtwIB9PyBUOGd6gBLZ7lkQYFKchKnxYHeH3rmWC5xw4kpnZKKBuBuFTdLVbU9vEjlAGMMb2A=="
+     },
+     "node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-protocol": {
+       "version": "0.84.1",
+@@ -1645,7 +1648,8 @@
+       },
+       "engines": {
+         "node": ">=22.19.0"
+-      }
++      },
++      "integrity": "sha512-Ox1pciyeSPGEEUcxvR0/dJcrY7C6hrEGA8y71rOsvSIUlXN1Cbp/be/eoL71OGDBk5O97TeQPfWN6Ju/2Ehjww=="
+     },
+     "node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-telemetry": {
+       "version": "0.84.1",
+@@ -1653,7 +1657,8 @@
+       "license": "MIT",
+       "engines": {
+         "node": ">=22.19.0"
+-      }
++      },
++      "integrity": "sha512-180/xGJtsq7IoR3p9EKWjRd0e9M4DkxInhlo9xyD7prDC7Qrhqq+nhvwrW0lFjPfXcEI2FSHmGCSyvSJE9GsaQ=="
+     },
+     "node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-tui": {
+       "version": "0.84.1",
+@@ -1665,7 +1670,8 @@
+       },
+       "engines": {
+         "node": ">=22.19.0"
+-      }
++      },
++      "integrity": "sha512-udeXFbgEhJ6JiB0uguwNVNkDy2FENfmtQwPcY+/iJ8GWeq18wkal1tKqa5YyeH0IqtX1vG0cGh8zfSYzyzVuLA=="
+     },
+     "node_modules/@earendil-works/pi-coding-agent/node_modules/@google/genai": {
+       "version": "1.52.0",
+@@ -6847,70 +6853,6 @@
+         "node": ">=14.0.0"
+       }
+     },
+-    "node_modules/@tailwindcss/oxide-wasm32-wasi/node_modules/@emnapi/core": {
+-      "version": "1.8.1",
+-      "dev": true,
+-      "inBundle": true,
+-      "license": "MIT",
+-      "optional": true,
+-      "dependencies": {
+-        "@emnapi/wasi-threads": "1.1.0",
+-        "tslib": "^2.4.0"
+-      }
+-    },
+-    "node_modules/@tailwindcss/oxide-wasm32-wasi/node_modules/@emnapi/runtime": {
+-      "version": "1.8.1",
+-      "dev": true,
+-      "inBundle": true,
+-      "license": "MIT",
+-      "optional": true,
+-      "dependencies": {
+-        "tslib": "^2.4.0"
+-      }
+-    },
+-    "node_modules/@tailwindcss/oxide-wasm32-wasi/node_modules/@emnapi/wasi-threads": {
+-      "version": "1.1.0",
+-      "dev": true,
+-      "inBundle": true,
+-      "license": "MIT",
+-      "optional": true,
+-      "dependencies": {
+-        "tslib": "^2.4.0"
+-      }
+-    },
+-    "node_modules/@tailwindcss/oxide-wasm32-wasi/node_modules/@napi-rs/wasm-runtime": {
+-      "version": "1.1.1",
+-      "dev": true,
+-      "inBundle": true,
+-      "license": "MIT",
+-      "optional": true,
+-      "dependencies": {
+-        "@emnapi/core": "^1.7.1",
+-        "@emnapi/runtime": "^1.7.1",
+-        "@tybys/wasm-util": "^0.10.1"
+-      },
+-      "funding": {
+-        "type": "github",
+-        "url": "https://github.com/sponsors/Brooooooklyn"
+-      }
+-    },
+-    "node_modules/@tailwindcss/oxide-wasm32-wasi/node_modules/@tybys/wasm-util": {
+-      "version": "0.10.1",
+-      "dev": true,
+-      "inBundle": true,
+-      "license": "MIT",
+-      "optional": true,
+-      "dependencies": {
+-        "tslib": "^2.4.0"
+-      }
+-    },
+-    "node_modules/@tailwindcss/oxide-wasm32-wasi/node_modules/tslib": {
+-      "version": "2.8.1",
+-      "dev": true,
+-      "inBundle": true,
+-      "license": "0BSD",
+-      "optional": true
+-    },
+     "node_modules/@tailwindcss/oxide-win32-arm64-msvc": {
+       "version": "4.2.2",
+       "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-win32-arm64-msvc/-/oxide-win32-arm64-msvc-4.2.2.tgz",
