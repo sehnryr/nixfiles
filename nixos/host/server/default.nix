@@ -40,7 +40,7 @@
     headscale = {
       enable = true;
       hostname = "headscale.youn.dev";
-      baseDomain = "tailnet.youn.dev";
+      baseDomain = "youn.internal";
     };
 
     tailscale = {
