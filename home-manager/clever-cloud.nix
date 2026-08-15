@@ -3,16 +3,8 @@
     cli.enable = true;
     dev.enable = true;
     security.enable = true;
-    desktop = {
-      enable = true;
-      device = "laptop";
-    };
-    backup = {
-      enable = true;
-      folders = [
-        ".claude/projects"
-      ];
-    };
+    desktop.enable = true;
+    backup.enable = true;
   };
 
   home.stateVersion = "26.05";

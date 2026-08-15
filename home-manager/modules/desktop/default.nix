@@ -14,16 +14,7 @@ in
 {
   imports = filterOut ./default.nix modules;
 
-  options.modules.desktop = {
-    enable = lib.mkEnableOption "desktop";
-    device = lib.mkOption {
-      type = lib.types.enum [
-        "desktop"
-        "laptop"
-      ];
-      description = "Device type";
-    };
-  };
+  options.modules.desktop.enable = lib.mkEnableOption "desktop";
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [

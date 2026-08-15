@@ -3,21 +3,9 @@
     cli.enable = true;
     dev.enable = true;
     security.enable = true;
-    desktop = {
-      enable = true;
-      device = "desktop";
-    };
+    desktop.enable = true;
     gaming.enable = true;
-    backup = {
-      enable = true;
-      folders = [
-        ".claude/projects"
-        "Backups"
-        "Desktop"
-        "Pictures"
-        "Videos"
-      ];
-    };
+    backup.enable = true;
   };
 
   home.stateVersion = "26.05";

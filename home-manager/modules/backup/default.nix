@@ -13,20 +13,11 @@ in
 {
   imports = filterOut ./default.nix modules;
 
-  options.modules.backup = {
-    enable = lib.mkEnableOption "backup";
-    folders = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-    };
-  };
+  options.modules.backup.enable = lib.mkEnableOption "backup";
 
   config = lib.mkIf cfg.enable {
     services = {
-      syncthing = {
-        enable = true;
-        folders = cfg.folders;
-      };
+      syncthing.enable = true;
     };
   };
 }
