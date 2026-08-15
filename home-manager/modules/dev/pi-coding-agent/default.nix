@@ -6,14 +6,25 @@
 }:
 let
   cfg = config.programs.pi-coding-agent;
+
+  wrappedPi = pkgs.symlinkJoin {
+    name = "wrapped-pi";
+
+    paths = [ pkgs.unstable.pi-coding-agent ];
+
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+
+    postBuild = ''
+      wrapProgram "$out/bin/pi" \
+        --prefix PATH : ${lib.makeBinPath [ pkgs.nodejs ]}
+    '';
+  };
 in
 {
   options.programs.pi-coding-agent.enable = lib.mkEnableOption "pi-coding-agent";
 
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.unstable.pi-coding-agent
-    ];
+    home.packages = [ wrappedPi ];
 
     home.file.".pi/agent/settings.json" = {
       source = config.lib.file.mkRelativeOutOfStoreSymlink ./settings.json;
