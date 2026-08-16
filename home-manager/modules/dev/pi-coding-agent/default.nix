@@ -31,6 +31,10 @@ in
       source = config.lib.file.mkRelativeOutOfStoreSymlink ./settings.json;
     };
 
+    home.file.".pi/agent/models.json" = {
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./models.json;
+    };
+
     home.file.".pi/agent/AGENTS.md" = {
       source = config.lib.file.mkRelativeOutOfStoreSymlink ./AGENTS.md;
     };
