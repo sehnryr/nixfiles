@@ -16,7 +16,8 @@ let
 
     postBuild = ''
       wrapProgram "$out/bin/pi" \
-        --prefix PATH : ${lib.makeBinPath [ pkgs.nodejs ]}
+        --prefix PATH : ${lib.makeBinPath [ pkgs.nodejs ]} \
+        --set PI_CACHE_RETENTION long
     '';
   };
 in
@@ -28,6 +29,14 @@ in
 
     home.file.".pi/agent/settings.json" = {
       source = config.lib.file.mkRelativeOutOfStoreSymlink ./settings.json;
+    };
+
+    home.file.".pi/agent/AGENTS.md" = {
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./AGENTS.md;
+    };
+
+    home.file.".pi/agent/extensions/writing-policy.ts" = {
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./extensions/writing-policy.ts;
     };
   };
 }
