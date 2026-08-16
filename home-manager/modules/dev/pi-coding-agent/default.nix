@@ -39,8 +39,12 @@ in
       source = config.lib.file.mkRelativeOutOfStoreSymlink ./AGENTS.md;
     };
 
-    home.file.".pi/agent/extensions/writing-policy.ts" = {
-      source = config.lib.file.mkRelativeOutOfStoreSymlink ./extensions/writing-policy.ts;
+    home.file.".pi/agent/agents" = {
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./agents;
+    };
+
+    home.file.".pi/agent/extensions" = {
+      source = config.lib.file.mkRelativeOutOfStoreSymlink ./extensions;
     };
   };
 }
