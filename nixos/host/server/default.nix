@@ -12,6 +12,7 @@
     ./disk-config.nix
     ./minecraft.nix
     ./syncthing.nix
+    ./syncyomi.nix
   ];
 
   nix.settings.experimental-features = [
