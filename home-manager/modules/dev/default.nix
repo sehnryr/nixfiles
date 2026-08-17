@@ -41,7 +41,11 @@ in
       pi-coding-agent.enable = true;
       pi-web = {
         enable = true;
-        allowedHosts = [ "desktop.youn.internal" ];
+        allowedHosts = [
+          "desktop.youn.internal"
+          "laptop.youn.internal"
+          "server.youn.internal"
+        ];
       };
       direnv.enable = true;
       neovim.enable = true;
