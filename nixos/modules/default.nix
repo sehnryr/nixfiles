@@ -5,4 +5,6 @@ let
 in
 {
   imports = filterOut ./default.nix modules;
+
+  environment.defaultPackages = [ ];
 }
