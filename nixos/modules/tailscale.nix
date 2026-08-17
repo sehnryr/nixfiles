@@ -13,10 +13,17 @@ in
     loginServer = lib.mkOption {
       type = lib.types.str;
     };
+
+    useAuthKey = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.tailscale-authkey.file = ../../secrets/tailscale-authkey.age;
+    age.secrets = lib.mkIf cfg.useAuthKey {
+      tailscale-authkey.file = ../../secrets/tailscale-authkey.age;
+    };
 
     services.tailscale = {
       enable = true;
@@ -24,7 +31,7 @@ in
 
       disableUpstreamLogging = true;
 
-      authKeyFile = config.age.secrets.tailscale-authkey.path;
+      authKeyFile = lib.mkIf cfg.useAuthKey config.age.secrets.tailscale-authkey.path;
 
       extraUpFlags = [ "--login-server=${cfg.loginServer}" ];
     };

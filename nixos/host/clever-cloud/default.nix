@@ -58,7 +58,13 @@
     libvirtd.enable = true;
     i18n.enable = true;
     fwupd.enable = true;
-    tailscale.enable = true;
+
+    tailscale = {
+      enable = true;
+      loginServer = "https://headscale.corp.clever.cloud";
+      useAuthKey = false;
+    };
+
     # power management
     thermald.enable = true;
     tlp.enable = true;
