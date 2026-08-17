@@ -4,7 +4,6 @@
     dev.enable = true;
     security.enable = true;
     desktop.enable = true;
-    backup.enable = true;
   };
 
   home.stateVersion = "26.05";
