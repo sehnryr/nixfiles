@@ -20,7 +20,6 @@ in
     programs.zed-editor = {
       installRemoteServer = true;
       extraPackages = with pkgs; [
-        nil
         nixd
         nixfmt
       ];
