@@ -18,6 +18,12 @@ in
       type = lib.types.bool;
       default = true;
     };
+
+    trustTailnet = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Trust all inbound traffic from the Tailscale interface";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -43,6 +49,8 @@ in
       };
     };
 
-    networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
+    networking.firewall.trustedInterfaces = lib.mkIf cfg.trustTailnet [
+      config.services.tailscale.interfaceName
+    ];
   };
 }

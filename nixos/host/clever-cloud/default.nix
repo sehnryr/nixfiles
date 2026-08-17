@@ -63,6 +63,7 @@
       enable = true;
       loginServer = "https://headscale.corp.clever.cloud";
       useAuthKey = false;
+      trustTailnet = false;
     };
 
     # power management
