@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.programs.pi-coding-agent;
+  agentTools = import ./agent-tools.nix { inherit pkgs; };
 
   wrappedPi = pkgs.symlinkJoin {
     name = "wrapped-pi";
@@ -16,7 +17,7 @@ let
 
     postBuild = ''
       wrapProgram "$out/bin/pi" \
-        --prefix PATH : ${lib.makeBinPath [ pkgs.nodejs ]} \
+        --prefix PATH : ${lib.makeBinPath agentTools} \
         --set PI_CACHE_RETENTION long
     '';
   };
