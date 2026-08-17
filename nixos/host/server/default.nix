@@ -62,6 +62,8 @@
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "prohibit-password";
+      AllowTcpForwarding = "yes";
+      GatewayPorts = "clientspecified";
     };
   };
 
