@@ -44,6 +44,8 @@
 
   networking.networkmanager.enable = true;
 
+  programs.nix-ld.enable = true;
+
   modules = {
     store-tweaks.enable = true;
     nix-cache.enable = true;
