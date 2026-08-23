@@ -36,17 +36,6 @@ in
     ];
 
     programs = {
-      claude-code.enable = true;
-      codex.enable = true;
-      pi-coding-agent.enable = true;
-      pi-web = {
-        enable = true;
-        allowedHosts = [
-          "desktop.youn.internal"
-          "laptop.youn.internal"
-          "server.youn.internal"
-        ];
-      };
       direnv.enable = true;
       neovim.enable = true;
       git.enable = true;

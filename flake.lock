@@ -43,29 +43,6 @@
         "type": "github"
       }
     },
-    "claude-code": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1787000716,
-        "narHash": "sha256-OvS7Bs6A2b7GsqcLdvWJ8HWn6ppj4wVbH0J8olARNA8=",
-        "owner": "sadjow",
-        "repo": "claude-code-nix",
-        "rev": "2a8a4d8d8f3d5d49cede737a0df1b49992ffb7e5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sadjow",
-        "repo": "claude-code-nix",
-        "type": "github"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -102,30 +79,6 @@
         "owner": "nix-community",
         "repo": "fenix",
         "rev": "3abc2d5559f4dc30c710ab152abcb4cb60b561ba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "fenix",
-        "type": "github"
-      }
-    },
-    "fenix_2": {
-      "inputs": {
-        "nixpkgs": [
-          "moerae",
-          "nixpkgs"
-        ],
-        "rust-analyzer-src": [
-          "moerae"
-        ]
-      },
-      "locked": {
-        "lastModified": 1786005881,
-        "narHash": "sha256-Bj3VKIiwX1daO4vOIyAM507A65J0aaRSctc87kiT7H4=",
-        "owner": "nix-community",
-        "repo": "fenix",
-        "rev": "a7c3ef79859bf024cdc865a0ed8f14a4e3f31099",
         "type": "github"
       },
       "original": {
@@ -194,28 +147,6 @@
       "original": {
         "owner": "ymelois",
         "repo": "minecraft-server-manager",
-        "type": "github"
-      }
-    },
-    "moerae": {
-      "inputs": {
-        "fenix": "fenix_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1786111004,
-        "narHash": "sha256-/rAJzPNKKGqUWm75j6grTPDd5YcQaOKm9hsURhuAyTU=",
-        "owner": "ymelois",
-        "repo": "moerae",
-        "rev": "a0af4d075146377887448deb977cea6b200280d0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ymelois",
-        "repo": "moerae",
-        "rev": "a0af4d075146377887448deb977cea6b200280d0",
         "type": "github"
       }
     },
@@ -297,11 +228,9 @@
       "inputs": {
         "agenix": "agenix",
         "betterfox": "betterfox",
-        "claude-code": "claude-code",
         "disko": "disko",
         "home-manager": "home-manager",
         "minecraft-server-manager": "minecraft-server-manager",
-        "moerae": "moerae",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
