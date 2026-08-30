@@ -48,7 +48,6 @@
 
   modules = {
     store-tweaks.enable = true;
-    nix-cache.enable = true;
     logind.enable = true;
     _1password.enable = true;
     age.enable = true;
